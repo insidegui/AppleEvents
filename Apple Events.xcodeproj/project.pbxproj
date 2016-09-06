@@ -1,0 +1,725 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DD00F23D1D7DFF66001049E6 /* EVTPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD00F23C1D7DFF66001049E6 /* EVTPlayerViewController.m */; };
+		DD00F2401D7E225E001049E6 /* EVTImageFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = DD00F23F1D7E225E001049E6 /* EVTImageFetcher.m */; };
+		DD00F2451D7E25DF001049E6 /* EVTPastEventsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD00F2441D7E25DF001049E6 /* EVTPastEventsCollectionViewController.m */; };
+		DD00F2491D7E2646001049E6 /* EVTEventCollectionViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DD00F2481D7E2646001049E6 /* EVTEventCollectionViewItem.m */; };
+		DD00F2621D7E6652001049E6 /* GRTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = DD00F2611D7E6652001049E6 /* GRTextField.m */; };
+		DD00F2A21D7E6CAA001049E6 /* EVTEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF00F161D7DA84100418830 /* EVTEvent.m */; };
+		DD00F2A31D7E6CAA001049E6 /* EVTEvent+Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF00F201D7DB05600418830 /* EVTEvent+Dictionary.m */; };
+		DD00F2A41D7E6CAA001049E6 /* EVTEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF00F1C1D7DAA2000418830 /* EVTEnvironment.m */; };
+		DD00F2A51D7E6CAA001049E6 /* EVTEventsFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF00F191D7DA9C200418830 /* EVTEventsFetcher.m */; };
+		DD00F2A61D7E6CAA001049E6 /* EVTEventStateProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF00F2E1D7DDA4900418830 /* EVTEventStateProvider.m */; };
+		DD00F2A81D7E6CAA001049E6 /* EVTImageFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = DD00F23F1D7E225E001049E6 /* EVTImageFetcher.m */; };
+		DD00F2AB1D7E6CBC001049E6 /* AppleEventsDock.docktileplugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = DD00F29C1D7E6C99001049E6 /* AppleEventsDock.docktileplugin */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DD00F2AF1D7E6CD3001049E6 /* EVTDockTilePlugIn.m in Sources */ = {isa = PBXBuildFile; fileRef = DD00F2AE1D7E6CD3001049E6 /* EVTDockTilePlugIn.m */; };
+		DD00F2B21D7E6DE2001049E6 /* EVTDockIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD00F2B11D7E6DE2001049E6 /* EVTDockIconView.m */; };
+		DD00F2BA1D7E6EF7001049E6 /* DefaultIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DD00F2B41D7E6EF7001049E6 /* DefaultIcon.png */; };
+		DD00F2BB1D7E6EF7001049E6 /* DefaultIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD00F2B51D7E6EF7001049E6 /* DefaultIcon@2x.png */; };
+		DD00F2BC1D7E6EF7001049E6 /* DefaultIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD00F2B61D7E6EF7001049E6 /* DefaultIcon@3x.png */; };
+		DD00F2BD1D7E6EF7001049E6 /* IconMask.png in Resources */ = {isa = PBXBuildFile; fileRef = DD00F2B71D7E6EF7001049E6 /* IconMask.png */; };
+		DD00F2BE1D7E6EF7001049E6 /* IconMask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD00F2B81D7E6EF7001049E6 /* IconMask@2x.png */; };
+		DD00F2BF1D7E6EF7001049E6 /* IconMask@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD00F2B91D7E6EF7001049E6 /* IconMask@3x.png */; };
+		DDD7DE6F1D7E8CC300F6CD89 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD7DE6D1D7E8CC300F6CD89 /* Fabric.framework */; };
+		DDD7DE701D7E8CC300F6CD89 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD7DE6E1D7E8CC300F6CD89 /* Crashlytics.framework */; };
+		DDF00ED91D7D9F9D00418830 /* EVTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF00ED81D7D9F9D00418830 /* EVTAppDelegate.m */; };
+		DDF00EDC1D7D9F9D00418830 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF00EDB1D7D9F9D00418830 /* main.m */; };
+		DDF00EE11D7D9F9D00418830 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF00EE01D7D9F9D00418830 /* Assets.xcassets */; };
+		DDF00EE41D7D9F9E00418830 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF00EE21D7D9F9E00418830 /* Main.storyboard */; };
+		DDF00EF01D7D9FF400418830 /* EVTEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF00EEF1D7D9FF400418830 /* EVTEventsViewController.m */; };
+		DDF00F0F1D7DA23200418830 /* EventsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF00F0B1D7DA0BF00418830 /* EventsUI.framework */; };
+		DDF00F101D7DA23200418830 /* EventsUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DDF00F0B1D7DA0BF00418830 /* EventsUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DDF00F171D7DA84100418830 /* EVTEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF00F161D7DA84100418830 /* EVTEvent.m */; };
+		DDF00F1A1D7DA9C200418830 /* EVTEventsFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF00F191D7DA9C200418830 /* EVTEventsFetcher.m */; };
+		DDF00F1D1D7DAA2000418830 /* EVTEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF00F1C1D7DAA2000418830 /* EVTEnvironment.m */; };
+		DDF00F211D7DB05600418830 /* EVTEvent+Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF00F201D7DB05600418830 /* EVTEvent+Dictionary.m */; };
+		DDF00F291D7DCF4C00418830 /* EVTEventsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF00F281D7DCF4C00418830 /* EVTEventsCache.m */; };
+		DDF00F2C1D7DD9C200418830 /* EVTCurrentEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF00F2B1D7DD9C200418830 /* EVTCurrentEventViewController.m */; };
+		DDF00F2F1D7DDA4900418830 /* EVTEventStateProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF00F2E1D7DDA4900418830 /* EVTEventStateProvider.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DD00F2A91D7E6CB5001049E6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DDF00ECC1D7D9F9D00418830 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD00F29B1D7E6C99001049E6;
+			remoteInfo = AppleEventsDock;
+		};
+		DDF00F0A1D7DA0BF00418830 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DDF00F061D7DA0BE00418830 /* EventsUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DDF00EFB1D7DA0BE00418830;
+			remoteInfo = EventsUI;
+		};
+		DDF00F111D7DA23200418830 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DDF00F061D7DA0BE00418830 /* EventsUI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = DDF00EFA1D7DA0BE00418830;
+			remoteInfo = EventsUI;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DD00F2811D7E6971001049E6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				DD00F2AB1D7E6CBC001049E6 /* AppleEventsDock.docktileplugin in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDF00F131D7DA23200418830 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DDF00F101D7DA23200418830 /* EventsUI.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		DD00F23B1D7DFF66001049E6 /* EVTPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTPlayerViewController.h; sourceTree = "<group>"; };
+		DD00F23C1D7DFF66001049E6 /* EVTPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVTPlayerViewController.m; sourceTree = "<group>"; };
+		DD00F23E1D7E225E001049E6 /* EVTImageFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTImageFetcher.h; sourceTree = "<group>"; };
+		DD00F23F1D7E225E001049E6 /* EVTImageFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVTImageFetcher.m; sourceTree = "<group>"; };
+		DD00F2431D7E25DF001049E6 /* EVTPastEventsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTPastEventsCollectionViewController.h; sourceTree = "<group>"; };
+		DD00F2441D7E25DF001049E6 /* EVTPastEventsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVTPastEventsCollectionViewController.m; sourceTree = "<group>"; };
+		DD00F2471D7E2646001049E6 /* EVTEventCollectionViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTEventCollectionViewItem.h; sourceTree = "<group>"; };
+		DD00F2481D7E2646001049E6 /* EVTEventCollectionViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVTEventCollectionViewItem.m; sourceTree = "<group>"; };
+		DD00F2601D7E6652001049E6 /* GRTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRTextField.h; sourceTree = "<group>"; };
+		DD00F2611D7E6652001049E6 /* GRTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRTextField.m; sourceTree = "<group>"; };
+		DD00F29C1D7E6C99001049E6 /* AppleEventsDock.docktileplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppleEventsDock.docktileplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD00F29E1D7E6C99001049E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD00F2AD1D7E6CD3001049E6 /* EVTDockTilePlugIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTDockTilePlugIn.h; sourceTree = "<group>"; };
+		DD00F2AE1D7E6CD3001049E6 /* EVTDockTilePlugIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVTDockTilePlugIn.m; sourceTree = "<group>"; };
+		DD00F2B01D7E6DE2001049E6 /* EVTDockIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTDockIconView.h; sourceTree = "<group>"; };
+		DD00F2B11D7E6DE2001049E6 /* EVTDockIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVTDockIconView.m; sourceTree = "<group>"; };
+		DD00F2B41D7E6EF7001049E6 /* DefaultIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DefaultIcon.png; path = Resources/DefaultIcon.png; sourceTree = SOURCE_ROOT; };
+		DD00F2B51D7E6EF7001049E6 /* DefaultIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DefaultIcon@2x.png"; path = "Resources/DefaultIcon@2x.png"; sourceTree = SOURCE_ROOT; };
+		DD00F2B61D7E6EF7001049E6 /* DefaultIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DefaultIcon@3x.png"; path = "Resources/DefaultIcon@3x.png"; sourceTree = SOURCE_ROOT; };
+		DD00F2B71D7E6EF7001049E6 /* IconMask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconMask.png; path = Resources/IconMask.png; sourceTree = SOURCE_ROOT; };
+		DD00F2B81D7E6EF7001049E6 /* IconMask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconMask@2x.png"; path = "Resources/IconMask@2x.png"; sourceTree = SOURCE_ROOT; };
+		DD00F2B91D7E6EF7001049E6 /* IconMask@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconMask@3x.png"; path = "Resources/IconMask@3x.png"; sourceTree = SOURCE_ROOT; };
+		DDD7DE6D1D7E8CC300F6CD89 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		DDD7DE6E1D7E8CC300F6CD89 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		DDF00ED41D7D9F9D00418830 /* Apple Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Apple Events.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDF00ED71D7D9F9D00418830 /* EVTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EVTAppDelegate.h; sourceTree = "<group>"; };
+		DDF00ED81D7D9F9D00418830 /* EVTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EVTAppDelegate.m; sourceTree = "<group>"; };
+		DDF00EDB1D7D9F9D00418830 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DDF00EE01D7D9F9D00418830 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DDF00EE31D7D9F9E00418830 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DDF00EE51D7D9F9E00418830 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDF00EEE1D7D9FF400418830 /* EVTEventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTEventsViewController.h; sourceTree = "<group>"; };
+		DDF00EEF1D7D9FF400418830 /* EVTEventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVTEventsViewController.m; sourceTree = "<group>"; };
+		DDF00F061D7DA0BE00418830 /* EventsUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EventsUI.xcodeproj; path = EventsUI/EventsUI.xcodeproj; sourceTree = "<group>"; };
+		DDF00F151D7DA84100418830 /* EVTEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTEvent.h; sourceTree = "<group>"; };
+		DDF00F161D7DA84100418830 /* EVTEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVTEvent.m; sourceTree = "<group>"; };
+		DDF00F181D7DA9C200418830 /* EVTEventsFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTEventsFetcher.h; sourceTree = "<group>"; };
+		DDF00F191D7DA9C200418830 /* EVTEventsFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVTEventsFetcher.m; sourceTree = "<group>"; };
+		DDF00F1B1D7DAA2000418830 /* EVTEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTEnvironment.h; sourceTree = "<group>"; };
+		DDF00F1C1D7DAA2000418830 /* EVTEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVTEnvironment.m; sourceTree = "<group>"; };
+		DDF00F1F1D7DB05600418830 /* EVTEvent+Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EVTEvent+Dictionary.h"; sourceTree = "<group>"; };
+		DDF00F201D7DB05600418830 /* EVTEvent+Dictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EVTEvent+Dictionary.m"; sourceTree = "<group>"; };
+		DDF00F271D7DCF4C00418830 /* EVTEventsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTEventsCache.h; sourceTree = "<group>"; };
+		DDF00F281D7DCF4C00418830 /* EVTEventsCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVTEventsCache.m; sourceTree = "<group>"; };
+		DDF00F2A1D7DD9C200418830 /* EVTCurrentEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTCurrentEventViewController.h; sourceTree = "<group>"; };
+		DDF00F2B1D7DD9C200418830 /* EVTCurrentEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVTCurrentEventViewController.m; sourceTree = "<group>"; };
+		DDF00F2D1D7DDA4900418830 /* EVTEventStateProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTEventStateProvider.h; sourceTree = "<group>"; };
+		DDF00F2E1D7DDA4900418830 /* EVTEventStateProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVTEventStateProvider.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DD00F2991D7E6C99001049E6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDF00ED11D7D9F9D00418830 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDF00F0F1D7DA23200418830 /* EventsUI.framework in Frameworks */,
+				DDD7DE701D7E8CC300F6CD89 /* Crashlytics.framework in Frameworks */,
+				DDD7DE6F1D7E8CC300F6CD89 /* Fabric.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DD00F2461D7E262F001049E6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DD00F2601D7E6652001049E6 /* GRTextField.h */,
+				DD00F2611D7E6652001049E6 /* GRTextField.m */,
+				DD00F2471D7E2646001049E6 /* EVTEventCollectionViewItem.h */,
+				DD00F2481D7E2646001049E6 /* EVTEventCollectionViewItem.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		DD00F29D1D7E6C99001049E6 /* AppleEventsDock */ = {
+			isa = PBXGroup;
+			children = (
+				DD00F2B31D7E6EDF001049E6 /* Resources */,
+				DD00F2AC1D7E6CC5001049E6 /* Source */,
+				DD00F29E1D7E6C99001049E6 /* Info.plist */,
+			);
+			path = AppleEventsDock;
+			sourceTree = "<group>";
+		};
+		DD00F2AC1D7E6CC5001049E6 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				DD00F2AD1D7E6CD3001049E6 /* EVTDockTilePlugIn.h */,
+				DD00F2AE1D7E6CD3001049E6 /* EVTDockTilePlugIn.m */,
+				DD00F2B01D7E6DE2001049E6 /* EVTDockIconView.h */,
+				DD00F2B11D7E6DE2001049E6 /* EVTDockIconView.m */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		DD00F2B31D7E6EDF001049E6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DD00F2B41D7E6EF7001049E6 /* DefaultIcon.png */,
+				DD00F2B51D7E6EF7001049E6 /* DefaultIcon@2x.png */,
+				DD00F2B61D7E6EF7001049E6 /* DefaultIcon@3x.png */,
+				DD00F2B71D7E6EF7001049E6 /* IconMask.png */,
+				DD00F2B81D7E6EF7001049E6 /* IconMask@2x.png */,
+				DD00F2B91D7E6EF7001049E6 /* IconMask@3x.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		DDF00ECB1D7D9F9D00418830 = {
+			isa = PBXGroup;
+			children = (
+				DDD7DE6D1D7E8CC300F6CD89 /* Fabric.framework */,
+				DDD7DE6E1D7E8CC300F6CD89 /* Crashlytics.framework */,
+				DDF00F061D7DA0BE00418830 /* EventsUI.xcodeproj */,
+				DDF00ED61D7D9F9D00418830 /* Apple Events */,
+				DD00F29D1D7E6C99001049E6 /* AppleEventsDock */,
+				DDF00ED51D7D9F9D00418830 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DDF00ED51D7D9F9D00418830 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DDF00ED41D7D9F9D00418830 /* Apple Events.app */,
+				DD00F29C1D7E6C99001049E6 /* AppleEventsDock.docktileplugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DDF00ED61D7D9F9D00418830 /* Apple Events */ = {
+			isa = PBXGroup;
+			children = (
+				DDF00F141D7DA82B00418830 /* Core */,
+				DDF00EEB1D7D9FA300418830 /* Bootstrap */,
+				DDF00EEC1D7D9FA900418830 /* Controllers */,
+				DD00F2461D7E262F001049E6 /* Views */,
+				DDF00EED1D7D9FB100418830 /* Resources */,
+			);
+			path = "Apple Events";
+			sourceTree = "<group>";
+		};
+		DDF00EEB1D7D9FA300418830 /* Bootstrap */ = {
+			isa = PBXGroup;
+			children = (
+				DDF00EDB1D7D9F9D00418830 /* main.m */,
+				DDF00ED71D7D9F9D00418830 /* EVTAppDelegate.h */,
+				DDF00ED81D7D9F9D00418830 /* EVTAppDelegate.m */,
+			);
+			name = Bootstrap;
+			sourceTree = "<group>";
+		};
+		DDF00EEC1D7D9FA900418830 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DDF00EEE1D7D9FF400418830 /* EVTEventsViewController.h */,
+				DDF00EEF1D7D9FF400418830 /* EVTEventsViewController.m */,
+				DDF00F2A1D7DD9C200418830 /* EVTCurrentEventViewController.h */,
+				DDF00F2B1D7DD9C200418830 /* EVTCurrentEventViewController.m */,
+				DD00F2431D7E25DF001049E6 /* EVTPastEventsCollectionViewController.h */,
+				DD00F2441D7E25DF001049E6 /* EVTPastEventsCollectionViewController.m */,
+				DD00F23B1D7DFF66001049E6 /* EVTPlayerViewController.h */,
+				DD00F23C1D7DFF66001049E6 /* EVTPlayerViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		DDF00EED1D7D9FB100418830 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DDF00EE51D7D9F9E00418830 /* Info.plist */,
+				DDF00EE21D7D9F9E00418830 /* Main.storyboard */,
+				DDF00EE01D7D9F9D00418830 /* Assets.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		DDF00F071D7DA0BE00418830 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DDF00F0B1D7DA0BF00418830 /* EventsUI.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DDF00F141D7DA82B00418830 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				DDF00F1E1D7DB04600418830 /* Model */,
+				DDF00F1B1D7DAA2000418830 /* EVTEnvironment.h */,
+				DDF00F1C1D7DAA2000418830 /* EVTEnvironment.m */,
+				DDF00F181D7DA9C200418830 /* EVTEventsFetcher.h */,
+				DDF00F191D7DA9C200418830 /* EVTEventsFetcher.m */,
+				DDF00F2D1D7DDA4900418830 /* EVTEventStateProvider.h */,
+				DDF00F2E1D7DDA4900418830 /* EVTEventStateProvider.m */,
+				DDF00F271D7DCF4C00418830 /* EVTEventsCache.h */,
+				DDF00F281D7DCF4C00418830 /* EVTEventsCache.m */,
+				DD00F23E1D7E225E001049E6 /* EVTImageFetcher.h */,
+				DD00F23F1D7E225E001049E6 /* EVTImageFetcher.m */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		DDF00F1E1D7DB04600418830 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DDF00F151D7DA84100418830 /* EVTEvent.h */,
+				DDF00F161D7DA84100418830 /* EVTEvent.m */,
+				DDF00F1F1D7DB05600418830 /* EVTEvent+Dictionary.h */,
+				DDF00F201D7DB05600418830 /* EVTEvent+Dictionary.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DD00F29B1D7E6C99001049E6 /* AppleEventsDock */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD00F29F1D7E6C99001049E6 /* Build configuration list for PBXNativeTarget "AppleEventsDock" */;
+			buildPhases = (
+				DD00F2981D7E6C99001049E6 /* Sources */,
+				DD00F2991D7E6C99001049E6 /* Frameworks */,
+				DD00F29A1D7E6C99001049E6 /* Resources */,
+				DDD7DE671D7E73BC00F6CD89 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AppleEventsDock;
+			productName = AppleEventsDock;
+			productReference = DD00F29C1D7E6C99001049E6 /* AppleEventsDock.docktileplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+		DDF00ED31D7D9F9D00418830 /* Apple Events */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDF00EE81D7D9F9E00418830 /* Build configuration list for PBXNativeTarget "Apple Events" */;
+			buildPhases = (
+				DDF00ED01D7D9F9D00418830 /* Sources */,
+				DDF00ED11D7D9F9D00418830 /* Frameworks */,
+				DDF00ED21D7D9F9D00418830 /* Resources */,
+				DDF00F131D7DA23200418830 /* Embed Frameworks */,
+				DD00F2811D7E6971001049E6 /* CopyFiles */,
+				DDD7DE6A1D7E8C9900F6CD89 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD00F2AA1D7E6CB5001049E6 /* PBXTargetDependency */,
+				DDF00F121D7DA23200418830 /* PBXTargetDependency */,
+			);
+			name = "Apple Events";
+			productName = "Apple Events";
+			productReference = DDF00ED41D7D9F9D00418830 /* Apple Events.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DDF00ECC1D7D9F9D00418830 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Guilherme Rambo";
+				TargetAttributes = {
+					DD00F29B1D7E6C99001049E6 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 8C7439RJLG;
+						ProvisioningStyle = Automatic;
+					};
+					DDF00ED31D7D9F9D00418830 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 8C7439RJLG;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = DDF00ECF1D7D9F9D00418830 /* Build configuration list for PBXProject "Apple Events" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DDF00ECB1D7D9F9D00418830;
+			productRefGroup = DDF00ED51D7D9F9D00418830 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = DDF00F071D7DA0BE00418830 /* Products */;
+					ProjectRef = DDF00F061D7DA0BE00418830 /* EventsUI.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				DDF00ED31D7D9F9D00418830 /* Apple Events */,
+				DD00F29B1D7E6C99001049E6 /* AppleEventsDock */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		DDF00F0B1D7DA0BF00418830 /* EventsUI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = EventsUI.framework;
+			remoteRef = DDF00F0A1D7DA0BF00418830 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DD00F29A1D7E6C99001049E6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD00F2BD1D7E6EF7001049E6 /* IconMask.png in Resources */,
+				DD00F2BA1D7E6EF7001049E6 /* DefaultIcon.png in Resources */,
+				DD00F2BC1D7E6EF7001049E6 /* DefaultIcon@3x.png in Resources */,
+				DD00F2BE1D7E6EF7001049E6 /* IconMask@2x.png in Resources */,
+				DD00F2BF1D7E6EF7001049E6 /* IconMask@3x.png in Resources */,
+				DD00F2BB1D7E6EF7001049E6 /* DefaultIcon@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDF00ED21D7D9F9D00418830 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDF00EE11D7D9F9D00418830 /* Assets.xcassets in Resources */,
+				DDF00EE41D7D9F9E00418830 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DDD7DE671D7E73BC00F6CD89 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Uncomment to restart Dock on every build (useful for testing)\n# killall Dock";
+		};
+		DDD7DE6A1D7E8C9900F6CD89 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ -f \"./Apple Events/Crashlytics.sh\" ]; then\n./Apple\\ Events/Crashlytics.sh\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DD00F2981D7E6C99001049E6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD00F2A21D7E6CAA001049E6 /* EVTEvent.m in Sources */,
+				DD00F2B21D7E6DE2001049E6 /* EVTDockIconView.m in Sources */,
+				DD00F2A31D7E6CAA001049E6 /* EVTEvent+Dictionary.m in Sources */,
+				DD00F2A41D7E6CAA001049E6 /* EVTEnvironment.m in Sources */,
+				DD00F2AF1D7E6CD3001049E6 /* EVTDockTilePlugIn.m in Sources */,
+				DD00F2A51D7E6CAA001049E6 /* EVTEventsFetcher.m in Sources */,
+				DD00F2A61D7E6CAA001049E6 /* EVTEventStateProvider.m in Sources */,
+				DD00F2A81D7E6CAA001049E6 /* EVTImageFetcher.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDF00ED01D7D9F9D00418830 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDF00EDC1D7D9F9D00418830 /* main.m in Sources */,
+				DD00F2621D7E6652001049E6 /* GRTextField.m in Sources */,
+				DDF00F1D1D7DAA2000418830 /* EVTEnvironment.m in Sources */,
+				DDF00ED91D7D9F9D00418830 /* EVTAppDelegate.m in Sources */,
+				DDF00F291D7DCF4C00418830 /* EVTEventsCache.m in Sources */,
+				DDF00F171D7DA84100418830 /* EVTEvent.m in Sources */,
+				DD00F23D1D7DFF66001049E6 /* EVTPlayerViewController.m in Sources */,
+				DDF00F2C1D7DD9C200418830 /* EVTCurrentEventViewController.m in Sources */,
+				DDF00EF01D7D9FF400418830 /* EVTEventsViewController.m in Sources */,
+				DDF00F2F1D7DDA4900418830 /* EVTEventStateProvider.m in Sources */,
+				DDF00F1A1D7DA9C200418830 /* EVTEventsFetcher.m in Sources */,
+				DD00F2491D7E2646001049E6 /* EVTEventCollectionViewItem.m in Sources */,
+				DDF00F211D7DB05600418830 /* EVTEvent+Dictionary.m in Sources */,
+				DD00F2451D7E25DF001049E6 /* EVTPastEventsCollectionViewController.m in Sources */,
+				DD00F2401D7E225E001049E6 /* EVTImageFetcher.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DD00F2AA1D7E6CB5001049E6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD00F29B1D7E6C99001049E6 /* AppleEventsDock */;
+			targetProxy = DD00F2A91D7E6CB5001049E6 /* PBXContainerItemProxy */;
+		};
+		DDF00F121D7DA23200418830 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EventsUI;
+			targetProxy = DDF00F111D7DA23200418830 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DDF00EE21D7D9F9E00418830 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DDF00EE31D7D9F9E00418830 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DD00F2A01D7E6C99001049E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 8C7439RJLG;
+				INFOPLIST_FILE = AppleEventsDock/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.guilhermerambo.AppleEventsDock;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = docktileplugin;
+			};
+			name = Debug;
+		};
+		DD00F2A11D7E6C99001049E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 8C7439RJLG;
+				INFOPLIST_FILE = AppleEventsDock/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.guilhermerambo.AppleEventsDock;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = docktileplugin;
+			};
+			name = Release;
+		};
+		DDF00EE61D7D9F9E00418830 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		DDF00EE71D7D9F9E00418830 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		DDF00EE91D7D9F9E00418830 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 8C7439RJLG;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "Apple Events/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.guilhermerambo.Apple-Events";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DDF00EEA1D7D9F9E00418830 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 8C7439RJLG;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "Apple Events/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.guilhermerambo.Apple-Events";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DD00F29F1D7E6C99001049E6 /* Build configuration list for PBXNativeTarget "AppleEventsDock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD00F2A01D7E6C99001049E6 /* Debug */,
+				DD00F2A11D7E6C99001049E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DDF00ECF1D7D9F9D00418830 /* Build configuration list for PBXProject "Apple Events" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDF00EE61D7D9F9E00418830 /* Debug */,
+				DDF00EE71D7D9F9E00418830 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DDF00EE81D7D9F9E00418830 /* Build configuration list for PBXNativeTarget "Apple Events" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDF00EE91D7D9F9E00418830 /* Debug */,
+				DDF00EEA1D7D9F9E00418830 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DDF00ECC1D7D9F9D00418830 /* Project object */;
+}
