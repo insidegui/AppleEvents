@@ -14,7 +14,7 @@
 							</ul>
 						]]></description>
             <pubDate>Tue, 06 Sep 2016 14:00:00 -0300</pubDate>
-            <enclosure url="https://github.com/insidegui/AppleEvents/releases/download/0.5/AppleEvents_v0.5.zip" sparkle:version="5" sparkle:shortVersionString="4.0" length="8153812" type="application/octet-stream" />
+            <enclosure url="https://github.com/insidegui/AppleEvents/releases/download/0.5/AppleEvents_v0.5.zip" sparkle:version="5" sparkle:shortVersionString="0.5" length="5699213" type="application/octet-stream" />
             <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
         </item>
     </channel>
