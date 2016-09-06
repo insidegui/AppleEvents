@@ -25,6 +25,12 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
+                                        <menuItem title="Check for Updates…" id="Z3y-Wm-ym9">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="checkForUpdates:" target="eoC-9L-2cw" id="a1B-J9-Ac4"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
@@ -607,6 +613,7 @@
                     </connections>
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="EVTAppDelegate"/>
+                <customObject id="eoC-9L-2cw" customClass="SUUpdater"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>

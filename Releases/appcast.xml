@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        <title>WWDC Changelog</title>
+        <link>https://github.com/insidegui/AppleEvents/raw/master/Releases/appcast.xml</link>
+        <description>Most recent changes with links to updates.</description>
+        <language>en</language>
+		
+        <item>
+            <title>Version 0.5</title>
+			<description><![CDATA[
+							<ul>
+								<li>First version</li>
+							</ul>
+						]]></description>
+            <pubDate>Tue, 06 Sep 2016 14:00:00 -0300</pubDate>
+            <enclosure url="https://github.com/insidegui/AppleEvents/releases/download/0.5/AppleEvents_v0.5.zip" sparkle:version="5" sparkle:shortVersionString="4.0" length="8153812" type="application/octet-stream" />
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+        </item>
+    </channel>
+</rss>

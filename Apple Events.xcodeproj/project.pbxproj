@@ -27,6 +27,8 @@
 		DD00F2BD1D7E6EF7001049E6 /* IconMask.png in Resources */ = {isa = PBXBuildFile; fileRef = DD00F2B71D7E6EF7001049E6 /* IconMask.png */; };
 		DD00F2BE1D7E6EF7001049E6 /* IconMask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD00F2B81D7E6EF7001049E6 /* IconMask@2x.png */; };
 		DD00F2BF1D7E6EF7001049E6 /* IconMask@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD00F2B91D7E6EF7001049E6 /* IconMask@3x.png */; };
+		DD9A8C351D7E95BF0078501F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9A8C331D7E953F0078501F /* Sparkle.framework */; };
+		DD9A8C361D7E95BF0078501F /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD9A8C331D7E953F0078501F /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DDD7DE6F1D7E8CC300F6CD89 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD7DE6D1D7E8CC300F6CD89 /* Fabric.framework */; };
 		DDD7DE701D7E8CC300F6CD89 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD7DE6E1D7E8CC300F6CD89 /* Crashlytics.framework */; };
 		DDF00ED91D7D9F9D00418830 /* EVTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF00ED81D7D9F9D00418830 /* EVTAppDelegate.m */; };
@@ -87,6 +89,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				DDF00F101D7DA23200418830 /* EventsUI.framework in Embed Frameworks */,
+				DD9A8C361D7E95BF0078501F /* Sparkle.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,6 +119,7 @@
 		DD00F2B71D7E6EF7001049E6 /* IconMask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconMask.png; path = Resources/IconMask.png; sourceTree = SOURCE_ROOT; };
 		DD00F2B81D7E6EF7001049E6 /* IconMask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconMask@2x.png"; path = "Resources/IconMask@2x.png"; sourceTree = SOURCE_ROOT; };
 		DD00F2B91D7E6EF7001049E6 /* IconMask@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconMask@3x.png"; path = "Resources/IconMask@3x.png"; sourceTree = SOURCE_ROOT; };
+		DD9A8C331D7E953F0078501F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		DDD7DE6D1D7E8CC300F6CD89 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		DDD7DE6E1D7E8CC300F6CD89 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		DDF00ED41D7D9F9D00418830 /* Apple Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Apple Events.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +163,7 @@
 				DDF00F0F1D7DA23200418830 /* EventsUI.framework in Frameworks */,
 				DDD7DE701D7E8CC300F6CD89 /* Crashlytics.framework in Frameworks */,
 				DDD7DE6F1D7E8CC300F6CD89 /* Fabric.framework in Frameworks */,
+				DD9A8C351D7E95BF0078501F /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +218,7 @@
 		DDF00ECB1D7D9F9D00418830 = {
 			isa = PBXGroup;
 			children = (
+				DD9A8C331D7E953F0078501F /* Sparkle.framework */,
 				DDD7DE6D1D7E8CC300F6CD89 /* Fabric.framework */,
 				DDD7DE6E1D7E8CC300F6CD89 /* Crashlytics.framework */,
 				DDF00F061D7DA0BE00418830 /* EventsUI.xcodeproj */,
@@ -664,6 +670,8 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Apple Events/Info.plist";
+				INFOPLIST_PREFIX_HEADER = "";
+				INFOPLIST_PREPROCESS = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "br.com.guilhermerambo.Apple-Events";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -683,6 +691,8 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Apple Events/Info.plist";
+				INFOPLIST_PREFIX_HEADER = "";
+				INFOPLIST_PREPROCESS = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "br.com.guilhermerambo.Apple-Events";
 				PRODUCT_NAME = "$(TARGET_NAME)";
