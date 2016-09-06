@@ -95,6 +95,9 @@
     [self addChildViewController:self.currentEventController];
     
     self.currentEventController.view.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.currentEventController.backdropView.subviews enumerateObjectsUsingBlock:^(__kindof NSView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj setHidden:YES];
+    }];
     [self.view addSubview:self.currentEventController.view];
     
     [[self.currentEventController.view.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor] setActive:YES];
@@ -118,6 +121,12 @@
     NSPredicate *livePredicate = [NSPredicate predicateWithFormat:@"live == YES"];
     self.currentEvent = [[events filteredArrayUsingPredicate:livePredicate] firstObject];
     self.pastEvents = events;
+    
+    [self.currentEventController.backdropView.subviews enumerateObjectsUsingBlock:^(__kindof NSView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj setHidden:NO];
+    }];
+    
+    [self __hideProgress];
 }
 
 - (void)viewWillAppear
@@ -157,7 +166,6 @@
     __weak typeof(self) weakSelf = self;
     [self.fetcher fetchEventsWithCompletionHandler:^(NSError *error, NSArray<EVTEvent *> *events) {
         weakSelf.isLoadingEvents = NO;
-        [weakSelf __hideProgress];
         
         [self __populateEventsWith:events];
     }];

@@ -12,7 +12,7 @@ public class EVTButton: NSControl {
 
     private var widthConstraint: NSLayoutConstraint!
     
-    public var title: String = "Button" {
+    public var title: String = "" {
         didSet {
             sizeToFit()
             configureLayers()
