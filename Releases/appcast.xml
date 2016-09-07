@@ -7,6 +7,18 @@
         <language>en</language>
 		
         <item>
+            <title>Version 0.5.2</title>
+			<description><![CDATA[
+							<ul>
+								<li><strong>FIXED:</strong> Multiple bugs and crashes fixed. Improved error handling.</li>
+							</ul>
+						]]></description>
+            <pubDate>Tue, 07 Sep 2016 11:50:00 -0300</pubDate>
+            <enclosure url="https://github.com/insidegui/AppleEvents/releases/download/0.5.2/AppleEvents_v0.5.2.zip" sparkle:version="8" sparkle:shortVersionString="0.5.2" length="5702118" type="application/octet-stream" />
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+        </item>
+		
+        <item>
             <title>Version 0.5.1</title>
 			<description><![CDATA[
 							<ul>

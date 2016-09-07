@@ -19,6 +19,9 @@
 #import "EVTPlayerViewController.h"
 #import "EVTPastEventsCollectionViewController.h"
 
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
 @import EventsUI;
 
 @interface EVTEventsViewController ()
@@ -116,19 +119,6 @@
     [[self.pastEventsController.view.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor] setActive:YES];
 }
 
-- (void)__populateEventsWith:(NSArray <EVTEvent *> *)events
-{
-    NSPredicate *livePredicate = [NSPredicate predicateWithFormat:@"live == YES"];
-    self.currentEvent = [[events filteredArrayUsingPredicate:livePredicate] firstObject];
-    self.pastEvents = events;
-    
-    [self.currentEventController.backdropView.subviews enumerateObjectsUsingBlock:^(__kindof NSView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj setHidden:NO];
-    }];
-    
-    [self __hideProgress];
-}
-
 - (void)viewWillAppear
 {
     [super viewWillAppear];
@@ -167,8 +157,36 @@
     [self.fetcher fetchEventsWithCompletionHandler:^(NSError *error, NSArray<EVTEvent *> *events) {
         weakSelf.isLoadingEvents = NO;
         
-        [self __populateEventsWith:events];
+        if (error) {
+            [self __showError:error];
+        } else {
+            [self __populateEventsWith:events];
+        }
     }];
+}
+
+- (void)__populateEventsWith:(NSArray <EVTEvent *> *)events
+{
+    NSPredicate *livePredicate = [NSPredicate predicateWithFormat:@"live == YES"];
+    self.currentEvent = [[events filteredArrayUsingPredicate:livePredicate] firstObject];
+    self.pastEvents = events;
+    
+    [self.currentEventController.backdropView.subviews enumerateObjectsUsingBlock:^(__kindof NSView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj setHidden:NO];
+    }];
+    
+    [self __hideProgress];
+}
+
+- (void)__showError:(NSError *)error
+{
+    NSDictionary *errorDebugInfo = @{
+                                     @"lang": [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode],
+                                     @"zone": [NSTimeZone systemTimeZone].name
+                                     };
+    [[Crashlytics sharedInstance] recordError:error withAdditionalUserInfo:errorDebugInfo];
+    
+    [[NSAlert alertWithError:error] beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) { }];
 }
 
 #pragma mark State management

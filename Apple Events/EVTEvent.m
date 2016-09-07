@@ -89,7 +89,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<EVTEvent 0x%lX> %@ %@", (unsigned long)self.hash, self.title, self.localizedDateString];
+    return [NSString stringWithFormat:@"<EVTEvent 0x%lX> title = %@ localizedDate = %@ countdown = %@", (unsigned long)self.hash, self.title, self.localizedDateString, self.countdown];
 }
 
 - (NSString *)localizedTimeString

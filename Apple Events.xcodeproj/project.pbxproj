@@ -27,6 +27,7 @@
 		DD00F2BD1D7E6EF7001049E6 /* IconMask.png in Resources */ = {isa = PBXBuildFile; fileRef = DD00F2B71D7E6EF7001049E6 /* IconMask.png */; };
 		DD00F2BE1D7E6EF7001049E6 /* IconMask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD00F2B81D7E6EF7001049E6 /* IconMask@2x.png */; };
 		DD00F2BF1D7E6EF7001049E6 /* IconMask@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD00F2B91D7E6EF7001049E6 /* IconMask@3x.png */; };
+		DD99F3FB1D8059CC00B5DC52 /* CrashlyticsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DD99F3FA1D8059CC00B5DC52 /* CrashlyticsHelper.m */; };
 		DD9A8C351D7E95BF0078501F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9A8C331D7E953F0078501F /* Sparkle.framework */; };
 		DD9A8C361D7E95BF0078501F /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD9A8C331D7E953F0078501F /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DDD7DE6F1D7E8CC300F6CD89 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD7DE6D1D7E8CC300F6CD89 /* Fabric.framework */; };
@@ -119,6 +120,8 @@
 		DD00F2B71D7E6EF7001049E6 /* IconMask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconMask.png; path = Resources/IconMask.png; sourceTree = SOURCE_ROOT; };
 		DD00F2B81D7E6EF7001049E6 /* IconMask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconMask@2x.png"; path = "Resources/IconMask@2x.png"; sourceTree = SOURCE_ROOT; };
 		DD00F2B91D7E6EF7001049E6 /* IconMask@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconMask@3x.png"; path = "Resources/IconMask@3x.png"; sourceTree = SOURCE_ROOT; };
+		DD99F3F91D8059CC00B5DC52 /* CrashlyticsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashlyticsHelper.h; sourceTree = "<group>"; };
+		DD99F3FA1D8059CC00B5DC52 /* CrashlyticsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrashlyticsHelper.m; sourceTree = "<group>"; };
 		DD9A8C331D7E953F0078501F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		DDD7DE6D1D7E8CC300F6CD89 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		DDD7DE6E1D7E8CC300F6CD89 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -255,6 +258,8 @@
 				DDF00EDB1D7D9F9D00418830 /* main.m */,
 				DDF00ED71D7D9F9D00418830 /* EVTAppDelegate.h */,
 				DDF00ED81D7D9F9D00418830 /* EVTAppDelegate.m */,
+				DD99F3F91D8059CC00B5DC52 /* CrashlyticsHelper.h */,
+				DD99F3FA1D8059CC00B5DC52 /* CrashlyticsHelper.m */,
 			);
 			name = Bootstrap;
 			sourceTree = "<group>";
@@ -501,6 +506,7 @@
 				DDF00F291D7DCF4C00418830 /* EVTEventsCache.m in Sources */,
 				DDF00F171D7DA84100418830 /* EVTEvent.m in Sources */,
 				DD00F23D1D7DFF66001049E6 /* EVTPlayerViewController.m in Sources */,
+				DD99F3FB1D8059CC00B5DC52 /* CrashlyticsHelper.m in Sources */,
 				DDF00F2C1D7DD9C200418830 /* EVTCurrentEventViewController.m in Sources */,
 				DDF00EF01D7D9FF400418830 /* EVTEventsViewController.m in Sources */,
 				DDF00F2F1D7DDA4900418830 /* EVTEventStateProvider.m in Sources */,
@@ -545,6 +551,11 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 8C7439RJLG;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"DOCKTILE=1",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = AppleEventsDock/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.guilhermerambo.AppleEventsDock;
@@ -560,6 +571,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 8C7439RJLG;
+				GCC_PREPROCESSOR_DEFINITIONS = "DOCKTILE=1";
 				INFOPLIST_FILE = AppleEventsDock/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.guilhermerambo.AppleEventsDock;

@@ -69,10 +69,20 @@
     
     event.title = localizationDict[titleKey];
     event.shortTitle = localizationDict[shortTitleKey];
-    event.preDescription = [self description:localizationDict[preDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
-    event.liveDescription = [self description:localizationDict[liveDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
-    event.interimDescription = [self description:localizationDict[interimDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
-    event.postDescription = [self description:localizationDict[postDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
+    
+    if (localizationDict[preDescriptionKey]) {
+        event.preDescription = [self description:localizationDict[preDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
+    }
+    if (localizationDict[liveDescriptionKey]) {
+        event.liveDescription = [self description:localizationDict[liveDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
+    }
+    if (localizationDict[interimDescriptionKey]) {
+        event.interimDescription = [self description:localizationDict[interimDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
+    }
+    if (localizationDict[postDescriptionKey]) {
+        event.postDescription = [self description:localizationDict[postDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
+    }
+    
     event.location = localizationDict[locationKey];
     
     if (!event.postDescription) {

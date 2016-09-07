@@ -26,6 +26,10 @@
 #define kEventsFetcherEventsParseErrorMessage @"Unable to parse events from dictionary returned from the server"
 #define kEventsFetcherTranslationsErrorCode 60
 #define kEventsFetcherTranslationsErrorMessage @"Unable to download localization file from the server"
+#define kEventsFetcherGeneralExceptionErrorCode -10
+
+#define kEventsFetcherSimulatedErrorMessage @"This is a simulated error for testing purposes"
+#define kEventsFetcherSimulatedErrorCode -20
 
 @import JavaScriptCore;
 
@@ -132,6 +136,7 @@
     [translationsTask resume];
 }
 
+/// Returns the most recent event's identifier (used by the Dock tile plugin)
 - (void)fetchCurrentEventIdentifierCompletionHandler:(void (^)(NSError *, NSString *))completionHandler
 {
     _context = [[JSContext alloc] init];
@@ -162,39 +167,51 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.context evaluateScript:script];
-            
-            JSValue *eventsValue = [self.context evaluateScript:@"EVENTS"];
-            
-            NSDictionary *eventsDict = [eventsValue toDictionary];
-            
-            if (!eventsDict) {
-                NSError *jsError = [self __errorWithCode:kEventsFetcherJSParseErrorCode message:kEventsFetcherJSParseErrorMessage];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    completionHandler(jsError, nil);
-                });
-                return;
-            }
-            
-            NSArray *identifiers = [eventsDict keysSortedByValueUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-                if ([[obj1 objectForKey:@"order"] integerValue] > [[obj2 objectForKey:@"order"] integerValue]) {
-                    return NSOrderedDescending;
-                } else {
-                    return NSOrderedAscending;
+            @try {
+                [self.context evaluateScript:script];
+                
+                JSValue *eventsValue = [self.context evaluateScript:@"EVENTS"];
+                
+                NSDictionary *eventsDict = [eventsValue toDictionary];
+                
+                if (!eventsDict) {
+                    NSError *jsError = [self __errorWithCode:kEventsFetcherJSParseErrorCode message:kEventsFetcherJSParseErrorMessage];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completionHandler(jsError, nil);
+                    });
+                    return;
                 }
-            }];
-            
-            completionHandler(nil, identifiers.firstObject);
+                
+                NSArray *identifiers = [eventsDict keysSortedByValueUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                    if ([[obj1 objectForKey:@"order"] integerValue] > [[obj2 objectForKey:@"order"] integerValue]) {
+                        return NSOrderedDescending;
+                    } else {
+                        return NSOrderedAscending;
+                    }
+                }];
+                
+                completionHandler(nil, identifiers.firstObject);
+            } @catch (NSException *e) {
+                completionHandler([self __errorWithCode:kEventsFetcherGeneralExceptionErrorCode message:e.reason], nil);
+            }
         });
     }];
     [task resume];
 }
 
+/// Returns the events with translated strings
 - (void)__fetchTranslatedEventsWithTranslations:(NSString *)translationsSource completionHandler:(void (^)(NSError *, NSArray<EVTEvent *> *))completionHandler
 {
     _context = [[JSContext alloc] init];
     
     NSURLSessionDataTask *task = [self.session dataTaskWithURL:self.environment.eventsURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if ([[NSProcessInfo processInfo].arguments containsObject:@"--simulateErrors"]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionHandler([self __errorWithCode:kEventsFetcherSimulatedErrorCode message:kEventsFetcherSimulatedErrorMessage], nil);
+            });
+            return;
+        }
+        
         if (error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 completionHandler(error, nil);
@@ -220,34 +237,38 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.context evaluateScript:translationsSource];
-            [self.context evaluateScript:script];
-            
-            JSValue *eventsValue = [self.context evaluateScript:@"EVENTS"];
-            JSValue *localizationValue = [self.context evaluateScript:@"LOCALIZATION"];
-            
-            NSDictionary *eventsDict = [eventsValue toDictionary];
-            NSDictionary *localizationDict = [localizationValue toDictionary];
-            
-            if (!eventsDict || !localizationDict) {
-                NSError *jsError = [self __errorWithCode:kEventsFetcherJSParseErrorCode message:kEventsFetcherJSParseErrorMessage];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    completionHandler(jsError, nil);
-                });
-                return;
+            @try {
+                [self.context evaluateScript:translationsSource];
+                [self.context evaluateScript:script];
+                
+                JSValue *eventsValue = [self.context evaluateScript:@"EVENTS"];
+                JSValue *localizationValue = [self.context evaluateScript:@"LOCALIZATION"];
+                
+                NSDictionary *eventsDict = [eventsValue toDictionary];
+                NSDictionary *localizationDict = [localizationValue toDictionary];
+                
+                if (!eventsDict || !localizationDict) {
+                    NSError *jsError = [self __errorWithCode:kEventsFetcherJSParseErrorCode message:kEventsFetcherJSParseErrorMessage];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completionHandler(jsError, nil);
+                    });
+                    return;
+                }
+                
+                NSArray *events = [self __eventsArrayFromServerDictionary:eventsDict withLocalization:localizationDict[self.languageForLocalization]];
+                if (!events || events.count == 0) {
+                    NSError *eventsError = [self __errorWithCode:kEventsFetcherEventsParseErrorCode message:kEventsFetcherEventsParseErrorMessage];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completionHandler(eventsError, nil);
+                    });
+                    return;
+                }
+                
+                [self.cache cacheEvents:events];
+                completionHandler(nil, events);
+            } @catch (NSException *e) {
+                completionHandler([self __errorWithCode:kEventsFetcherGeneralExceptionErrorCode message:e.reason], nil);
             }
-            
-            NSArray *events = [self __eventsArrayFromServerDictionary:eventsDict withLocalization:localizationDict[self.languageForLocalization]];
-            if (!events || events.count == 0) {
-                NSError *eventsError = [self __errorWithCode:kEventsFetcherEventsParseErrorCode message:kEventsFetcherEventsParseErrorMessage];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    completionHandler(eventsError, nil);
-                });
-                return;
-            }
-            
-            [self.cache cacheEvents:events];
-            completionHandler(nil, events);
         });
     }];
     [task resume];

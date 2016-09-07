@@ -10,10 +10,9 @@
 
 #import "EVTEnvironment.h"
 
-@import EventsUI;
+#import "CrashlyticsHelper.h"
 
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
+@import EventsUI;
 
 @interface EVTAppDelegate ()
 
@@ -22,10 +21,7 @@
 @implementation EVTAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-#ifndef DEBUG
-    [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"NSApplicationCrashOnExceptions": @YES}];
-    [Fabric with:@[[Crashlytics class]]];
-#endif
+    [[CrashlyticsHelper shared] install];
 }
 
 
