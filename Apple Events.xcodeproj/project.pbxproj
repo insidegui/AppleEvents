@@ -692,7 +692,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
-					"VERBOSELOG=1",
 				);
 				INFOPLIST_FILE = "Apple Events/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -715,7 +714,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				GCC_PREPROCESSOR_DEFINITIONS = "VERBOSELOG=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				INFOPLIST_FILE = "Apple Events/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = NO;
