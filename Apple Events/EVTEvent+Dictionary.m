@@ -8,6 +8,8 @@
 
 #import "EVTEvent+Dictionary.h"
 
+#import "EVTVerboseLogger.h"
+
 #define kEventDateFormat @"yyyy-MM-dd'T'HH:mm:ss'Z'ZZZZ"
 #define kEventDateTimezone @"UTC"
 
@@ -35,6 +37,8 @@
 
 + (instancetype)eventWithDictionary:(NSDictionary *)dict localizationDictionary:(NSDictionary *)localizationDict
 {
+    [[EVTVerboseLogger shared] addMessage:[NSString stringWithFormat:@"Parsing event dict %@, localizationDict %@", dict, localizationDict]];
+    
     EVTEvent *event = [[EVTEvent alloc] init];
     
     event.identifier = dict[@"identifier"];
@@ -58,6 +62,8 @@
     if (!event.vodURL) {
         event.vodURL = [NSURL URLWithString:dict[@"url"]];
     }
+    
+    [[EVTVerboseLogger shared] addMessage:[NSString stringWithFormat:@"Event BEFORE localization parsing: %@", event]];
     
     NSString *titleKey = [NSString stringWithFormat:kTitleLocalizedFormat, event.identifier];
     NSString *shortTitleKey = [NSString stringWithFormat:kShortTitleLocalizedFormat, event.identifier];
@@ -94,11 +100,18 @@
     event.buttonTime = localizationDict[kButtonTimeFormat];
     event.buttonComingSoon = localizationDict[kButtonComingSoonFormat];
     
+    [[EVTVerboseLogger shared] addMessage:[NSString stringWithFormat:@"Event AFTER localization parsing: %@", event]];
+    
     return event;
 }
 
 + (NSString *)description:(NSString *)desc withDateTimePlaceholdersFilledWithDate:(NSDate *)date
 {
+    if (!date) {
+        [[EVTVerboseLogger shared] addMessage:[NSString stringWithFormat:@"Nil date received when parsing event with description %@", desc]];
+        return desc;
+    }
+    
     NSString *output = desc;
     
     static NSDateFormatter *dayFormatter;
@@ -137,6 +150,8 @@
     NSString *hour12 = [hour12Formatter stringFromDate:date];
     NSString *minute = [minuteFormatter stringFromDate:date];
     NSString *AMPM = [AMPMFormatter stringFromDate:date];
+    
+    [[EVTVerboseLogger shared] addMessage:[NSString stringWithFormat:@"day = %@ | month = %@ | hour24 = %@ | hour12 = %@ | minute = %@ | AMPM = %@", day, month, hour24, hour12, minute, AMPM]];
     
     output = [output stringByReplacingOccurrencesOfString:kDatePlaceholder withString:day];
     output = [output stringByReplacingOccurrencesOfString:kMonthPlaceholder withString:month];

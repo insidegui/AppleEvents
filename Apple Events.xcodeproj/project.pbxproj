@@ -30,6 +30,8 @@
 		DD99F3FB1D8059CC00B5DC52 /* CrashlyticsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DD99F3FA1D8059CC00B5DC52 /* CrashlyticsHelper.m */; };
 		DD9A8C351D7E95BF0078501F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9A8C331D7E953F0078501F /* Sparkle.framework */; };
 		DD9A8C361D7E95BF0078501F /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD9A8C331D7E953F0078501F /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DD9CEB111D8069BD00DE15D5 /* EVTVerboseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9CEB101D8069BD00DE15D5 /* EVTVerboseLogger.m */; };
+		DD9CEB121D806B7200DE15D5 /* EVTVerboseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9CEB101D8069BD00DE15D5 /* EVTVerboseLogger.m */; };
 		DDD7DE6F1D7E8CC300F6CD89 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD7DE6D1D7E8CC300F6CD89 /* Fabric.framework */; };
 		DDD7DE701D7E8CC300F6CD89 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD7DE6E1D7E8CC300F6CD89 /* Crashlytics.framework */; };
 		DDF00ED91D7D9F9D00418830 /* EVTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF00ED81D7D9F9D00418830 /* EVTAppDelegate.m */; };
@@ -123,6 +125,8 @@
 		DD99F3F91D8059CC00B5DC52 /* CrashlyticsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashlyticsHelper.h; sourceTree = "<group>"; };
 		DD99F3FA1D8059CC00B5DC52 /* CrashlyticsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrashlyticsHelper.m; sourceTree = "<group>"; };
 		DD9A8C331D7E953F0078501F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		DD9CEB0F1D8069BD00DE15D5 /* EVTVerboseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTVerboseLogger.h; sourceTree = "<group>"; };
+		DD9CEB101D8069BD00DE15D5 /* EVTVerboseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVTVerboseLogger.m; sourceTree = "<group>"; };
 		DDD7DE6D1D7E8CC300F6CD89 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		DDD7DE6E1D7E8CC300F6CD89 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		DDF00ED41D7D9F9D00418830 /* Apple Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Apple Events.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -311,6 +315,8 @@
 				DDF00F281D7DCF4C00418830 /* EVTEventsCache.m */,
 				DD00F23E1D7E225E001049E6 /* EVTImageFetcher.h */,
 				DD00F23F1D7E225E001049E6 /* EVTImageFetcher.m */,
+				DD9CEB0F1D8069BD00DE15D5 /* EVTVerboseLogger.h */,
+				DD9CEB101D8069BD00DE15D5 /* EVTVerboseLogger.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -490,6 +496,7 @@
 				DD00F2A41D7E6CAA001049E6 /* EVTEnvironment.m in Sources */,
 				DD00F2AF1D7E6CD3001049E6 /* EVTDockTilePlugIn.m in Sources */,
 				DD00F2A51D7E6CAA001049E6 /* EVTEventsFetcher.m in Sources */,
+				DD9CEB121D806B7200DE15D5 /* EVTVerboseLogger.m in Sources */,
 				DD00F2A61D7E6CAA001049E6 /* EVTEventStateProvider.m in Sources */,
 				DD00F2A81D7E6CAA001049E6 /* EVTImageFetcher.m in Sources */,
 			);
@@ -512,6 +519,7 @@
 				DDF00F2F1D7DDA4900418830 /* EVTEventStateProvider.m in Sources */,
 				DDF00F1A1D7DA9C200418830 /* EVTEventsFetcher.m in Sources */,
 				DD00F2491D7E2646001049E6 /* EVTEventCollectionViewItem.m in Sources */,
+				DD9CEB111D8069BD00DE15D5 /* EVTVerboseLogger.m in Sources */,
 				DDF00F211D7DB05600418830 /* EVTEvent+Dictionary.m in Sources */,
 				DD00F2451D7E25DF001049E6 /* EVTPastEventsCollectionViewController.m in Sources */,
 				DD00F2401D7E225E001049E6 /* EVTImageFetcher.m in Sources */,
@@ -681,6 +689,11 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"VERBOSELOG=1",
+				);
 				INFOPLIST_FILE = "Apple Events/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = NO;
@@ -702,6 +715,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_PREPROCESSOR_DEFINITIONS = "VERBOSELOG=1";
 				INFOPLIST_FILE = "Apple Events/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = NO;

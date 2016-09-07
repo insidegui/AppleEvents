@@ -12,6 +12,7 @@
 #import "EVTEventsCache.h"
 #import "EVTEvent.h"
 #import "EVTEvent+Dictionary.h"
+#import "EVTVerboseLogger.h"
 
 #define kEventsFetcherErrorDomain @"br.com.guilhermerambo.AppleEvents.EventsFetcher"
 #define kEventsFetcherEmptyDataErrorCode 10
@@ -99,7 +100,11 @@
 
 - (void)fetchEventsWithCompletionHandler:(void (^)(NSError *, NSArray<EVTEvent *> *))completionHandler
 {
+    [[EVTVerboseLogger shared] addMessage:[NSString stringWithFormat:@"System timezone: %@. Language code: %@", [NSTimeZone systemTimeZone].name, [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode]]];
+    
     [self __fetchTranslationsWithCompletionHandler:^(NSError *translationError, NSString *translationCode) {
+        [[EVTVerboseLogger shared] addMessage:[NSString stringWithFormat:@"__fetchTranslationsWithCompletionHandler returned error %@, result %@", translationError, translationCode]];
+        
         if (translationError || !translationCode || [translationCode isEqualToString:@""]) {
             NSError *error = [self __errorWithCode:kEventsFetcherTranslationsErrorCode message:kEventsFetcherTranslationsErrorMessage];
             completionHandler(error, nil);
@@ -243,6 +248,8 @@
                 
                 JSValue *eventsValue = [self.context evaluateScript:@"EVENTS"];
                 JSValue *localizationValue = [self.context evaluateScript:@"LOCALIZATION"];
+                
+                [[EVTVerboseLogger shared] addMessage:[NSString stringWithFormat:@"eventsValue = %@, localizationValue = %@", eventsValue, localizationValue]];
                 
                 NSDictionary *eventsDict = [eventsValue toDictionary];
                 NSDictionary *localizationDict = [localizationValue toDictionary];
