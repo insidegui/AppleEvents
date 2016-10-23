@@ -176,6 +176,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = kEventDateFormat;
     formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:kEventDateTimezone];
+    formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en-US"];
     
     NSString *dateStringWithTimezone = [NSString stringWithFormat:@"%@%@", [dateString stringByReplacingOccurrencesOfString:@".000" withString:@""], kEventDateTimezone];
     
