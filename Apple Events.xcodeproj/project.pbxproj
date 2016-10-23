@@ -27,6 +27,10 @@
 		DD00F2BD1D7E6EF7001049E6 /* IconMask.png in Resources */ = {isa = PBXBuildFile; fileRef = DD00F2B71D7E6EF7001049E6 /* IconMask.png */; };
 		DD00F2BE1D7E6EF7001049E6 /* IconMask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD00F2B81D7E6EF7001049E6 /* IconMask@2x.png */; };
 		DD00F2BF1D7E6EF7001049E6 /* IconMask@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD00F2B91D7E6EF7001049E6 /* IconMask@3x.png */; };
+		DD45143D1DBD2880001464B0 /* ProtocolBuffers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4514381DBD2867001464B0 /* ProtocolBuffers.framework */; };
+		DD45143E1DBD2883001464B0 /* ProtocolBuffers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD4514381DBD2867001464B0 /* ProtocolBuffers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DD4514471DBD29A8001464B0 /* ChromeCastCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4514461DBD299D001464B0 /* ChromeCastCore.framework */; };
+		DD4514481DBD29A8001464B0 /* ChromeCastCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD4514461DBD299D001464B0 /* ChromeCastCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DD99F3FB1D8059CC00B5DC52 /* CrashlyticsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DD99F3FA1D8059CC00B5DC52 /* CrashlyticsHelper.m */; };
 		DD9A8C351D7E95BF0078501F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9A8C331D7E953F0078501F /* Sparkle.framework */; };
 		DD9A8C361D7E95BF0078501F /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD9A8C331D7E953F0078501F /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -57,6 +61,62 @@
 			proxyType = 1;
 			remoteGlobalIDString = DD00F29B1D7E6C99001049E6;
 			remoteInfo = AppleEventsDock;
+		};
+		DD4514331DBD2867001464B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD45142B1DBD2867001464B0 /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3F85569919C71BCF003802F2;
+			remoteInfo = ProtocolBuffers;
+		};
+		DD4514351DBD2867001464B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD45142B1DBD2867001464B0 /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3F8556A419C71BCF003802F2;
+			remoteInfo = UnitTesting;
+		};
+		DD4514371DBD2867001464B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD45142B1DBD2867001464B0 /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3F41061C1A1A667700742090;
+			remoteInfo = "ProtocolBuffers(OSX)";
+		};
+		DD4514391DBD2867001464B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD45142B1DBD2867001464B0 /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3F4106261A1A667800742090;
+			remoteInfo = "UnitTesting(OSX)";
+		};
+		DD45143B1DBD2867001464B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD45142B1DBD2867001464B0 /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3F31A1A91BA199C000F477C1;
+			remoteInfo = "ProtocolBuffers(watchOS)";
+		};
+		DD45143F1DBD2888001464B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD45142B1DBD2867001464B0 /* ProtocolBuffers.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F41061B1A1A667700742090;
+			remoteInfo = "ProtocolBuffers(OSX)";
+		};
+		DD4514451DBD299D001464B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD4514411DBD299D001464B0 /* ChromeCastCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DD674A381DB7E83500E1FC24;
+			remoteInfo = ChromeCastCore;
+		};
+		DD4514491DBD29A8001464B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD4514411DBD299D001464B0 /* ChromeCastCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = DD674A371DB7E83400E1FC24;
+			remoteInfo = ChromeCastCore;
 		};
 		DDF00F0A1D7DA0BF00418830 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -91,7 +151,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				DD45143E1DBD2883001464B0 /* ProtocolBuffers.framework in Embed Frameworks */,
 				DDF00F101D7DA23200418830 /* EventsUI.framework in Embed Frameworks */,
+				DD4514481DBD29A8001464B0 /* ChromeCastCore.framework in Embed Frameworks */,
 				DD9A8C361D7E95BF0078501F /* Sparkle.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -122,6 +184,8 @@
 		DD00F2B71D7E6EF7001049E6 /* IconMask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconMask.png; path = Resources/IconMask.png; sourceTree = SOURCE_ROOT; };
 		DD00F2B81D7E6EF7001049E6 /* IconMask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconMask@2x.png"; path = "Resources/IconMask@2x.png"; sourceTree = SOURCE_ROOT; };
 		DD00F2B91D7E6EF7001049E6 /* IconMask@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconMask@3x.png"; path = "Resources/IconMask@3x.png"; sourceTree = SOURCE_ROOT; };
+		DD45142B1DBD2867001464B0 /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = ChromeCastCore/Vendor/Protobuf/plugin/ProtocolBuffers/ProtocolBuffers.xcodeproj; sourceTree = "<group>"; };
+		DD4514411DBD299D001464B0 /* ChromeCastCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ChromeCastCore.xcodeproj; path = ChromeCastCore/ChromeCastCore.xcodeproj; sourceTree = "<group>"; };
 		DD99F3F91D8059CC00B5DC52 /* CrashlyticsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashlyticsHelper.h; sourceTree = "<group>"; };
 		DD99F3FA1D8059CC00B5DC52 /* CrashlyticsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrashlyticsHelper.m; sourceTree = "<group>"; };
 		DD9A8C331D7E953F0078501F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
@@ -167,9 +231,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD45143D1DBD2880001464B0 /* ProtocolBuffers.framework in Frameworks */,
 				DDF00F0F1D7DA23200418830 /* EventsUI.framework in Frameworks */,
 				DDD7DE701D7E8CC300F6CD89 /* Crashlytics.framework in Frameworks */,
 				DDD7DE6F1D7E8CC300F6CD89 /* Fabric.framework in Frameworks */,
+				DD4514471DBD29A8001464B0 /* ChromeCastCore.framework in Frameworks */,
 				DD9A8C351D7E95BF0078501F /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,9 +288,31 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		DD45142C1DBD2867001464B0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DD4514341DBD2867001464B0 /* ProtocolBuffers.framework */,
+				DD4514361DBD2867001464B0 /* ProtocolBuffersTests.xctest */,
+				DD4514381DBD2867001464B0 /* ProtocolBuffers.framework */,
+				DD45143A1DBD2867001464B0 /* UnitTesting(OSX).xctest */,
+				DD45143C1DBD2867001464B0 /* ProtocolBuffers.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DD4514421DBD299D001464B0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DD4514461DBD299D001464B0 /* ChromeCastCore.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		DDF00ECB1D7D9F9D00418830 = {
 			isa = PBXGroup;
 			children = (
+				DD4514411DBD299D001464B0 /* ChromeCastCore.xcodeproj */,
+				DD45142B1DBD2867001464B0 /* ProtocolBuffers.xcodeproj */,
 				DD9A8C331D7E953F0078501F /* Sparkle.framework */,
 				DDD7DE6D1D7E8CC300F6CD89 /* Fabric.framework */,
 				DDD7DE6E1D7E8CC300F6CD89 /* Crashlytics.framework */,
@@ -367,8 +455,10 @@
 			buildRules = (
 			);
 			dependencies = (
+				DD4514401DBD2888001464B0 /* PBXTargetDependency */,
 				DD00F2AA1D7E6CB5001049E6 /* PBXTargetDependency */,
 				DDF00F121D7DA23200418830 /* PBXTargetDependency */,
+				DD45144A1DBD29A8001464B0 /* PBXTargetDependency */,
 			);
 			name = "Apple Events";
 			productName = "Apple Events";
@@ -409,8 +499,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = DD4514421DBD299D001464B0 /* Products */;
+					ProjectRef = DD4514411DBD299D001464B0 /* ChromeCastCore.xcodeproj */;
+				},
+				{
 					ProductGroup = DDF00F071D7DA0BE00418830 /* Products */;
 					ProjectRef = DDF00F061D7DA0BE00418830 /* EventsUI.xcodeproj */;
+				},
+				{
+					ProductGroup = DD45142C1DBD2867001464B0 /* Products */;
+					ProjectRef = DD45142B1DBD2867001464B0 /* ProtocolBuffers.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -422,6 +520,48 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		DD4514341DBD2867001464B0 /* ProtocolBuffers.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ProtocolBuffers.framework;
+			remoteRef = DD4514331DBD2867001464B0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD4514361DBD2867001464B0 /* ProtocolBuffersTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ProtocolBuffersTests.xctest;
+			remoteRef = DD4514351DBD2867001464B0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD4514381DBD2867001464B0 /* ProtocolBuffers.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ProtocolBuffers.framework;
+			remoteRef = DD4514371DBD2867001464B0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD45143A1DBD2867001464B0 /* UnitTesting(OSX).xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "UnitTesting(OSX).xctest";
+			remoteRef = DD4514391DBD2867001464B0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD45143C1DBD2867001464B0 /* ProtocolBuffers.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ProtocolBuffers.framework;
+			remoteRef = DD45143B1DBD2867001464B0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD4514461DBD299D001464B0 /* ChromeCastCore.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ChromeCastCore.framework;
+			remoteRef = DD4514451DBD299D001464B0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		DDF00F0B1D7DA0BF00418830 /* EventsUI.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -533,6 +673,16 @@
 			isa = PBXTargetDependency;
 			target = DD00F29B1D7E6C99001049E6 /* AppleEventsDock */;
 			targetProxy = DD00F2A91D7E6CB5001049E6 /* PBXContainerItemProxy */;
+		};
+		DD4514401DBD2888001464B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ProtocolBuffers(OSX)";
+			targetProxy = DD45143F1DBD2888001464B0 /* PBXContainerItemProxy */;
+		};
+		DD45144A1DBD29A8001464B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ChromeCastCore;
+			targetProxy = DD4514491DBD29A8001464B0 /* PBXContainerItemProxy */;
 		};
 		DDF00F121D7DA23200418830 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

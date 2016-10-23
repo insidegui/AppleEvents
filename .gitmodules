@@ -1,0 +1,3 @@
+[submodule "ChromeCastCore"]
+	path = ChromeCastCore
+	url = git@github.com:insidegui/ChromeCastCore.git
