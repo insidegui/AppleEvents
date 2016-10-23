@@ -11,6 +11,8 @@
 #import "EVTEventsViewController.h"
 #import "EVTEvent.h"
 
+#import "EVTChromeCastViewController.h"
+
 @import AVFoundation;
 @import AVKit;
 @import EventsUI;
@@ -24,6 +26,8 @@
 @property (strong) AVPlayerView *playerView;
 
 @property (assign) BOOL aspectRatioSet;
+
+@property (strong) EVTChromecastViewController *chromecastViewController;
 
 @end
 
@@ -52,6 +56,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.chromecastViewController = [EVTChromecastViewController chromecastViewControllerWithEvent:self.event videoURL:self.videoURL];
+    
+    [self.chromecastViewController addObserver:self forKeyPath:@"outputDeviceName" options:NSKeyValueObservingOptionNew context:NULL];
+    
     self.player = [AVPlayer playerWithURL:self.videoURL];
     
     [self.player addObserver:self forKeyPath:@"currentItem.presentationSize" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
@@ -69,6 +77,10 @@
 {
     if ([keyPath isEqualToString:@"currentItem.presentationSize"]) {
         [self updateAspectRatio];
+    } else if ([keyPath isEqualToString:@"outputDeviceName"]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self outputDeviceDidChange];
+        });
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
@@ -101,6 +113,30 @@
     [super viewDidAppear];
     
     self.view.window.title = [NSString stringWithFormat:@"%@ - %@", self.event.title, self.event.localizedDateString];
+    
+    [self configureChromecastButton];
+}
+
+- (void)viewWillDisappear
+{
+    [super viewWillDisappear];
+    
+    [self.chromecastViewController removeObserver:self forKeyPath:@"outputDeviceName"];
+    
+    EVTWindow *window = (EVTWindow *)self.view.window;
+    [window removeTitlebarCompanionWithView:self.chromecastViewController.view];
+    
+    [self.chromecastViewController.view removeFromSuperview];
+    self.chromecastViewController = nil;
+}
+
+- (void)configureChromecastButton
+{
+    EVTWindow *window = (EVTWindow *)self.view.window;
+    [window.contentView addSubview:self.chromecastViewController.view positioned:NSWindowAbove relativeTo:nil];
+    [self.chromecastViewController.view.trailingAnchor constraintEqualToAnchor:window.contentView.trailingAnchor constant:-22].active = YES;
+    [self.chromecastViewController.view.topAnchor constraintEqualToAnchor:window.contentView.topAnchor constant:34].active = YES;
+    [window addTitlebarCompanionWithView:self.chromecastViewController.view];
 }
 
 - (void)stop
@@ -108,6 +144,15 @@
     [self.player pause];
     [self.player cancelPendingPrerolls];
     [self.player removeObserver:self forKeyPath:@"currentItem.presentationSize"];
+}
+
+- (void)outputDeviceDidChange
+{
+    if (self.chromecastViewController.outputDeviceName) {
+        [self.player pause];
+    } else {
+        [self.player play];
+    }
 }
 
 - (void)sizeWindowToFitVideoSize:(NSSize)videoSize ignoringScreenSize:(BOOL)ignoreScreen animated:(BOOL)animate

@@ -157,6 +157,20 @@ open class EVTWindow: NSWindow {
     
     // MARK: - Titlebar management
     
+    public private(set) var titlebarCompanionViews = [NSView]()
+    
+    public func addTitlebarCompanion(view: NSView) {
+        guard titlebarCompanionViews.index(of: view) == nil else { return }
+        
+        titlebarCompanionViews.append(view)
+    }
+    
+    public func removeTitlebarCompanion(view: NSView) {
+        guard let index = titlebarCompanionViews.index(of: view) else { return }
+        
+        titlebarCompanionViews.remove(at: index)
+    }
+    
     func hideTitlebar(_ animated: Bool = true) {
         setTitlebarOpacity(0.0, animated: animated)
     }
@@ -174,6 +188,7 @@ open class EVTWindow: NSWindow {
         NSAnimationContext.runAnimationGroup({ ctx in
             ctx.duration = animated ? 0.4 : 0.0
             self.titlebarView?.animator().alphaValue = opacity
+            self.titlebarCompanionViews.forEach({ $0.animator().alphaValue = opacity })
             }, completionHandler: nil)
     }
     

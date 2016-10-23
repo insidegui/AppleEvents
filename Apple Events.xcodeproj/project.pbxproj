@@ -31,6 +31,7 @@
 		DD45143E1DBD2883001464B0 /* ProtocolBuffers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD4514381DBD2867001464B0 /* ProtocolBuffers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DD4514471DBD29A8001464B0 /* ChromeCastCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4514461DBD299D001464B0 /* ChromeCastCore.framework */; };
 		DD4514481DBD29A8001464B0 /* ChromeCastCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD4514461DBD299D001464B0 /* ChromeCastCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DD4514501DBD30C7001464B0 /* EVTChromecastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD45144F1DBD30C7001464B0 /* EVTChromecastViewController.m */; };
 		DD99F3FB1D8059CC00B5DC52 /* CrashlyticsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DD99F3FA1D8059CC00B5DC52 /* CrashlyticsHelper.m */; };
 		DD9A8C351D7E95BF0078501F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9A8C331D7E953F0078501F /* Sparkle.framework */; };
 		DD9A8C361D7E95BF0078501F /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD9A8C331D7E953F0078501F /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -186,6 +187,8 @@
 		DD00F2B91D7E6EF7001049E6 /* IconMask@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconMask@3x.png"; path = "Resources/IconMask@3x.png"; sourceTree = SOURCE_ROOT; };
 		DD45142B1DBD2867001464B0 /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = ChromeCastCore/Vendor/Protobuf/plugin/ProtocolBuffers/ProtocolBuffers.xcodeproj; sourceTree = "<group>"; };
 		DD4514411DBD299D001464B0 /* ChromeCastCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ChromeCastCore.xcodeproj; path = ChromeCastCore/ChromeCastCore.xcodeproj; sourceTree = "<group>"; };
+		DD45144E1DBD30C7001464B0 /* EVTChromecastViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTChromecastViewController.h; sourceTree = "<group>"; };
+		DD45144F1DBD30C7001464B0 /* EVTChromecastViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVTChromecastViewController.m; sourceTree = "<group>"; };
 		DD99F3F91D8059CC00B5DC52 /* CrashlyticsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashlyticsHelper.h; sourceTree = "<group>"; };
 		DD99F3FA1D8059CC00B5DC52 /* CrashlyticsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrashlyticsHelper.m; sourceTree = "<group>"; };
 		DD9A8C331D7E953F0078501F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
@@ -367,6 +370,8 @@
 				DD00F2441D7E25DF001049E6 /* EVTPastEventsCollectionViewController.m */,
 				DD00F23B1D7DFF66001049E6 /* EVTPlayerViewController.h */,
 				DD00F23C1D7DFF66001049E6 /* EVTPlayerViewController.m */,
+				DD45144E1DBD30C7001464B0 /* EVTChromecastViewController.h */,
+				DD45144F1DBD30C7001464B0 /* EVTChromecastViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -657,6 +662,7 @@
 				DDF00F2C1D7DD9C200418830 /* EVTCurrentEventViewController.m in Sources */,
 				DDF00EF01D7D9FF400418830 /* EVTEventsViewController.m in Sources */,
 				DDF00F2F1D7DDA4900418830 /* EVTEventStateProvider.m in Sources */,
+				DD4514501DBD30C7001464B0 /* EVTChromecastViewController.m in Sources */,
 				DDF00F1A1D7DA9C200418830 /* EVTEventsFetcher.m in Sources */,
 				DD00F2491D7E2646001049E6 /* EVTEventCollectionViewItem.m in Sources */,
 				DD9CEB111D8069BD00DE15D5 /* EVTVerboseLogger.m in Sources */,

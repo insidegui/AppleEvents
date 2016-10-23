@@ -10,6 +10,10 @@
 		DD00F2341D7DE3E8001049E6 /* EVTMagicImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD00F2331D7DE3E8001049E6 /* EVTMagicImageView.swift */; };
 		DD00F2381D7DEC28001049E6 /* EVTTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD00F2371D7DEC28001049E6 /* EVTTextFieldCell.swift */; };
 		DD00F23A1D7DEFD9001049E6 /* EVTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD00F2391D7DEFD9001049E6 /* EVTButton.swift */; };
+		DDB58E361DBD341600300533 /* EVTMaskButton.h in Headers */ = {isa = PBXBuildFile; fileRef = DDB58E321DBD341600300533 /* EVTMaskButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DDB58E371DBD341600300533 /* EVTMaskButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB58E331DBD341600300533 /* EVTMaskButton.m */; };
+		DDB58E381DBD341600300533 /* NSImage+CGImage.h in Headers */ = {isa = PBXBuildFile; fileRef = DDB58E341DBD341600300533 /* NSImage+CGImage.h */; };
+		DDB58E391DBD341600300533 /* NSImage+CGImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB58E351DBD341600300533 /* NSImage+CGImage.m */; };
 		DDD7DE691D7E7EE900F6CD89 /* PiPZoom.car in Resources */ = {isa = PBXBuildFile; fileRef = DDD7DE681D7E7EE900F6CD89 /* PiPZoom.car */; };
 		DDF00F001D7DA0BE00418830 /* EventsUI.h in Headers */ = {isa = PBXBuildFile; fileRef = DDF00EFE1D7DA0BE00418830 /* EventsUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DDF00F0E1D7DA0F600418830 /* EVTWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF00F0D1D7DA0F600418830 /* EVTWindow.swift */; };
@@ -21,6 +25,10 @@
 		DD00F2331D7DE3E8001049E6 /* EVTMagicImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EVTMagicImageView.swift; sourceTree = "<group>"; };
 		DD00F2371D7DEC28001049E6 /* EVTTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EVTTextFieldCell.swift; sourceTree = "<group>"; };
 		DD00F2391D7DEFD9001049E6 /* EVTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EVTButton.swift; sourceTree = "<group>"; };
+		DDB58E321DBD341600300533 /* EVTMaskButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTMaskButton.h; sourceTree = "<group>"; };
+		DDB58E331DBD341600300533 /* EVTMaskButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVTMaskButton.m; sourceTree = "<group>"; };
+		DDB58E341DBD341600300533 /* NSImage+CGImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+CGImage.h"; sourceTree = "<group>"; };
+		DDB58E351DBD341600300533 /* NSImage+CGImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+CGImage.m"; sourceTree = "<group>"; };
 		DDD7DE681D7E7EE900F6CD89 /* PiPZoom.car */ = {isa = PBXFileReference; lastKnownFileType = file; path = PiPZoom.car; sourceTree = "<group>"; };
 		DDF00EFB1D7DA0BE00418830 /* EventsUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EventsUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF00EFE1D7DA0BE00418830 /* EventsUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventsUI.h; sourceTree = "<group>"; };
@@ -41,6 +49,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DDB58E3A1DBD341C00300533 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DDB58E341DBD341600300533 /* NSImage+CGImage.h */,
+				DDB58E351DBD341600300533 /* NSImage+CGImage.m */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		DDF00EF11D7DA0BE00418830 = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +77,7 @@
 		DDF00EFD1D7DA0BE00418830 /* EventsUI */ = {
 			isa = PBXGroup;
 			children = (
+				DDB58E3A1DBD341C00300533 /* Extensions */,
 				DDF00F221D7DB58A00418830 /* Resources */,
 				DDF00F0C1D7DA0E300418830 /* Views */,
 				DDF00EFE1D7DA0BE00418830 /* EventsUI.h */,
@@ -71,6 +89,8 @@
 		DDF00F0C1D7DA0E300418830 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DDB58E321DBD341600300533 /* EVTMaskButton.h */,
+				DDB58E331DBD341600300533 /* EVTMaskButton.m */,
 				DDF00F0D1D7DA0F600418830 /* EVTWindow.swift */,
 				DDF00F251D7DB5B300418830 /* EVTSpinner.swift */,
 				DD00F2331D7DE3E8001049E6 /* EVTMagicImageView.swift */,
@@ -96,7 +116,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDB58E361DBD341600300533 /* EVTMaskButton.h in Headers */,
 				DDF00F001D7DA0BE00418830 /* EventsUI.h in Headers */,
+				DDB58E381DBD341600300533 /* NSImage+CGImage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,10 +195,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD00F2341D7DE3E8001049E6 /* EVTMagicImageView.swift in Sources */,
+				DDB58E371DBD341600300533 /* EVTMaskButton.m in Sources */,
 				DD00F2381D7DEC28001049E6 /* EVTTextFieldCell.swift in Sources */,
 				DD00F23A1D7DEFD9001049E6 /* EVTButton.swift in Sources */,
 				DDF00F0E1D7DA0F600418830 /* EVTWindow.swift in Sources */,
 				DDF00F261D7DB5B300418830 /* EVTSpinner.swift in Sources */,
+				DDB58E391DBD341600300533 /* NSImage+CGImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
