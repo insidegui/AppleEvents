@@ -10,6 +10,14 @@ Use this app to watch Apple's special events on your Mac while you work.
 
 **Requires OS X 10.11 or later**
 
+## ![chromecast](chromecast.png) Chromecast Support
+
+You can use this app to stream Apple events (both live and on-demand) to your Chromecast, just click the Chromecast button while you're playing a video and select a device from the menu.
+
+![chromecastmenu](chromecast-2.png)
+
+*Chromecast streaming is in beta and has only been tested with Chromecast 2 on macOS 10.12*
+
 ## Screenshots
 
 The main screen features the next event, the play button will appear as soon as the event starts.

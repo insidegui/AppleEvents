@@ -7,6 +7,21 @@
         <language>en</language>
 		
         <item>
+            <title>Version 0.6</title>
+			<description><![CDATA[
+							<ul>
+								<li><strong>NEW:</strong> Chromecast support! You can now stream Apple event videos on your Chromecast.</li>
+								<li><strong>FIXED:</strong> Failure to load events when the system used a 12-hour clock.</li>
+								<li><strong>FIXED:</strong> Visual anomaly with tabs on 10.12.</li>
+								<li><strong>FIXED:</strong> Improved performance on 10.12.</li>
+							</ul>
+						]]></description>
+            <pubDate>Sun, 23 Oct 2016 21:35:00 -0200</pubDate>
+            <enclosure url="https://github.com/insidegui/AppleEvents/releases/download/0.6/AppleEvents_v0.6.zip" sparkle:version="10" sparkle:shortVersionString="0.6" length="7808136" type="application/octet-stream" />
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+        </item>
+		
+        <item>
             <title>Version 0.5.2</title>
 			<description><![CDATA[
 							<ul>
