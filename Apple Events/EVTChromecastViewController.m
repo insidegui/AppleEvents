@@ -86,7 +86,9 @@
     
     NSString *title = [NSString stringWithFormat:@"%@ - %@", self.event.title, self.event.shortTitle];
     
-    return [[CastMedia alloc] initWithTitle:title url:self.videoURL poster:imageURL contentType:@"application/vnd.apple.mpegurl" streamType:@"BUFFERED" autoplay:YES currentTime:self.currentTime];
+    NSString *streamType = (self.event.live) ? @"LIVE" : @"BUFFERED";
+    
+    return [[CastMedia alloc] initWithTitle:title url:self.videoURL poster:imageURL contentType:@"application/vnd.apple.mpegurl" streamType:streamType autoplay:YES currentTime:self.currentTime];
 }
 
 - (void)showDevicesMenu:(EVTMaskButton *)sender

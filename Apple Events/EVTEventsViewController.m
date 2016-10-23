@@ -231,11 +231,13 @@
 
 - (void)playLiveEvent:(EVTEvent *)event
 {
+    event.live = YES;
     [self playEvent:event videoURL:event.liveURL];
 }
 
 - (void)playOnDemandEvent:(EVTEvent *)event
 {
+    event.live = NO;
     [self playEvent:event videoURL:event.vodURL];
 }
 
