@@ -9,29 +9,29 @@
 import Cocoa
 import QuartzCore
 
-public class EVTMagicImageView: NSView {
+open class EVTMagicImageView: NSView {
 
-    public var blurAmountWhenHovered: CGFloat = 40.0
+    open var blurAmountWhenHovered: CGFloat = 40.0
     
-    public var blurAmount: CGFloat = 40.0 {
+    open var blurAmount: CGFloat = 40.0 {
         didSet {
             refreshLayers()
         }
     }
     
-    public var image: NSImage? {
+    open var image: NSImage? {
         didSet {
             refreshLayers()
         }
     }
     
-    public override var frame: NSRect {
+    open override var frame: NSRect {
         didSet {
             refreshLayers(false)
         }
     }
     
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
         
         commonInit()
@@ -49,20 +49,20 @@ public class EVTMagicImageView: NSView {
         commonInit()
     }
     
-    private func commonInit() {
+    fileprivate func commonInit() {
         self.wantsLayer = true
         self.layer = CALayer()
         self.layerUsesCoreImageFilters = true
     }
     
-    public override var wantsUpdateLayer: Bool {
+    open override var wantsUpdateLayer: Bool {
         return true
     }
     
-    private var effectLayer: CALayer!
-    private var imageLayer: CALayer!
+    fileprivate var effectLayer: CALayer!
+    fileprivate var imageLayer: CALayer!
     
-    private var effectFilterChain: [CIFilter] {
+    fileprivate var effectFilterChain: [CIFilter] {
         guard let blurFilter = CIFilter(name: "CIGaussianBlur") else { return [] }
         guard let satFilter = CIFilter(name: "CIColorControls") else { return [] }
         
@@ -75,7 +75,7 @@ public class EVTMagicImageView: NSView {
         return [satFilter, blurFilter]
     }
     
-    private func refreshLayers(imageChanged: Bool = true, animated: Bool = false) {
+    fileprivate func refreshLayers(_ imageChanged: Bool = true, animated: Bool = false) {
         CATransaction.begin()
         CATransaction.setAnimationDuration(animated ? 0.4 : 0.0)
         CATransaction.setDisableActions(!animated)
@@ -110,7 +110,7 @@ public class EVTMagicImageView: NSView {
         CATransaction.commit()
     }
     
-    private var hovering = false {
+    fileprivate var hovering = false {
         didSet {
             guard blurAmountWhenHovered != blurAmount else { return }
             
@@ -118,27 +118,27 @@ public class EVTMagicImageView: NSView {
         }
     }
     
-    private var hoverTrackingArea: NSTrackingArea!
+    fileprivate var hoverTrackingArea: NSTrackingArea!
     
-    public override func updateTrackingAreas() {
+    open override func updateTrackingAreas() {
         super.updateTrackingAreas()
         
         if hoverTrackingArea != nil {
             removeTrackingArea(hoverTrackingArea)
         }
         
-        hoverTrackingArea = NSTrackingArea(rect: bounds, options: [.ActiveInActiveApp, .MouseEnteredAndExited], owner: self, userInfo: nil)
+        hoverTrackingArea = NSTrackingArea(rect: bounds, options: [.activeInActiveApp, .mouseEnteredAndExited], owner: self, userInfo: nil)
         addTrackingArea(hoverTrackingArea)
     }
     
-    public override func mouseEntered(event: NSEvent) {
-        super.mouseEntered(event)
+    open override func mouseEntered(with event: NSEvent) {
+        super.mouseEntered(with: event)
         
         hovering = true
     }
     
-    public override func mouseExited(event: NSEvent) {
-        super.mouseExited(event)
+    open override func mouseExited(with event: NSEvent) {
+        super.mouseExited(with: event)
         
         hovering = false
     }

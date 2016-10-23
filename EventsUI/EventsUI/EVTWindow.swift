@@ -9,22 +9,22 @@
 import Cocoa
 import AVFoundation
 
-public class EVTWindow: NSWindow {
+open class EVTWindow: NSWindow {
     
-    @IBInspectable @objc public var hidesTitlebar = true
+    @IBInspectable @objc open var hidesTitlebar = true
     
     // MARK: - Initialization
     
     override init(contentRect: NSRect, styleMask style: NSWindowStyleMask, backing bufferingType: NSBackingStoreType, defer flag: Bool) {
         var effectiveStyle = style
-        effectiveStyle.insert(.FullSizeContentView)
+        effectiveStyle.insert(.fullSizeContentView)
         
         super.init(contentRect: contentRect, styleMask: effectiveStyle, backing: bufferingType, defer: flag)
         
         applyCustomizations()
     }
     
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
         
         applyCustomizations()
@@ -32,56 +32,56 @@ public class EVTWindow: NSWindow {
     
     // MARK: - Custom appearance
     
-    public override var effectiveAppearance: NSAppearance {
+    open override var effectiveAppearance: NSAppearance {
         return NSAppearance(named: NSAppearanceNameVibrantDark)!
     }
     
-    private var titlebarWidgets: [NSButton]? {
+    fileprivate var titlebarWidgets: [NSButton]? {
         return titlebarView?.subviews.flatMap { subview in
-            guard subview.isKindOfClass(NSClassFromString("_NSThemeWidget")!) else { return nil }
+            guard subview.isKind(of: NSClassFromString("_NSThemeWidget")!) else { return nil }
             return subview as? NSButton
         }
     }
     
-    private func appearanceForWidgets() -> NSAppearance? {
+    fileprivate func appearanceForWidgets() -> NSAppearance? {
         if allowsPiPMode {
-            return NSAppearance(appearanceNamed: "PiPZoom", bundle: NSBundle(forClass: EVTWindow.self))
+            return NSAppearance(appearanceNamed: "PiPZoom", bundle: Bundle(for: EVTWindow.self))
         } else {
             return NSAppearance(named: NSAppearanceNameAqua)
         }
     }
     
-    private func applyAppearanceToWidgets() {
+    fileprivate func applyAppearanceToWidgets() {
         let appearance = appearanceForWidgets()
         titlebarWidgets?.forEach { $0.appearance = appearance }
     }
     
-    private var _storedTitlebarView: NSVisualEffectView?
-    public var titlebarView: NSVisualEffectView? {
+    fileprivate var _storedTitlebarView: NSVisualEffectView?
+    open var titlebarView: NSVisualEffectView? {
         guard _storedTitlebarView == nil else { return _storedTitlebarView }
         guard let containerClass = NSClassFromString("NSTitlebarContainerView") else { return nil }
         
-        guard let containerView = contentView?.superview?.subviews.filter({ $0.isKindOfClass(containerClass) }).last else { return nil }
+        guard let containerView = contentView?.superview?.subviews.filter({ $0.isKind(of: containerClass) }).last else { return nil }
         
-        guard let titlebar = containerView.subviews.filter({ $0.isKindOfClass(NSVisualEffectView.self) }).last as? NSVisualEffectView else { return nil }
+        guard let titlebar = containerView.subviews.filter({ $0.isKind(of: NSVisualEffectView.self) }).last as? NSVisualEffectView else { return nil }
         
         _storedTitlebarView = titlebar
         
         return _storedTitlebarView
     }
     
-    private var titleTextField: NSTextField?
-    private var titlebarSeparatorLayer: CALayer?
-    private var titlebarGradientLayer: CAGradientLayer?
+    fileprivate var titleTextField: NSTextField?
+    fileprivate var titlebarSeparatorLayer: CALayer?
+    fileprivate var titlebarGradientLayer: CAGradientLayer?
     
-    private var fullscreenObserver: NSObjectProtocol?
+    fileprivate var fullscreenObserver: NSObjectProtocol?
     
-    private func applyCustomizations(note: NSNotification? = nil) {
-        titleVisibility = .Hidden
-        movableByWindowBackground = true
+    fileprivate func applyCustomizations(_ note: Notification? = nil) {
+        titleVisibility = .hidden
+        isMovableByWindowBackground = true
         
-        titlebarView?.material = .UltraDark
-        titlebarView?.state = .Active
+        titlebarView?.material = .ultraDark
+        titlebarView?.state = .active
         
         installTitlebarGradientIfNeeded()
         installTitlebarSeparatorIfNeeded()
@@ -92,64 +92,64 @@ public class EVTWindow: NSWindow {
         applyAppearanceToWidgets()
     }
     
-    private func installTitleTextFieldIfNeeded() {
+    fileprivate func installTitleTextFieldIfNeeded() {
         guard titleTextField == nil && titlebarView != nil else { return }
         
         titleTextField = NSTextField(frame: titlebarView!.bounds)
-        titleTextField!.editable = false
-        titleTextField!.selectable = false
+        titleTextField!.isEditable = false
+        titleTextField!.isSelectable = false
         titleTextField!.drawsBackground = false
-        titleTextField!.bezeled = false
-        titleTextField!.bordered = false
+        titleTextField!.isBezeled = false
+        titleTextField!.isBordered = false
         titleTextField!.stringValue = title
-        titleTextField!.font = NSFont.titleBarFontOfSize(13.0)
+        titleTextField!.font = NSFont.titleBarFont(ofSize: 13.0)
         titleTextField!.textColor = NSColor(calibratedWhite: 0.9, alpha: 0.8)
-        titleTextField!.alignment = .Center
+        titleTextField!.alignment = .center
         titleTextField!.translatesAutoresizingMaskIntoConstraints = false
-        titleTextField!.lineBreakMode = .ByTruncatingMiddle
+        titleTextField!.lineBreakMode = .byTruncatingMiddle
         titleTextField!.sizeToFit()
         
         titlebarView!.addSubview(titleTextField!)
-        titleTextField!.centerYAnchor.constraintEqualToAnchor(titlebarView!.centerYAnchor).active = true
-        titleTextField!.centerXAnchor.constraintEqualToAnchor(titlebarView!.centerXAnchor).active = true
-        titleTextField!.leadingAnchor.constraintGreaterThanOrEqualToAnchor(titlebarView!.leadingAnchor, constant: 67.0).active = true
-        titleTextField!.setContentCompressionResistancePriority(0.1, forOrientation: .Horizontal)
+        titleTextField!.centerYAnchor.constraint(equalTo: titlebarView!.centerYAnchor).isActive = true
+        titleTextField!.centerXAnchor.constraint(equalTo: titlebarView!.centerXAnchor).isActive = true
+        titleTextField!.leadingAnchor.constraint(greaterThanOrEqualTo: titlebarView!.leadingAnchor, constant: 67.0).isActive = true
+        titleTextField!.setContentCompressionResistancePriority(0.1, for: .horizontal)
         
         titleTextField!.layer?.compositingFilter = "lightenBlendMode"
     }
     
-    private func installTitlebarGradientIfNeeded() {
+    fileprivate func installTitlebarGradientIfNeeded() {
         guard titlebarGradientLayer == nil && titlebarView != nil else { return }
         
         titlebarGradientLayer = CAGradientLayer()
-        titlebarGradientLayer!.colors = [NSColor(calibratedWhite: 0.0, alpha: 0.4).CGColor, NSColor.clearColor().CGColor]
+        titlebarGradientLayer!.colors = [NSColor(calibratedWhite: 0.0, alpha: 0.4).cgColor, NSColor.clear.cgColor]
         titlebarGradientLayer!.frame = titlebarView!.bounds
-        titlebarGradientLayer!.autoresizingMask = [.LayerWidthSizable, .LayerHeightSizable]
+        titlebarGradientLayer!.autoresizingMask = [.layerWidthSizable, .layerHeightSizable]
         titlebarGradientLayer!.compositingFilter = "overlayBlendMode"
-        titlebarView?.layer?.insertSublayer(titlebarGradientLayer!, atIndex: 0)
+        titlebarView?.layer?.insertSublayer(titlebarGradientLayer!, at: 0)
     }
     
-    private func installTitlebarSeparatorIfNeeded() {
+    fileprivate func installTitlebarSeparatorIfNeeded() {
         guard titlebarSeparatorLayer == nil && titlebarView != nil else { return }
         
         titlebarSeparatorLayer = CALayer()
-        titlebarSeparatorLayer!.backgroundColor = NSColor(calibratedWhite: 0.0, alpha: 0.9).CGColor
+        titlebarSeparatorLayer!.backgroundColor = NSColor(calibratedWhite: 0.0, alpha: 0.9).cgColor
         titlebarSeparatorLayer!.frame = CGRect(x: 0.0, y: 0.0, width: titlebarView!.bounds.width, height: 1.0)
-        titlebarSeparatorLayer!.autoresizingMask = [.LayerWidthSizable, .LayerMinYMargin]
+        titlebarSeparatorLayer!.autoresizingMask = [.layerWidthSizable, .layerMinYMargin]
         titlebarView?.layer?.addSublayer(titlebarSeparatorLayer!)
     }
     
-    private func installFullscreenObserverIfNeeded() {
+    fileprivate func installFullscreenObserverIfNeeded() {
         guard fullscreenObserver == nil else { return }
         
-        let nc = NSNotificationCenter.defaultCenter()
+        let nc = NotificationCenter.default
         
         // the customizations (especially the title text field ones) have to be reapplied when entering and exiting fullscreen
-        nc.addObserverForName(NSWindowDidEnterFullScreenNotification, object: self, queue: nil, usingBlock: applyCustomizations)
-        nc.addObserverForName(NSWindowDidExitFullScreenNotification, object: self, queue: nil, usingBlock: applyCustomizations)
+        nc.addObserver(forName: NSNotification.Name.NSWindowDidEnterFullScreen, object: self, queue: nil, using: applyCustomizations)
+        nc.addObserver(forName: NSNotification.Name.NSWindowDidExitFullScreen, object: self, queue: nil, using: applyCustomizations)
     }
     
-    public override func makeKeyAndOrderFront(sender: AnyObject?) {
+    open override func makeKeyAndOrderFront(_ sender: Any?) {
         super.makeKeyAndOrderFront(sender)
         
         applyCustomizations()
@@ -157,15 +157,15 @@ public class EVTWindow: NSWindow {
     
     // MARK: - Titlebar management
     
-    func hideTitlebar(animated: Bool = true) {
+    func hideTitlebar(_ animated: Bool = true) {
         setTitlebarOpacity(0.0, animated: animated)
     }
     
-    func showTitlebar(animated: Bool = true) {
+    func showTitlebar(_ animated: Bool = true) {
         setTitlebarOpacity(1.0, animated: animated)
     }
     
-    private func setTitlebarOpacity(opacity: CGFloat, animated: Bool) {
+    fileprivate func setTitlebarOpacity(_ opacity: CGFloat, animated: Bool) {
         guard hidesTitlebar else { return }
         
         // when the window is in full screen, the titlebar view is in another window (the "toolbar window")
@@ -179,17 +179,17 @@ public class EVTWindow: NSWindow {
     
     // MARK: - Content management
     
-    public override var title: String {
+    open override var title: String {
         didSet {
             titleTextField?.stringValue = title
         }
     }
     
-    public override var contentView: NSView? {
+    open override var contentView: NSView? {
         set {
             let darkContentView = EVTWindowContentView(frame: newValue?.frame ?? NSZeroRect)
             if let newContentView = newValue {
-                newContentView.autoresizingMask = [.ViewWidthSizable, .ViewHeightSizable]
+                newContentView.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
                 darkContentView.addSubview(newContentView)
             }
             super.contentView = darkContentView
@@ -201,7 +201,7 @@ public class EVTWindow: NSWindow {
     
     // MARK: - PiP Mode
     
-    public var allowsPiPMode = false {
+    open var allowsPiPMode = false {
         didSet {
             applyAppearanceToWidgets()
             if isInPiPMode {
@@ -210,29 +210,29 @@ public class EVTWindow: NSWindow {
         }
     }
     
-    @objc public var isInPiPMode = false
+    @objc open var isInPiPMode = false
     
-    public override func toggleFullScreen(sender: AnyObject?) {
+    open override func toggleFullScreen(_ sender: Any?) {
         if canEnterPiPMode || isInPiPMode {
-            togglePiPMode(sender)
+            togglePiPMode(sender as AnyObject?)
         } else {
-            self.reallyDoToggleFullScreenImNotEvenKiddingItsRealThisTimeISwear(sender)
+            self.reallyDoToggleFullScreenImNotEvenKiddingItsRealThisTimeISwear(sender as AnyObject?)
         }
     }
     
-    @IBAction public func reallyDoToggleFullScreenImNotEvenKiddingItsRealThisTimeISwear(sender: AnyObject?) {
+    @IBAction open func reallyDoToggleFullScreenImNotEvenKiddingItsRealThisTimeISwear(_ sender: AnyObject?) {
         super.toggleFullScreen(sender)
     }
     
-    private var canEnterPiPMode: Bool {
-        return allowsPiPMode && !isInPiPMode && !styleMask.contains(.FullScreen) && screen != nil
+    fileprivate var canEnterPiPMode: Bool {
+        return allowsPiPMode && !isInPiPMode && !styleMask.contains(.fullScreen) && screen != nil
     }
     
-    private var levelBeforePiPMode: Int = 0
-    private var collectionBehaviorBeforePiPMode: NSWindowCollectionBehavior = []
-    private var frameBeforePiPMode: NSRect = NSZeroRect
+    fileprivate var levelBeforePiPMode: Int = 0
+    fileprivate var collectionBehaviorBeforePiPMode: NSWindowCollectionBehavior = []
+    fileprivate var frameBeforePiPMode: NSRect = NSZeroRect
     
-    @IBAction public func togglePiPMode(sender: AnyObject?) {
+    @IBAction open func togglePiPMode(_ sender: AnyObject?) {
         if isInPiPMode {
             exitPiPMode()
         } else {
@@ -240,11 +240,11 @@ public class EVTWindow: NSWindow {
         }
     }
     
-    private func enterPiPMode() {
+    fileprivate func enterPiPMode() {
         guard canEnterPiPMode else { return }
         guard !isInPiPMode else { return }
         
-        willChangeValueForKey("isInPiPMode")
+        willChangeValue(forKey: "isInPiPMode")
         
         hideTitlebar()
         isInPiPMode = true
@@ -253,17 +253,17 @@ public class EVTWindow: NSWindow {
         levelBeforePiPMode = level
         collectionBehaviorBeforePiPMode = collectionBehavior
         
-        collectionBehavior = [.CanJoinAllSpaces, .Stationary, .FullScreenPrimary]
-        level = Int(CGWindowLevelForKey(CGWindowLevelKey.MaximumWindowLevelKey))
+        collectionBehavior = [.canJoinAllSpaces, .stationary, .fullScreenPrimary]
+        level = Int(CGWindowLevelForKey(CGWindowLevelKey.maximumWindow))
         setFrame(frameForPiPMode, display: true, animate: true)
         
-        didChangeValueForKey("isInPiPMode")
+        didChangeValue(forKey: "isInPiPMode")
     }
     
-    private func exitPiPMode() {
+    fileprivate func exitPiPMode() {
         guard isInPiPMode else { return }
         
-        willChangeValueForKey("isInPiPMode")
+        willChangeValue(forKey: "isInPiPMode")
         isInPiPMode = false
         
         let aspectBeforePiP = aspectRatio
@@ -273,10 +273,10 @@ public class EVTWindow: NSWindow {
         
         collectionBehavior = collectionBehaviorBeforePiPMode
         level = levelBeforePiPMode
-        didChangeValueForKey("isInPiPMode")
+        didChangeValue(forKey: "isInPiPMode")
     }
     
-    private var frameForPiPMode: NSRect {
+    fileprivate var frameForPiPMode: NSRect {
         guard let screen = screen else { return frame }
         
         struct PiPConstants {
@@ -296,7 +296,7 @@ public class EVTWindow: NSWindow {
             effectiveAspectRatio = NSSize(width: 960.0, height: 400.0)
         }
         
-        var effectiveRect = AVMakeRectWithAspectRatioInsideRect(effectiveAspectRatio, baseRect)
+        var effectiveRect = AVMakeRect(aspectRatio: effectiveAspectRatio, insideRect: baseRect)
         
         effectiveRect.origin.x = screen.frame.width - effectiveRect.width - 40.0
         effectiveRect.origin.y = 40.0
@@ -308,29 +308,29 @@ public class EVTWindow: NSWindow {
 
 private class EVTWindowContentView: NSView {
     
-    private var overlayView: EVTWindowOverlayView?
+    fileprivate var overlayView: EVTWindowOverlayView?
     
-    private func installOverlayView() {
+    fileprivate func installOverlayView() {
         overlayView = EVTWindowOverlayView(frame: bounds)
-        overlayView!.autoresizingMask = [.ViewWidthSizable, .ViewHeightSizable]
-        addSubview(overlayView!, positioned: .Above, relativeTo: subviews.last)
+        overlayView!.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
+        addSubview(overlayView!, positioned: .above, relativeTo: subviews.last)
     }
     
-    private func moveOverlayViewToTop() {
+    fileprivate func moveOverlayViewToTop() {
         if overlayView == nil {
             installOverlayView()
         } else {
             overlayView!.removeFromSuperview()
-            addSubview(overlayView!, positioned: .Above, relativeTo: subviews.last)
+            addSubview(overlayView!, positioned: .above, relativeTo: subviews.last)
         }
     }
     
-    private override func drawRect(dirtyRect: NSRect) {
-        NSColor.blackColor().setFill()
+    fileprivate override func draw(_ dirtyRect: NSRect) {
+        NSColor.black.setFill()
         NSRectFill(dirtyRect)
     }
     
-    private override func addSubview(aView: NSView) {
+    fileprivate override func addSubview(_ aView: NSView) {
         super.addSubview(aView)
         
         if aView != overlayView {
@@ -342,69 +342,69 @@ private class EVTWindowContentView: NSView {
 
 private class EVTWindowOverlayView: NSView {
     
-    private var evtWindow: EVTWindow? {
+    fileprivate var evtWindow: EVTWindow? {
         return window as? EVTWindow
     }
     
-    private var mouseTrackingArea: NSTrackingArea!
+    fileprivate var mouseTrackingArea: NSTrackingArea!
     
-    private override func updateTrackingAreas() {
+    fileprivate override func updateTrackingAreas() {
         super.updateTrackingAreas()
         
         if mouseTrackingArea != nil {
             removeTrackingArea(mouseTrackingArea)
         }
         
-        mouseTrackingArea = NSTrackingArea(rect: bounds, options: [.InVisibleRect, .MouseEnteredAndExited, .MouseMoved, .ActiveAlways], owner: self, userInfo: nil)
+        mouseTrackingArea = NSTrackingArea(rect: bounds, options: [.inVisibleRect, .mouseEnteredAndExited, .mouseMoved, .activeAlways], owner: self, userInfo: nil)
         addTrackingArea(mouseTrackingArea)
     }
     
-    private var mouseIdleTimer: NSTimer!
+    fileprivate var mouseIdleTimer: Timer!
     
-    private func resetMouseIdleTimer() {
+    fileprivate func resetMouseIdleTimer() {
         if mouseIdleTimer != nil {
             mouseIdleTimer.invalidate()
             mouseIdleTimer = nil
         }
         
-        mouseIdleTimer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: #selector(mouseIdleTimerAction(_:)), userInfo: nil, repeats: false)
+        mouseIdleTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(mouseIdleTimerAction(_:)), userInfo: nil, repeats: false)
     }
     
-    @objc private func mouseIdleTimerAction(sender: NSTimer) {
+    @objc fileprivate func mouseIdleTimerAction(_ sender: Timer) {
         evtWindow?.hideTitlebar()
     }
     
-    private override func viewDidMoveToWindow() {
+    fileprivate override func viewDidMoveToWindow() {
         super.viewDidMoveToWindow()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(windowWillExitFullscreen), name: NSWindowWillExitFullScreenNotification, object: window)
+        NotificationCenter.default.addObserver(self, selector: #selector(windowWillExitFullscreen), name: NSNotification.Name.NSWindowWillExitFullScreen, object: window)
         resetMouseIdleTimer()
     }
     
-    @objc private func windowWillExitFullscreen() {
+    @objc fileprivate func windowWillExitFullscreen() {
         resetMouseIdleTimer()
     }
     
-    private override func mouseEntered(theEvent: NSEvent) {
+    fileprivate override func mouseEntered(with theEvent: NSEvent) {
         resetMouseIdleTimer()
         evtWindow?.showTitlebar()
     }
     
-    private override func mouseExited(theEvent: NSEvent) {
+    fileprivate override func mouseExited(with theEvent: NSEvent) {
         evtWindow?.hideTitlebar()
     }
     
-    private override func mouseMoved(theEvent: NSEvent) {
+    fileprivate override func mouseMoved(with theEvent: NSEvent) {
         resetMouseIdleTimer()
         evtWindow?.showTitlebar()
     }
     
-    private override func drawRect(dirtyRect: NSRect) {
+    fileprivate override func draw(_ dirtyRect: NSRect) {
         return
     }
     
-    private override func mouseUp(event: NSEvent) {
-        super.mouseUp(event)
+    fileprivate override func mouseUp(with event: NSEvent) {
+        super.mouseUp(with: event)
         
         if event.clickCount == 2 {
             self.evtWindow?.reallyDoToggleFullScreenImNotEvenKiddingItsRealThisTimeISwear(self)
@@ -412,7 +412,7 @@ private class EVTWindowOverlayView: NSView {
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
         mouseIdleTimer.invalidate()
         mouseIdleTimer = nil
     }

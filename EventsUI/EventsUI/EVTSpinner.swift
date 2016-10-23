@@ -8,7 +8,7 @@
 
 import Cocoa
 
-public class EVTSpinner: NSProgressIndicator {
+open class EVTSpinner: NSProgressIndicator {
 
     override public init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -22,10 +22,10 @@ public class EVTSpinner: NSProgressIndicator {
         configure()
     }
     
-    private func configure() {
-        self.appearance = NSAppearance(appearanceNamed: "WhiteSpinner", bundle: NSBundle(forClass: EVTSpinner.self))
-        self.indeterminate = true
-        self.controlSize = .Regular
+    fileprivate func configure() {
+        self.appearance = NSAppearance(appearanceNamed: "WhiteSpinner", bundle: Bundle(for: EVTSpinner.self))
+        self.isIndeterminate = true
+        self.controlSize = .regular
     }
     
 }

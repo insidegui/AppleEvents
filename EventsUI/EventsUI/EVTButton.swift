@@ -8,31 +8,31 @@
 
 import Cocoa
 
-public class EVTButton: NSControl {
+open class EVTButton: NSControl {
 
-    private var widthConstraint: NSLayoutConstraint!
+    fileprivate var widthConstraint: NSLayoutConstraint!
     
-    public var title: String = "" {
+    open var title: String = "" {
         didSet {
             sizeToFit()
             configureLayers()
         }
     }
     
-    private var attributedTitle: NSAttributedString {
+    fileprivate var attributedTitle: NSAttributedString {
         let pStyle = NSMutableParagraphStyle()
-        pStyle.alignment = .Center
+        pStyle.alignment = .center
         
         let attrs = [
             NSFontAttributeName: textFont,
             NSForegroundColorAttributeName: textColor,
             NSParagraphStyleAttributeName: pStyle
-        ]
+        ] as [String : Any]
         
         return NSAttributedString(string: title, attributes: attrs)
     }
     
-    public var textFont: NSFont = NSFont.systemFontOfSize(18.0, weight: NSFontWeightMedium) {
+    open var textFont: NSFont = NSFont.systemFont(ofSize: 18.0, weight: NSFontWeightMedium) {
         didSet {
             guard titleLayer != nil else { return }
             
@@ -40,7 +40,7 @@ public class EVTButton: NSControl {
         }
     }
     
-    public var textColor: NSColor = NSColor(calibratedWhite: 1.0, alpha: 0.8) {
+    open var textColor: NSColor = NSColor(calibratedWhite: 1.0, alpha: 0.8) {
         didSet {
             guard titleLayer != nil else { return }
             
@@ -48,15 +48,15 @@ public class EVTButton: NSControl {
         }
     }
     
-    private var titleLayer: CATextLayer!
+    fileprivate var titleLayer: CATextLayer!
     
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
         
         wantsLayer = true
         layer = CALayer()
         
-        layer?.backgroundColor = NSColor(calibratedWhite: 1.0, alpha: 0.4).CGColor
+        layer?.backgroundColor = NSColor(calibratedWhite: 1.0, alpha: 0.4).cgColor
         layer?.cornerRadius = 6.0
         layer?.masksToBounds = true
         layer?.compositingFilter = "overlayBlendMode"
@@ -64,56 +64,56 @@ public class EVTButton: NSControl {
         configureLayers()
     }
     
-    public override var wantsUpdateLayer: Bool {
+    open override var wantsUpdateLayer: Bool {
         return true
     }
     
-    public override var intrinsicContentSize: NSSize {
+    open override var intrinsicContentSize: NSSize {
         let ts = attributedTitle.size()
         return NSSize(width: ts.width + 40.0, height: ts.height + 20.0)
     }
     
-    public override func sizeToFit() {
+    open override func sizeToFit() {
         if widthConstraint == nil {
-            widthConstraint = self.widthAnchor.constraintEqualToConstant(intrinsicContentSize.width)
+            widthConstraint = self.widthAnchor.constraint(equalToConstant: intrinsicContentSize.width)
         }
         widthConstraint.constant = intrinsicContentSize.width
-        widthConstraint.active = true
+        widthConstraint.isActive = true
         superview?.layoutSubtreeIfNeeded()
     }
     
-    private var isMouseDown = false
+    fileprivate var isMouseDown = false
     
-    private var shouldDisplayHighlightedState = false {
+    fileprivate var shouldDisplayHighlightedState = false {
         didSet {
             if shouldDisplayHighlightedState {
-                layer?.backgroundColor = NSColor(calibratedWhite: 1.0, alpha: 0.7).CGColor
+                layer?.backgroundColor = NSColor(calibratedWhite: 1.0, alpha: 0.7).cgColor
             } else {
-                layer?.backgroundColor = NSColor(calibratedWhite: 1.0, alpha: 0.4).CGColor
+                layer?.backgroundColor = NSColor(calibratedWhite: 1.0, alpha: 0.4).cgColor
             }
         }
     }
     
-    public override func mouseDown(event: NSEvent) {
-        super.mouseDown(event)
+    open override func mouseDown(with event: NSEvent) {
+        super.mouseDown(with: event)
         
         isMouseDown = true
         shouldDisplayHighlightedState = true
         
         while(isMouseDown) {
-            guard let event = NSApp.nextEventMatchingMask([.LeftMouseUp, .LeftMouseDragged], untilDate: NSDate.distantFuture(), inMode: NSEventTrackingRunLoopMode, dequeue: true) else { continue }
+            guard let event = NSApp.nextEvent(matching: [.leftMouseUp, .leftMouseDragged], until: Date.distantFuture, inMode: RunLoopMode.eventTrackingRunLoopMode, dequeue: true) else { continue }
             
-            let point = self.convertPoint(event.locationInWindow, toView: self)
+            let point = self.convert(event.locationInWindow, to: self)
             
             switch event.type {
-            case .LeftMouseUp:
+            case .leftMouseUp:
                 isMouseDown = false
                 self.shouldDisplayHighlightedState = false
                 
                 if hitTest(point) == self {
-                    NSApplication.sharedApplication().sendAction(action, to: target, from: self)
+                    NSApplication.shared().sendAction(action!, to: target, from: self)
                 }
-            case .LeftMouseDragged:
+            case .leftMouseDragged:
                 shouldDisplayHighlightedState = (hitTest(point) == self)
             default: break
             }
@@ -121,13 +121,13 @@ public class EVTButton: NSControl {
         
     }
     
-    private func configureLayers() {
+    fileprivate func configureLayers() {
         CATransaction.begin()
         CATransaction.setAnimationDuration(0)
         
         if titleLayer == nil {
             titleLayer = CATextLayer()
-            titleLayer.contentsScale = NSScreen.mainScreen()?.backingScaleFactor ?? 1.0
+            titleLayer.contentsScale = NSScreen.main()?.backingScaleFactor ?? 1.0
             titleLayer.compositingFilter = "overlayBlendMode"
             titleLayer.alignmentMode = kCAAlignmentCenter
             layer?.addSublayer(titleLayer)

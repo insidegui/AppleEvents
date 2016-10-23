@@ -8,17 +8,17 @@
 
 import Cocoa
 
-public class EVTTextFieldCell: NSTextFieldCell {
+open class EVTTextFieldCell: NSTextFieldCell {
     
-    override public var backgroundColor: NSColor? {
+    override open var backgroundColor: NSColor? {
         get {
             // we need to make sure `backgroundColor` is fully transparent to clear the canvas before drawing our label's text
-            return NSColor.clearColor()
+            return NSColor.clear
         }
         set {}
     }
     
-    override public var drawsBackground: Bool {
+    override open var drawsBackground: Bool {
         get {
             // if `drawsBackground` is false and the color is `labelColor`, there's a drawing glitch
             return true
@@ -26,16 +26,16 @@ public class EVTTextFieldCell: NSTextFieldCell {
         set {}
     }
     
-    override public func drawWithFrame(cellFrame: NSRect, inView controlView: NSView) {
-        guard let ctx = NSGraphicsContext.currentContext()?.CGContext else { return }
+    override open func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
+        guard let ctx = NSGraphicsContext.current()?.cgContext else { return }
         
-        CGContextSetBlendMode(ctx, CGBlendMode.Overlay)
-        CGContextSetAlpha(ctx, 0.5)
-        super.drawWithFrame(cellFrame, inView: controlView)
+        ctx.setBlendMode(CGBlendMode.overlay)
+        ctx.setAlpha(0.5)
+        super.draw(withFrame: cellFrame, in: controlView)
         
-        CGContextSetBlendMode(ctx, CGBlendMode.PlusLighter)
-        CGContextSetAlpha(ctx, 1.0)
-        super.drawWithFrame(cellFrame, inView: controlView)
+        ctx.setBlendMode(CGBlendMode.plusLighter)
+        ctx.setAlpha(1.0)
+        super.draw(withFrame: cellFrame, in: controlView)
     }
     
 }
