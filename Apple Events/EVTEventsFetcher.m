@@ -72,8 +72,8 @@
     }
     
     if (![self.availableLocalizations containsObject:lang]) {
-        NSLog(@"Localization not available for %@, falling back to en-GB", lang);
-        return @"en-GB";
+        NSLog(@"Localization not available for %@, falling back to english", lang);
+        return @"en";
     } else {
         return lang;
     }
