@@ -98,14 +98,14 @@
     self.watchButton.hidden = NO;
     
     self.titleLabel.stringValue = event.title;
-    self.subtitleLabel.stringValue = event.localizedDateString;
+    self.subtitleLabel.stringValue = (event.localizedDateString) ? event.localizedDateString : @"";
     
     if (event.live) {
         switch (state) {
             case EVTEventStateUnknown:
             case EVTEventStatePre:
                 self.descriptionLabel.stringValue = event.preDescription;
-                self.watchButton.title = event.localizedTimeString;
+                self.watchButton.title = (event.localizedTimeString) ? event.localizedDateString : NSLocalizedString(@"Live Soon", @"Live Soon");
                 break;
             case EVTEventStateLive:
                 self.descriptionLabel.stringValue = event.liveDescription;
