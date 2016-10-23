@@ -13,21 +13,35 @@ open class EVTMagicImageView: NSView {
 
     open var blurAmountWhenHovered: CGFloat = 40.0
     
+    @IBInspectable open var effectsEnabled = false {
+        didSet {
+            if effectsEnabled != oldValue {
+                refreshLayers()
+            }
+        }
+    }
+    
     open var blurAmount: CGFloat = 40.0 {
         didSet {
-            refreshLayers()
+            if blurAmount != oldValue {
+                refreshLayers()
+            }
         }
     }
     
     open var image: NSImage? {
         didSet {
-            refreshLayers()
+            if image != oldValue {
+                refreshLayers()
+            }
         }
     }
     
     open override var frame: NSRect {
         didSet {
-            refreshLayers(false)
+            if frame.size != oldValue.size {
+                refreshLayers(false)
+            }
         }
     }
     
@@ -79,33 +93,54 @@ open class EVTMagicImageView: NSView {
         CATransaction.begin()
         CATransaction.setAnimationDuration(animated ? 0.4 : 0.0)
         CATransaction.setDisableActions(!animated)
-        
-        if imageLayer == nil {
-            effectLayer = CALayer()
-            layer?.addSublayer(effectLayer)
+        if (effectsEnabled) {
+            if effectLayer == nil {
+                effectLayer = CALayer()
+                layer?.addSublayer(effectLayer)
+            }
             
-            imageLayer = CALayer()
-            layer?.addSublayer(imageLayer)
-        }
-        
-        let effectiveBlurAmount = hovering ? blurAmount : blurAmountWhenHovered
-        let f = effectiveBlurAmount
-        effectLayer.frame = CGRect(x: -f/2, y: -f/2, width: bounds.width + f, height: bounds.height + f)
-        imageLayer.frame = bounds
-        
-        if blurAmountWhenHovered != blurAmount {
-            effectLayer.opacity = hovering ? 0.7 : 0.3
-            imageLayer.frame = hovering ? bounds.insetBy(dx: -10.0, dy: -10.0) : bounds
+            if imageLayer == nil {
+                imageLayer = CALayer()
+                layer?.addSublayer(imageLayer)
+            }
+            
+            let effectiveBlurAmount = hovering ? blurAmount : blurAmountWhenHovered
+            let f = effectiveBlurAmount
+            effectLayer.frame = CGRect(x: -f/2, y: -f/2, width: bounds.width + f, height: bounds.height + f)
+            imageLayer.frame = bounds
+            
+            if blurAmountWhenHovered != blurAmount {
+                effectLayer.opacity = hovering ? 0.7 : 0.3
+                imageLayer.frame = hovering ? bounds.insetBy(dx: -10.0, dy: -10.0) : bounds
+            } else {
+                effectLayer.opacity = 0.7
+            }
+            
+            if imageChanged {
+                imageLayer.contents = image
+                effectLayer.contents = image
+            }
+            
+            effectLayer.filters = effectFilterChain
         } else {
-            effectLayer.opacity = 0.7
+            if imageLayer == nil {
+                imageLayer = CALayer()
+                layer?.addSublayer(imageLayer)
+            }
+            
+            imageLayer.frame = bounds
+            
+            if blurAmountWhenHovered != blurAmount {
+                imageLayer.frame = hovering ? bounds.insetBy(dx: -10.0, dy: -10.0) : bounds
+            }
+            
+            if imageChanged {
+                imageLayer.contents = image
+            }
         }
         
-        if imageChanged {
-            imageLayer.contents = image
-            effectLayer.contents = image
-        }
-        
-        effectLayer.filters = effectFilterChain
+        effectLayer?.zPosition = 5
+        imageLayer?.zPosition = 10
         
         CATransaction.commit()
     }

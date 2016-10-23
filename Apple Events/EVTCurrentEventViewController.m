@@ -130,6 +130,7 @@
         if (![self.event.identifier isEqualToString:originalIdentifier]) return;
         
         self.imageView.image = image;
+        self.imageView.effectsEnabled = YES;
     }];    
 }
 
