@@ -14,6 +14,8 @@ open class EVTButton: NSControl {
     
     open var title: String = "" {
         didSet {
+            guard title != oldValue else { return }
+            
             sizeToFit()
             configureLayers()
         }
@@ -34,6 +36,7 @@ open class EVTButton: NSControl {
     
     open var textFont: NSFont = NSFont.systemFont(ofSize: 18.0, weight: NSFontWeightMedium) {
         didSet {
+            guard oldValue != textFont else { return }
             guard titleLayer != nil else { return }
             
             titleLayer.string = attributedTitle
@@ -42,6 +45,7 @@ open class EVTButton: NSControl {
     
     open var textColor: NSColor = NSColor(calibratedWhite: 1.0, alpha: 0.8) {
         didSet {
+            guard textColor != oldValue else { return }
             guard titleLayer != nil else { return }
             
             titleLayer.string = attributedTitle
