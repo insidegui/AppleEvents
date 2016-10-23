@@ -37,7 +37,7 @@ open class EVTMagicImageView: NSView {
         commonInit()
     }
     
-    override init(frame frameRect: NSRect) {
+    override public init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         
         commonInit()
