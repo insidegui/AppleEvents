@@ -30,6 +30,9 @@ typedef NS_ENUM(NSInteger, EVTChromecastState) {
 
 + (instancetype)chromecastViewControllerWithEvent:(EVTEvent *)event videoURL:(NSURL *)videoURL;
 
-@property (readonly) NSString *outputDeviceName;
+@property (nonatomic, readonly) EVTChromecastStatus *status;
+
+@property (assign) double currentTime;
+
 
 @end

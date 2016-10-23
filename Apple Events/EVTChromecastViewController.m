@@ -14,6 +14,13 @@
 #import "EVTEvent.h"
 #import "EVTEnvironment.h"
 
+@interface EVTChromecastStatus ()
+
++ (instancetype)statusWithOutputDeviceName:(NSString *)outputDeviceName currentTime:(double)currentTime state:(EVTChromecastState)state;
++ (instancetype)statusWithMediaStatus:(CastMediaStatus *)mediaStatus deviceName:(NSString *)deviceName;
+
+@end
+
 @interface EVTChromecastViewController () <CastClientDelegate>
 
 @property (copy) EVTEvent *event;
@@ -23,13 +30,16 @@
 
 @property (strong) CastDeviceScanner *scanner;
 @property (strong) CastClient *client;
+@property (strong) CastApp *mediaPlayerApp;
+@property (strong) CastDevice *outputDevice;
 
 @property (strong) NSMenu *devicesMenu;
 
-@property (assign) double currentTime;
 @property (readonly) CastMedia *media;
 
-@property (copy) NSString *outputDeviceName;
+@property (nonatomic, strong) EVTChromecastStatus *status;
+
+@property (nonatomic, strong) NSTimer *statusTimer;
 
 @end
 
@@ -74,7 +84,9 @@
 {
     NSURL *imageURL = [[EVTEnvironment currentEnvironment] URLForImageNamed:self.event.identifier];
     
-    return [[CastMedia alloc] initWithTitle:self.event.title url:self.videoURL poster:imageURL contentType:@"application/vnd.apple.mpegurl" streamType:@"BUFFERED" autoplay:YES currentTime:self.currentTime];
+    NSString *title = [NSString stringWithFormat:@"%@ - %@", self.event.title, self.event.shortTitle];
+    
+    return [[CastMedia alloc] initWithTitle:title url:self.videoURL poster:imageURL contentType:@"application/vnd.apple.mpegurl" streamType:@"BUFFERED" autoplay:YES currentTime:self.currentTime];
 }
 
 - (void)showDevicesMenu:(EVTMaskButton *)sender
@@ -94,18 +106,26 @@
     
     self.scanner = [[CastDeviceScanner alloc] init];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceListDidChange:) name:[CastDeviceScanner DeviceListDidChange] object:self.scanner];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDevicesMenu) name:[CastDeviceScanner DeviceListDidChange] object:self.scanner];
     [self.scanner startScanning];
 }
 
-- (void)deviceListDidChange:(NSNotification *)note
+- (void)updateDevicesMenu
 {
     self.castButton.hidden = self.scanner.devices.count == 0;
     
     [self.devicesMenu removeAllItems];
     
     for (CastDevice *device in self.scanner.devices) {
-        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:device.name action:@selector(connectToCastDevice:) keyEquivalent:@""];
+        NSMenuItem *item;
+        
+        if ([device.name isEqualToString:self.status.outputDeviceName]) {
+            NSString *format = NSLocalizedString(@"Disconnect from %@", @"Disconnect from %@ (Chromecast device name)");
+            item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:format, device.name] action:@selector(stopCasting:) keyEquivalent:@""];
+        } else {
+            item = [[NSMenuItem alloc] initWithTitle:device.name action:@selector(connectToCastDevice:) keyEquivalent:@""];
+        }
+        
         item.target = self;
         item.representedObject = device;
         [self.devicesMenu addItem:item];
@@ -117,40 +137,102 @@
     CastDevice *device = sender.representedObject;
     if (![device isKindOfClass:[CastDevice class]]) return;
     
+    self.outputDevice = device;
+    self.status = [EVTChromecastStatus statusWithOutputDeviceName:self.outputDevice.name currentTime:self.currentTime state:EVTChromeCastStateConnecting];
+    
     self.client = [[CastClient alloc] initWithDevice:device];
     self.client.delegate = self;
     [self.client connect];
 }
 
+- (void)stopCasting:(NSMenuItem *)sender
+{
+    self.currentTime = self.status.currentTime;
+    self.status = nil;
+    
+    if (self.mediaPlayerApp) {
+        [self.client stopApp:self.mediaPlayerApp];
+    }
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.client disconnect];
+        self.client = nil;
+        
+        [self updateDevicesMenu];
+    });
+}
+
 - (void)castClient:(CastClient *)client didConnectTo:(CastDevice *)device
 {
+    __weak typeof(self) weakSelf = self;
     [self.client launchAppWithIdentifier:@"CC1AD845" completionHandler:^(NSError *launchError, CastApp *app) {
+        weakSelf.mediaPlayerApp = app;
+        
         if (launchError) {
             [[NSAlert alertWithError:launchError] runModal];
-            self.outputDeviceName = nil;
+            weakSelf.status = nil;
             return;
         }
         
-        [self.client loadMedia:self.media usingApp:app completionHandler:^(NSError *loadError, CastMediaStatus *mediaStatus) {
+        [weakSelf.client loadMedia:self.media usingApp:app completionHandler:^(NSError *loadError, CastMediaStatus *mediaStatus) {
             if (loadError) {
                 [[NSAlert alertWithError:launchError] runModal];
-                self.outputDeviceName = nil;
+                weakSelf.status = nil;
             } else {
-                self.outputDeviceName = device.name;
+                weakSelf.status = [EVTChromecastStatus statusWithMediaStatus:mediaStatus deviceName:device.name];
+                
+                [weakSelf updateDevicesMenu];
             }
         }];
     }];
 }
 
+- (void)requestStatusUpdate:(NSTimer *)timer
+{
+    if (![timer.userInfo isKindOfClass:[NSNumber class]] || ![timer.userInfo respondsToSelector:@selector(longLongValue)]) return;
+    
+    NSNumber *info = timer.userInfo;
+    [self.client requestMediaStatusForApp:self.mediaPlayerApp mediaSessionId:info.longLongValue];
+}
+
 - (void)castClient:(CastClient *)client connectionTo:(CastDevice *)device didFailWith:(NSError *)error
 {
-    self.outputDeviceName = nil;
+    self.status = nil;
     [[NSAlert alertWithError:error] runModal];
 }
 
 - (void)castClient:(CastClient *)client didDisconnectFrom:(CastDevice *)device
 {
-    self.outputDeviceName = nil;
+    self.status = nil;
+    [self.statusTimer invalidate];
+    self.statusTimer = nil;
+}
+
+- (void)castClient:(CastClient *)client mediaStatusDidChange:(CastMediaStatus *)status
+{
+    if (!self.statusTimer) {
+        self.statusTimer = [NSTimer scheduledTimerWithTimeInterval:7.0 target:self selector:@selector(requestStatusUpdate:) userInfo:@(status.mediaSessionId) repeats:YES];
+    }
+    
+    self.status = [EVTChromecastStatus statusWithMediaStatus:status deviceName:self.outputDevice.name];
+}
+
+- (void)updateCastButtonTint
+{
+    if (self.status) {
+        self.castButton.tintColor = [NSColor colorWithDeviceRed:0.002 green:0.487 blue:0.998 alpha:1];
+    } else {
+        self.castButton.tintColor = [NSColor whiteColor];
+    }
+}
+
+- (void)setStatus:(EVTChromecastStatus *)status
+{
+    [self willChangeValueForKey:@"status"];
+    _status = status;
+    [self didChangeValueForKey:@"status"];
+    
+    [self updateCastButtonTint];
 }
 
 @end
@@ -166,6 +248,51 @@
     status.state = state;
     
     return status;
+}
+
++ (EVTChromecastState)stateFromMediaState:(NSString *)mediaState
+{
+    if ([mediaState isEqualToString:@"BUFFERING"]) {
+        return EVTChromeCastStateBuffering;
+    } else if ([mediaState isEqualToString:@"PAUSED"] || [mediaState isEqualToString:@"STOPPED"]) {
+        return EVTChromeCastStatePaused;
+    } else if ([mediaState isEqualToString:@"PLAYING"]) {
+        return EVTChromeCastStatePlaying;
+    } else {
+        return EVTChromeCastStateNone;
+    }
+}
+
++ (instancetype)statusWithMediaStatus:(CastMediaStatus *)mediaStatus deviceName:(NSString *)deviceName
+{
+    EVTChromecastStatus *status = [[EVTChromecastStatus alloc] init];
+    
+    status.outputDeviceName = deviceName;
+    status.currentTime = mediaStatus.currentTime;
+    status.state = [self stateFromMediaState:mediaStatus.state];
+    
+    return status;
+}
+
+- (NSString *)descriptionForState:(EVTChromecastState)state
+{
+    switch(state) {
+        case EVTChromeCastStateBuffering:
+            return @"Buffering";
+        case EVTChromeCastStateNone:
+            return @"None";
+        case EVTChromeCastStatePlaying:
+            return @"Playing";
+        case EVTChromeCastStatePaused:
+            return @"Paused";
+        case EVTChromeCastStateConnecting:
+            return @"Connecting";
+    }
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"EVTChromecastStatus(outputDeviceName: %@, currentTime: %.2f, state: %@)", self.outputDeviceName, self.currentTime, [self descriptionForState:self.state]];
 }
 
 @end

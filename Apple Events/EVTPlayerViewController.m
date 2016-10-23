@@ -29,6 +29,8 @@
 
 @property (strong) EVTChromecastViewController *chromecastViewController;
 
+@property (strong) NSObject *timeObserver;
+
 @end
 
 @implementation EVTPlayerViewController
@@ -58,7 +60,7 @@
     
     self.chromecastViewController = [EVTChromecastViewController chromecastViewControllerWithEvent:self.event videoURL:self.videoURL];
     
-    [self.chromecastViewController addObserver:self forKeyPath:@"outputDeviceName" options:NSKeyValueObservingOptionNew context:NULL];
+    [self.chromecastViewController addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:NULL];
     
     self.player = [AVPlayer playerWithURL:self.videoURL];
     
@@ -70,6 +72,12 @@
     self.playerView.autoresizingMask = NSViewWidthSizable|NSViewHeightSizable;
     self.playerView.player = self.player;
     
+    __weak typeof(self) weakSelf = self;
+    self.timeObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1, 3000) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
+        double currentTime = CMTimeGetSeconds(time);
+        weakSelf.chromecastViewController.currentTime = currentTime;
+    }];
+    
     [self.player play];
 }
 
@@ -77,9 +85,9 @@
 {
     if ([keyPath isEqualToString:@"currentItem.presentationSize"]) {
         [self updateAspectRatio];
-    } else if ([keyPath isEqualToString:@"outputDeviceName"]) {
+    } else if ([keyPath isEqualToString:@"status"]) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self outputDeviceDidChange];
+            [self chromecastStatusDidChange];
         });
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -121,7 +129,7 @@
 {
     [super viewWillDisappear];
     
-    [self.chromecastViewController removeObserver:self forKeyPath:@"outputDeviceName"];
+    [self.chromecastViewController removeObserver:self forKeyPath:@"status"];
     
     EVTWindow *window = (EVTWindow *)self.view.window;
     [window removeTitlebarCompanionWithView:self.chromecastViewController.view];
@@ -141,17 +149,23 @@
 
 - (void)stop
 {
+    [self.player removeTimeObserver:self.timeObserver];
+    
     [self.player pause];
     [self.player cancelPendingPrerolls];
     [self.player removeObserver:self forKeyPath:@"currentItem.presentationSize"];
 }
 
-- (void)outputDeviceDidChange
+- (void)chromecastStatusDidChange
 {
-    if (self.chromecastViewController.outputDeviceName) {
+    if (self.chromecastViewController.status) {
         [self.player pause];
     } else {
-        [self.player play];
+        if (self.chromecastViewController.currentTime) {
+            [self.player seekToTime:CMTimeMakeWithSeconds(self.chromecastViewController.currentTime, 3000) completionHandler:^(BOOL finished) {
+                [self.player play];
+            }];
+        }
     }
 }
 
