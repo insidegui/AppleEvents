@@ -262,7 +262,10 @@
                     return;
                 }
                 
-                NSArray *events = [self __eventsArrayFromServerDictionary:eventsDict withLocalization:localizationDict[self.languageForLocalization]];
+                NSDictionary *languageDict = localizationDict[self.languageForLocalization];
+                if (!languageDict) languageDict = localizationDict[@"en"];
+                
+                NSArray *events = [self __eventsArrayFromServerDictionary:eventsDict withLocalization:languageDict fallbackLocalizations:localizationDict];
                 if (!events || events.count == 0) {
                     NSError *eventsError = [self __errorWithCode:kEventsFetcherEventsParseErrorCode message:kEventsFetcherEventsParseErrorMessage];
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -286,7 +289,7 @@
     return [NSError errorWithDomain:kEventsFetcherErrorDomain code:code userInfo:@{NSLocalizedDescriptionKey: message}];
 }
 
-- (NSArray <EVTEvent *> *)__eventsArrayFromServerDictionary:(NSDictionary *)dict withLocalization:(NSDictionary *)localizationDict
+- (NSArray <EVTEvent *> *)__eventsArrayFromServerDictionary:(NSDictionary *)dict withLocalization:(NSDictionary *)localizationDict fallbackLocalizations:(NSDictionary *)fallbackLocalizations
 {
     NSMutableArray *events = [[NSMutableArray alloc] initWithCapacity:dict.allKeys.count];
     
@@ -294,7 +297,7 @@
         @autoreleasepool {
             NSMutableDictionary *eventDict = [obj mutableCopy];
             eventDict[@"identifier"] = key;
-            EVTEvent *event = [EVTEvent eventWithDictionary:eventDict localizationDictionary:localizationDict];
+            EVTEvent *event = [EVTEvent eventWithDictionary:eventDict localizationDictionary:localizationDict fallbackLocalizations:fallbackLocalizations];
             if (event) [events addObject:event];
         }
     }];

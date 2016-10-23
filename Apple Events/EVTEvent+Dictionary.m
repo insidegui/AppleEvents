@@ -35,9 +35,11 @@
 
 @implementation EVTEvent (Dictionary)
 
-+ (instancetype)eventWithDictionary:(NSDictionary *)dict localizationDictionary:(NSDictionary *)localizationDict
++ (instancetype)eventWithDictionary:(NSDictionary *)dict localizationDictionary:(NSDictionary *)localizationDict fallbackLocalizations:(NSDictionary *)fallbackLocalizations
 {
-    [[EVTVerboseLogger shared] addMessage:[NSString stringWithFormat:@"Parsing event dict %@, localizationDict %@", dict, localizationDict]];
+    NSDictionary *effectiveLocalizationDict;
+    
+    [[EVTVerboseLogger shared] addMessage:[NSString stringWithFormat:@"Parsing event dict %@, localizationDict %@", dict, effectiveLocalizationDict]];
     
     EVTEvent *event = [[EVTEvent alloc] init];
     
@@ -73,32 +75,38 @@
     NSString *postDescriptionKey = [NSString stringWithFormat:kPostDescLocalizedFormat, event.identifier];
     NSString *locationKey = [NSString stringWithFormat:kLocationLocalizedFormat, event.identifier];
     
-    event.title = localizationDict[titleKey];
-    event.shortTitle = localizationDict[shortTitleKey];
-    
-    if (localizationDict[preDescriptionKey]) {
-        event.preDescription = [self description:localizationDict[preDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
-    }
-    if (localizationDict[liveDescriptionKey]) {
-        event.liveDescription = [self description:localizationDict[liveDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
-    }
-    if (localizationDict[interimDescriptionKey]) {
-        event.interimDescription = [self description:localizationDict[interimDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
-    }
-    if (localizationDict[postDescriptionKey]) {
-        event.postDescription = [self description:localizationDict[postDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
+    if (localizationDict[titleKey] == nil) {
+        effectiveLocalizationDict = fallbackLocalizations[@"en"];
+    } else {
+        effectiveLocalizationDict = localizationDict;
     }
     
-    event.location = localizationDict[locationKey];
+    event.title = effectiveLocalizationDict[titleKey];
+    event.shortTitle = effectiveLocalizationDict[shortTitleKey];
+    
+    if (effectiveLocalizationDict[preDescriptionKey]) {
+        event.preDescription = [self description:effectiveLocalizationDict[preDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
+    }
+    if (effectiveLocalizationDict[liveDescriptionKey]) {
+        event.liveDescription = [self description:effectiveLocalizationDict[liveDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
+    }
+    if (effectiveLocalizationDict[interimDescriptionKey]) {
+        event.interimDescription = [self description:effectiveLocalizationDict[interimDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
+    }
+    if (effectiveLocalizationDict[postDescriptionKey]) {
+        event.postDescription = [self description:effectiveLocalizationDict[postDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
+    }
+    
+    event.location = effectiveLocalizationDict[locationKey];
     
     if (!event.postDescription) {
         NSString *legacyDescriptionKey = [NSString stringWithFormat:kLegacyDescLocalizedFormat, event.identifier];
-        event.postDescription = [self description:localizationDict[legacyDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
+        event.postDescription = [self description:effectiveLocalizationDict[legacyDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
     }
     
-    event.buttonPlay = localizationDict[kButtonPlayFormat];
-    event.buttonTime = localizationDict[kButtonTimeFormat];
-    event.buttonComingSoon = localizationDict[kButtonComingSoonFormat];
+    event.buttonPlay = effectiveLocalizationDict[kButtonPlayFormat];
+    event.buttonTime = effectiveLocalizationDict[kButtonTimeFormat];
+    event.buttonComingSoon = effectiveLocalizationDict[kButtonComingSoonFormat];
     
     [[EVTVerboseLogger shared] addMessage:[NSString stringWithFormat:@"Event AFTER localization parsing: %@", event]];
     

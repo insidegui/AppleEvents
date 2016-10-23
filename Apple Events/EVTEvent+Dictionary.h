@@ -10,6 +10,6 @@
 
 @interface EVTEvent (Dictionary)
 
-+ (instancetype)eventWithDictionary:(NSDictionary *)dict localizationDictionary:(NSDictionary *)localizationDict;
++ (instancetype)eventWithDictionary:(NSDictionary *)dict localizationDictionary:(NSDictionary *)localizationDict fallbackLocalizations:(NSDictionary *)fallbackLocalizations;
 
 @end

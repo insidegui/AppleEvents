@@ -95,6 +95,8 @@
 {
     if (!event) return;
     
+    self.watchButton.hidden = NO;
+    
     self.titleLabel.stringValue = event.title;
     self.subtitleLabel.stringValue = event.localizedDateString;
     
