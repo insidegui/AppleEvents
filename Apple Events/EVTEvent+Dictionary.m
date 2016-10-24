@@ -27,6 +27,7 @@
 #define kAMPMPlaceholder @"@@AMPM@@"
 #define kMinutePlaceholder @"@@MINUTE@@"
 #define kDatePlaceholder @"@@DATE@@"
+#define kYearPlaceholder @"@@YEAR@@"
 #define kMonthPlaceholder @"@@MONTH@@"
 #define kLocationPlaceholder @"@@LOCATION@@"
 
@@ -95,13 +96,13 @@
     event.location = effectiveLocalizationDict[locationKey];
     
     if (effectiveLocalizationDict[titleKey]) {
-        event.title = effectiveLocalizationDict[titleKey];
+        event.title = [self description:effectiveLocalizationDict[titleKey] withDateTimePlaceholdersFilledWithDate:event.countdown locationPlaceholdersFilledWithLocation:event.location];
     } else if (effectiveLocalizationDict[titleKeyGeneric]) {
-        event.title = effectiveLocalizationDict[titleKeyGeneric];
+        event.title = [self description:effectiveLocalizationDict[titleKeyGeneric] withDateTimePlaceholdersFilledWithDate:event.countdown locationPlaceholdersFilledWithLocation:event.location];
     }
     
     if (effectiveLocalizationDict[shortTitleKey]) {
-        event.shortTitle = effectiveLocalizationDict[shortTitleKey];
+        event.shortTitle = [self description:effectiveLocalizationDict[shortTitleKey] withDateTimePlaceholdersFilledWithDate:event.countdown locationPlaceholdersFilledWithLocation:event.location];
     } else if (effectiveLocalizationDict[shortTitleKeyGeneric]) {
         event.shortTitle = [self description:effectiveLocalizationDict[shortTitleKeyGeneric] withDateTimePlaceholdersFilledWithDate:event.countdown locationPlaceholdersFilledWithLocation:event.location];
     }
@@ -147,6 +148,7 @@
     
     NSString *output = desc;
     
+    static NSDateFormatter *yearFormatter;
     static NSDateFormatter *dayFormatter;
     static NSDateFormatter *monthFormatter;
     static NSDateFormatter *hour24Formatter;
@@ -156,6 +158,7 @@
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        yearFormatter = [[NSDateFormatter alloc] init];
         dayFormatter = [[NSDateFormatter alloc] init];
         monthFormatter = [[NSDateFormatter alloc] init];
         hour24Formatter = [[NSDateFormatter alloc] init];
@@ -163,6 +166,8 @@
         minuteFormatter = [[NSDateFormatter alloc] init];
         AMPMFormatter = [[NSDateFormatter alloc] init];
         
+        yearFormatter.timeZone = [NSTimeZone systemTimeZone];
+        yearFormatter.dateFormat = @"Y";
         dayFormatter.timeZone = [NSTimeZone systemTimeZone];
         dayFormatter.dateFormat = @"d";
         monthFormatter.timeZone = [NSTimeZone systemTimeZone];
@@ -177,6 +182,7 @@
         AMPMFormatter.dateFormat = @"a";
     });
     
+    NSString *year = [yearFormatter stringFromDate:date];
     NSString *day = [dayFormatter stringFromDate:date];
     NSString *month = [monthFormatter stringFromDate:date];
     NSString *hour24 = [hour24Formatter stringFromDate:date];
@@ -184,8 +190,10 @@
     NSString *minute = [minuteFormatter stringFromDate:date];
     NSString *AMPM = [AMPMFormatter stringFromDate:date];
     
-    [[EVTVerboseLogger shared] addMessage:[NSString stringWithFormat:@"day = %@ | month = %@ | hour24 = %@ | hour12 = %@ | minute = %@ | AMPM = %@", day, month, hour24, hour12, minute, AMPM]];
+    [[EVTVerboseLogger shared] addMessage:[NSString stringWithFormat:@"year = %@ | day = %@ | month = %@ | hour24 = %@ | hour12 = %@ | minute = %@ | AMPM = %@", year, day, month, hour24, hour12, minute, AMPM]];
     
+    output = [output stringByReplacingOccurrencesOfString:kYearPlaceholder withString:year];
+    output = [output stringByReplacingOccurrencesOfString:kDatePlaceholder withString:day];
     output = [output stringByReplacingOccurrencesOfString:kDatePlaceholder withString:day];
     output = [output stringByReplacingOccurrencesOfString:kMonthPlaceholder withString:month];
     output = [output stringByReplacingOccurrencesOfString:kHour24Placeholder withString:hour24];
