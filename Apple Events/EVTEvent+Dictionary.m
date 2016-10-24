@@ -28,10 +28,13 @@
 #define kMinutePlaceholder @"@@MINUTE@@"
 #define kDatePlaceholder @"@@DATE@@"
 #define kMonthPlaceholder @"@@MONTH@@"
+#define kLocationPlaceholder @"@@LOCATION@@"
 
 #define kButtonComingSoonFormat @"APPLE_EVENTS.BUTTON_COMING_SOON"
 #define kButtonTimeFormat @"APPLE_EVENTS.BUTTON_TIME"
 #define kButtonPlayFormat @"APPLE_EVENTS.BUTTON_PLAY"
+
+#define kGenericKey @"GENERIC"
 
 @implementation EVTEvent (Dictionary)
 
@@ -74,34 +77,56 @@
     NSString *interimDescriptionKey = [NSString stringWithFormat:kInterimDescLocalizedFormat, event.identifier];
     NSString *postDescriptionKey = [NSString stringWithFormat:kPostDescLocalizedFormat, event.identifier];
     NSString *locationKey = [NSString stringWithFormat:kLocationLocalizedFormat, event.identifier];
+    NSString *legacyDescriptionKey = [NSString stringWithFormat:kLegacyDescLocalizedFormat, event.identifier];
     
-    if (localizationDict[titleKey] == nil) {
+    NSString *titleKeyGeneric = [NSString stringWithFormat:kTitleLocalizedFormat, kGenericKey];
+    NSString *shortTitleKeyGeneric = [NSString stringWithFormat:kShortTitleLocalizedFormat, kGenericKey];
+    NSString *preDescriptionKeyGeneric = [NSString stringWithFormat:kPreDescLocalizedFormat, kGenericKey];
+    NSString *liveDescriptionKeyGeneric = [NSString stringWithFormat:kLiveDescLocalizedFormat, kGenericKey];
+    NSString *interimDescriptionKeyGeneric = [NSString stringWithFormat:kInterimDescLocalizedFormat, kGenericKey];
+    NSString *postDescriptionKeyGeneric = [NSString stringWithFormat:kPostDescLocalizedFormat, kGenericKey];
+    
+    if (localizationDict[locationKey] == nil) {
         effectiveLocalizationDict = fallbackLocalizations[@"en"];
     } else {
         effectiveLocalizationDict = localizationDict;
     }
     
-    event.title = effectiveLocalizationDict[titleKey];
-    event.shortTitle = effectiveLocalizationDict[shortTitleKey];
-    
-    if (effectiveLocalizationDict[preDescriptionKey]) {
-        event.preDescription = [self description:effectiveLocalizationDict[preDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
-    }
-    if (effectiveLocalizationDict[liveDescriptionKey]) {
-        event.liveDescription = [self description:effectiveLocalizationDict[liveDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
-    }
-    if (effectiveLocalizationDict[interimDescriptionKey]) {
-        event.interimDescription = [self description:effectiveLocalizationDict[interimDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
-    }
-    if (effectiveLocalizationDict[postDescriptionKey]) {
-        event.postDescription = [self description:effectiveLocalizationDict[postDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
-    }
-    
     event.location = effectiveLocalizationDict[locationKey];
     
-    if (!event.postDescription) {
-        NSString *legacyDescriptionKey = [NSString stringWithFormat:kLegacyDescLocalizedFormat, event.identifier];
-        event.postDescription = [self description:effectiveLocalizationDict[legacyDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown];
+    if (effectiveLocalizationDict[titleKey]) {
+        event.title = effectiveLocalizationDict[titleKey];
+    } else if (effectiveLocalizationDict[titleKeyGeneric]) {
+        event.title = effectiveLocalizationDict[titleKeyGeneric];
+    }
+    
+    if (effectiveLocalizationDict[shortTitleKey]) {
+        event.shortTitle = effectiveLocalizationDict[shortTitleKey];
+    } else if (effectiveLocalizationDict[shortTitleKeyGeneric]) {
+        event.shortTitle = [self description:effectiveLocalizationDict[shortTitleKeyGeneric] withDateTimePlaceholdersFilledWithDate:event.countdown locationPlaceholdersFilledWithLocation:event.location];
+    }
+    
+    if (effectiveLocalizationDict[preDescriptionKey]) {
+        event.preDescription = [self description:effectiveLocalizationDict[preDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown locationPlaceholdersFilledWithLocation:event.location];
+    } else if (effectiveLocalizationDict[preDescriptionKeyGeneric]) {
+        event.preDescription = [self description:effectiveLocalizationDict[preDescriptionKeyGeneric] withDateTimePlaceholdersFilledWithDate:event.countdown locationPlaceholdersFilledWithLocation:event.location];
+    }
+    if (effectiveLocalizationDict[liveDescriptionKey]) {
+        event.liveDescription = [self description:effectiveLocalizationDict[liveDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown locationPlaceholdersFilledWithLocation:event.location];
+    } else if (effectiveLocalizationDict[liveDescriptionKeyGeneric]) {
+        event.liveDescription = [self description:effectiveLocalizationDict[liveDescriptionKeyGeneric] withDateTimePlaceholdersFilledWithDate:event.countdown locationPlaceholdersFilledWithLocation:event.location];
+    }
+    if (effectiveLocalizationDict[interimDescriptionKey]) {
+        event.interimDescription = [self description:effectiveLocalizationDict[interimDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown locationPlaceholdersFilledWithLocation:event.location];
+    } else if (effectiveLocalizationDict[interimDescriptionKeyGeneric]) {
+        event.interimDescription = [self description:effectiveLocalizationDict[interimDescriptionKeyGeneric] withDateTimePlaceholdersFilledWithDate:event.countdown locationPlaceholdersFilledWithLocation:event.location];
+    }
+    if (effectiveLocalizationDict[postDescriptionKey]) {
+        event.postDescription = [self description:effectiveLocalizationDict[postDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown locationPlaceholdersFilledWithLocation:event.location];
+    } else if (effectiveLocalizationDict[legacyDescriptionKey]) {
+        event.postDescription = [self description:effectiveLocalizationDict[legacyDescriptionKey] withDateTimePlaceholdersFilledWithDate:event.countdown locationPlaceholdersFilledWithLocation:event.location];
+    } else if (effectiveLocalizationDict[postDescriptionKeyGeneric]) {
+        event.postDescription = [self description:effectiveLocalizationDict[postDescriptionKeyGeneric] withDateTimePlaceholdersFilledWithDate:event.countdown locationPlaceholdersFilledWithLocation:event.location];
     }
     
     event.buttonPlay = effectiveLocalizationDict[kButtonPlayFormat];
@@ -113,7 +138,7 @@
     return event;
 }
 
-+ (NSString *)description:(NSString *)desc withDateTimePlaceholdersFilledWithDate:(NSDate *)date
++ (NSString *)description:(NSString *)desc withDateTimePlaceholdersFilledWithDate:(NSDate *)date locationPlaceholdersFilledWithLocation:(NSString *)location
 {
     if (!date) {
         [[EVTVerboseLogger shared] addMessage:[NSString stringWithFormat:@"Nil date received when parsing event with description %@", desc]];
@@ -167,6 +192,10 @@
     output = [output stringByReplacingOccurrencesOfString:kHour12Placeholder withString:hour12];
     output = [output stringByReplacingOccurrencesOfString:kMinutePlaceholder withString:minute];
     output = [output stringByReplacingOccurrencesOfString:kAMPMPlaceholder withString:AMPM];
+    
+    if (location) {
+        output = [output stringByReplacingOccurrencesOfString:kLocationPlaceholder withString:location];
+    }
     
     return output;
 }

@@ -51,7 +51,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         prodEnv = [[EVTEnvironment alloc] init];
-        prodEnv.baseURL = [NSURL URLWithString:@"https://itunesevents.apple.com/ece8f46bf734ca267a2b6e0f7c3b471a5c964428/data/"];
+        prodEnv.baseURL = [NSURL URLWithString:@"https://itunesevents.apple.com/4b7fad4f3f945dedf976096ae7cdae1f59f394a9/data/"];
         prodEnv.stateCheckInterval = 60.0;
     });
     
