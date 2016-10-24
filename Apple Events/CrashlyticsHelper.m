@@ -27,6 +27,7 @@
 
 - (void)install
 {
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"NSApplicationCrashOnExceptions": @YES}];
     [Fabric with:@[[Crashlytics class]]];
 }
 
