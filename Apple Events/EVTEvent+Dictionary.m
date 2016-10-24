@@ -86,7 +86,7 @@
     NSString *interimDescriptionKeyGeneric = [NSString stringWithFormat:kInterimDescLocalizedFormat, kGenericKey];
     NSString *postDescriptionKeyGeneric = [NSString stringWithFormat:kPostDescLocalizedFormat, kGenericKey];
     
-    if (localizationDict[locationKey] == nil) {
+    if (localizationDict[titleKeyGeneric] == nil) {
         effectiveLocalizationDict = fallbackLocalizations[@"en"];
     } else {
         effectiveLocalizationDict = localizationDict;

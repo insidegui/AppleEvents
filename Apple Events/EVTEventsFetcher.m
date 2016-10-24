@@ -65,8 +65,6 @@
     
     if ([lang isEqualToString:@"es-ES"]) {
         lang = @"es";
-    } else if([lang isEqualToString:@"pt-BR"]) {
-        lang = @"pt";
     } else if([lang isEqualToString:@"en-US"]) {
         lang = @"en";
     }
