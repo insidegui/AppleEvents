@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
     <channel>
-        <title>WWDC Changelog</title>
+        <title>Apple Events Changelog</title>
         <link>https://github.com/insidegui/AppleEvents/raw/master/Releases/appcast.xml</link>
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
+		
+        <item>
+            <title>Version 0.7</title>
+			<description><![CDATA[
+						<h3>Important</h3>
+						<p><strong>This update is required if you want to watch the October 27th event</strong></p>
+						]]></description>
+            <pubDate>Mon, 24 Oct 2016 19:50:00 -0200</pubDate>
+            <enclosure url="https://github.com/insidegui/AppleEvents/releases/download/0.7/AppleEvents_v0.7_r.zip" sparkle:version="15" sparkle:shortVersionString="0.7" length="7811813" type="application/octet-stream" />
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+        </item>
 		
         <item>
             <title>Version 0.6</title>
