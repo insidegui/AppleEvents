@@ -36,12 +36,7 @@ open class EVTWindow: NSWindow {
         return NSAppearance(named: NSAppearanceNameVibrantDark)!
     }
     
-    fileprivate var titlebarWidgets: [NSButton]? {
-        return titlebarView?.subviews.flatMap { subview in
-            guard subview.isKind(of: NSClassFromString("_NSThemeWidget")!) else { return nil }
-            return subview as? NSButton
-        }
-    }
+    fileprivate var titlebarWidgets = Set<NSButton>()
     
     fileprivate func appearanceForWidgets() -> NSAppearance? {
         if allowsPiPMode {
@@ -53,7 +48,7 @@ open class EVTWindow: NSWindow {
     
     fileprivate func applyAppearanceToWidgets() {
         let appearance = appearanceForWidgets()
-        titlebarWidgets?.forEach { $0.appearance = appearance }
+        titlebarWidgets.forEach { $0.appearance = appearance }
     }
     
     fileprivate var _storedTitlebarView: NSVisualEffectView?
@@ -190,6 +185,14 @@ open class EVTWindow: NSWindow {
             self.titlebarView?.animator().alphaValue = opacity
             self.titlebarCompanionViews.forEach({ $0.animator().alphaValue = opacity })
             }, completionHandler: nil)
+    }
+    
+    open override func standardWindowButton(_ b: NSWindowButton) -> NSButton? {
+        guard let button = super.standardWindowButton(b) else { return nil }
+        
+        titlebarWidgets.insert(button)
+        
+        return button
     }
     
     // MARK: - Content management
