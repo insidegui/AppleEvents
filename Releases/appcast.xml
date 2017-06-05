@@ -7,6 +7,17 @@
         <language>en</language>
 		
         <item>
+            <title>Version 0.8</title>
+			<description><![CDATA[
+						<h3>Important</h3>
+						<p><strong>This update is required if you want to watch the WWDC 2017 Keynote</strong></p>
+						]]></description>
+            <pubDate>Sun, 04 Jun 2017 21:10:00 -0300</pubDate>
+            <enclosure url="https://github.com/insidegui/AppleEvents/releases/download/0.8/AppleEvents_v0.8.zip" sparkle:version="16" sparkle:shortVersionString="0.8" length="7808877" type="application/octet-stream" />
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+        </item>
+		
+        <item>
             <title>Version 0.7</title>
 			<description><![CDATA[
 						<h3>Important</h3>
