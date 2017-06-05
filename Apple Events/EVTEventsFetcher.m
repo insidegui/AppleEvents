@@ -301,10 +301,14 @@
     }];
     
     return [events sortedArrayUsingComparator:^NSComparisonResult(EVTEvent *obj1, EVTEvent *obj2) {
-        if (obj1.order > obj2.order) {
-            return NSOrderedDescending;
+        if (obj1.order == obj2.order) {
+            return [obj2.countdown compare:obj1.countdown];
         } else {
-            return NSOrderedAscending;
+            if (obj1.order > obj2.order) {
+                return NSOrderedDescending;
+            } else {
+                return NSOrderedAscending;
+            }
         }
     }];
 }
