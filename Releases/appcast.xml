@@ -7,6 +7,18 @@
         <language>en</language>
 		
         <item>
+            <title>Let's Meet at Our Place</title>
+			<description><![CDATA[
+						<h3>Ready for the September 2017 Apple Event.</h3>
+
+						<img src="http://itunesevents.apple.com/3dc059e5dd4672d0ced9c415478bdcfe173ee70a/data/events/SEP2017.jpg" />
+						]]></description>
+            <pubDate>Tue, 05 Sep 2017 20:30:00 -0300</pubDate>
+            <enclosure url="https://github.com/insidegui/AppleEvents/releases/download/0.9/AppleEvents_v0.9.zip" sparkle:version="17" sparkle:shortVersionString="0.9" length="7808880" type="application/octet-stream" />
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+        </item>
+		
+        <item>
             <title>Version 0.8</title>
 			<description><![CDATA[
 						<h3>Important</h3>
