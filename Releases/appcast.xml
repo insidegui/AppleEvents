@@ -7,6 +7,18 @@
         <language>en</language>
 		
         <item>
+            <title>Let's take a field trip</title>
+			<description><![CDATA[
+						<h3>Ready for the March 27th Apple Event.</h3>
+
+						<img src="http://itunesevents.apple.com/2216a55d7a4ed438cb6642049ae23cfff369ae9b/data/events/MAR2018.jpg" />
+						]]></description>
+            <pubDate>Sat, 24 Mar 2018 17:05:00 -0300</pubDate>
+            <enclosure url="https://github.com/insidegui/AppleEvents/releases/download/1.0/AppleEvents_v1.0.zip" sparkle:version="18" sparkle:shortVersionString="1.0" length="7808880" type="application/octet-stream" />
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+        </item>
+		
+        <item>
             <title>Let's Meet at Our Place</title>
 			<description><![CDATA[
 						<h3>Ready for the September 2017 Apple Event.</h3>

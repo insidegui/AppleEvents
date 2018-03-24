@@ -22,7 +22,7 @@ You can use this app to stream Apple events (both live and on-demand) to your Ch
 
 The main screen features the next event, the play button will appear as soon as the event starts.
 
-![screenshot](screenshot.png)
+![screenshot](screenshot_mar_2018.png)
 
 You can select `Play` to play a live or past event.
 
