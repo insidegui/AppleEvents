@@ -7,6 +7,18 @@
         <language>en</language>
 		
         <item>
+            <title>One More Thing</title>
+			<description><![CDATA[
+						<h3>Ready for WWDC 2018.</h3>
+
+						<img src="http://itunesevents.apple.com/8ec9338dce981ca31d0d4df7b5780ebc772b56c2/data/events/WWDC2018.jpg" />
+						]]></description>
+            <pubDate>Wed, 30 May 2018 11:45:00 -0300</pubDate>
+            <enclosure url="https://github.com/insidegui/AppleEvents/releases/download/1.1/AppleEvents_v1.1.zip" sparkle:version="20" sparkle:shortVersionString="1.1" length="7808880" type="application/octet-stream" />
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+        </item>
+		
+        <item>
             <title>Let's take a field trip</title>
 			<description><![CDATA[
 						<h3>Ready for the March 27th Apple Event.</h3>
