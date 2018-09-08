@@ -186,10 +186,10 @@
                 }
                 
                 NSArray *identifiers = [eventsDict keysSortedByValueUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-                    if ([[obj1 objectForKey:@"order"] integerValue] > [[obj2 objectForKey:@"order"] integerValue]) {
-                        return NSOrderedDescending;
-                    } else {
+                    if ([[obj1 objectForKey:@"live"] boolValue]) {
                         return NSOrderedAscending;
+                    } else {
+                        return NSOrderedDescending;
                     }
                 }];
                 

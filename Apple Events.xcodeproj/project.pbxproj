@@ -33,6 +33,8 @@
 		DD27D2F021447AC500CD5F6C /* SwiftProtobuf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD27D2E121447AA300CD5F6C /* SwiftProtobuf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DD27D2FD21447AE000CD5F6C /* ChromeCastCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD27D2FC21447AD700CD5F6C /* ChromeCastCore.framework */; };
 		DD27D2FE21447AE400CD5F6C /* ChromeCastCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD27D2FC21447AD700CD5F6C /* ChromeCastCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DD27D3022144837400CD5F6C /* Environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD27D3012144837400CD5F6C /* Environment.plist */; };
+		DD27D303214483EE00CD5F6C /* Environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD27D3012144837400CD5F6C /* Environment.plist */; };
 		DD2ACCD7214474ED000E8D7A /* EventsUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD2ACCCE214472C0000E8D7A /* EventsUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DD2ACCD8214474FC000E8D7A /* EventsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD2ACCCE214472C0000E8D7A /* EventsUI.framework */; };
 		DD4514501DBD30C7001464B0 /* EVTChromecastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD45144F1DBD30C7001464B0 /* EVTChromecastViewController.m */; };
@@ -178,6 +180,7 @@
 		DD27D2D321447A8D00CD5F6C /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		DD27D2D621447AA300CD5F6C /* SwiftProtobuf.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftProtobuf.xcodeproj; path = "swift-protobuf/SwiftProtobuf.xcodeproj"; sourceTree = "<group>"; };
 		DD27D2F721447AD700CD5F6C /* ChromeCastCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ChromeCastCore.xcodeproj; path = "swift-protobuf/../ChromeCastCore/ChromeCastCore.xcodeproj"; sourceTree = "<group>"; };
+		DD27D3012144837400CD5F6C /* Environment.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Environment.plist; sourceTree = "<group>"; };
 		DD45144E1DBD30C7001464B0 /* EVTChromecastViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTChromecastViewController.h; sourceTree = "<group>"; };
 		DD45144F1DBD30C7001464B0 /* EVTChromecastViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVTChromecastViewController.m; sourceTree = "<group>"; };
 		DD9CEB0F1D8069BD00DE15D5 /* EVTVerboseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTVerboseLogger.h; sourceTree = "<group>"; };
@@ -385,6 +388,7 @@
 		DDF00EED1D7D9FB100418830 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DD27D3012144837400CD5F6C /* Environment.plist */,
 				DDF00EE51D7D9F9E00418830 /* Info.plist */,
 				DDF00EE21D7D9F9E00418830 /* Main.storyboard */,
 				DDF00EE01D7D9F9D00418830 /* Assets.xcassets */,
@@ -592,6 +596,7 @@
 				DD00F2BD1D7E6EF7001049E6 /* IconMask.png in Resources */,
 				DD00F2BA1D7E6EF7001049E6 /* DefaultIcon.png in Resources */,
 				DD00F2BC1D7E6EF7001049E6 /* DefaultIcon@3x.png in Resources */,
+				DD27D303214483EE00CD5F6C /* Environment.plist in Resources */,
 				DD00F2BE1D7E6EF7001049E6 /* IconMask@2x.png in Resources */,
 				DD00F2BF1D7E6EF7001049E6 /* IconMask@3x.png in Resources */,
 				DD00F2BB1D7E6EF7001049E6 /* DefaultIcon@2x.png in Resources */,
@@ -603,6 +608,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDF00EE11D7D9F9D00418830 /* Assets.xcassets in Resources */,
+				DD27D3022144837400CD5F6C /* Environment.plist in Resources */,
 				DDF00EE41D7D9F9E00418830 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,6 +8,8 @@
 
 #import "EVTEnvironment.h"
 
+@import os.log;
+
 @interface EVTEnvironment ()
 
 @property (nonatomic, copy) NSURL *baseURL;
@@ -45,6 +47,16 @@
     return testEnv;
 }
 
++ (NSURL *)__configurationFileURL
+{
+    return [[NSBundle bundleForClass:[self class]] URLForResource:@"Environment" withExtension:@"plist"];
+}
+
++ (NSDictionary *)__environmentDictionary
+{
+    return [NSDictionary dictionaryWithContentsOfURL:[self __configurationFileURL]];
+}
+
 + (instancetype)productionEnvironment
 {
     static EVTEnvironment *prodEnv;
@@ -52,8 +64,12 @@
     dispatch_once(&onceToken, ^{
         prodEnv = [[EVTEnvironment alloc] init];
 
-        NSString *eventHash = [NSBundle mainBundle].infoDictionary[@"EVTCurrentEventHash"];
+        NSDictionary *config = [self __environmentDictionary];
+        NSString *eventHash = config[@"EVTCurrentEventHash"];
         NSString *urlString = [NSString stringWithFormat:@"https://itunesevents.apple.com/%@/data/", eventHash];
+
+        os_log_t log = os_log_create("AppleEventsApp", "EVTEnvironment");
+        os_log_info(log, "Current event hash: %{public}@", eventHash);
 
         prodEnv.baseURL = [NSURL URLWithString:urlString];
 

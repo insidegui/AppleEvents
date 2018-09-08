@@ -29,6 +29,7 @@
 #define kDatePlaceholder @"@@DATE@@"
 #define kYearPlaceholder @"@@YEAR@@"
 #define kMonthPlaceholder @"@@MONTH@@"
+#define kSyntaxMonthPlaceholder @"@@SYNTAX_MONTH@@"
 #define kLocationPlaceholder @"@@LOCATION@@"
 
 #define kButtonComingSoonFormat @"APPLE_EVENTS.BUTTON_COMING_SOON"
@@ -196,6 +197,7 @@
     output = [output stringByReplacingOccurrencesOfString:kDatePlaceholder withString:day];
     output = [output stringByReplacingOccurrencesOfString:kDatePlaceholder withString:day];
     output = [output stringByReplacingOccurrencesOfString:kMonthPlaceholder withString:month];
+    output = [output stringByReplacingOccurrencesOfString:kSyntaxMonthPlaceholder withString:month];
     output = [output stringByReplacingOccurrencesOfString:kHour24Placeholder withString:hour24];
     output = [output stringByReplacingOccurrencesOfString:kHour12Placeholder withString:hour12];
     output = [output stringByReplacingOccurrencesOfString:kMinutePlaceholder withString:minute];

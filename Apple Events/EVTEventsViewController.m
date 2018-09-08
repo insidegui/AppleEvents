@@ -59,7 +59,7 @@
     self.eventsCache = [EVTEventsCache cache];
     self.fetcher = [[EVTEventsFetcher alloc] initWithEnvironment:[EVTEnvironment currentEnvironment] cache:self.eventsCache];
     self.stateProvider = [[EVTEventStateProvider alloc] initWithEnvironment:[EVTEnvironment currentEnvironment]];
-    
+
     [self __configureAndInstallChildViewControllers];
     
     [self loadEventsWithProgress:YES];
