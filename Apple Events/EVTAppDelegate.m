@@ -10,8 +10,6 @@
 
 #import "EVTEnvironment.h"
 
-#import "CrashlyticsHelper.h"
-
 @import EventsUI;
 
 @interface EVTAppDelegate ()
@@ -21,8 +19,6 @@
 @implementation EVTAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [[CrashlyticsHelper shared] install];
-    
     NSWindow *window = [NSApp windows].firstObject;
     if ([window respondsToSelector:@selector(setTabbingMode:)]) {
         [window setTabbingMode:NSWindowTabbingModeDisallowed];

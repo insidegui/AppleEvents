@@ -19,9 +19,6 @@
 #import "EVTPlayerViewController.h"
 #import "EVTPastEventsCollectionViewController.h"
 
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
-
 @import EventsUI;
 
 @interface EVTEventsViewController ()
@@ -184,7 +181,6 @@
                                      @"lang": [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode],
                                      @"zone": [NSTimeZone systemTimeZone].name
                                      };
-    [[Crashlytics sharedInstance] recordError:error withAdditionalUserInfo:errorDebugInfo];
     
     [[NSAlert alertWithError:error] beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) { }];
 }
