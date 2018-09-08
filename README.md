@@ -1,4 +1,4 @@
-If you want to support my open source projects financially, you can do so by purchasing a copy of [BrowserFreedom](https://getbrowserfreedom.com) or [Mediunic](https://itunes.apple.com/app/mediunic-medium-client/id1088945121?mt=12) 😁
+If you want to support my open source projects financially, you can [support me on Patreon](https://patreon.com/_inside).
 
 # The unofficial Apple Events app for macOS
 
