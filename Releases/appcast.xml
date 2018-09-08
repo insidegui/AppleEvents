@@ -7,6 +7,18 @@
         <language>en</language>
 		
         <item>
+            <title>Gather Round</title>
+			<description><![CDATA[
+						<h3>Ready for the September 2018 event</h3>
+
+						<img src="https://www.apple.com/apple-events/september-2018/teaser/image_large_2x.jpg" />
+						]]></description>
+            <pubDate>Sat, 8 Sep 2018 19:45:00 -0300</pubDate>
+            <enclosure url="https://github.com/insidegui/AppleEvents/releases/download/1.2/AppleEvents_v1.2.zip" sparkle:version="30" sparkle:shortVersionString="1.2" length="7808880" type="application/octet-stream" />
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+        </item>
+		
+        <item>
             <title>One More Thing</title>
 			<description><![CDATA[
 						<h3>Ready for WWDC 2018.</h3>
