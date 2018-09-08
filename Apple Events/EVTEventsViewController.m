@@ -177,11 +177,6 @@
 
 - (void)__showError:(NSError *)error
 {
-    NSDictionary *errorDebugInfo = @{
-                                     @"lang": [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode],
-                                     @"zone": [NSTimeZone systemTimeZone].name
-                                     };
-    
     [[NSAlert alertWithError:error] beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) { }];
 }
 

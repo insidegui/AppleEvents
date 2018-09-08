@@ -6,7 +6,7 @@
 //  Copyright © 2016 Guilherme Rambo. All rights reserved.
 //
 
-#import "EVTChromeCastViewController.h"
+#import "EVTChromecastViewController.h"
 
 @import EventsUI;
 @import ChromeCastCore;

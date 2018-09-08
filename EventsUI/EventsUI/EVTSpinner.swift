@@ -23,7 +23,7 @@ open class EVTSpinner: NSProgressIndicator {
     }
     
     fileprivate func configure() {
-        self.appearance = NSAppearance(appearanceNamed: "WhiteSpinner", bundle: Bundle(for: EVTSpinner.self))
+        self.appearance = NSAppearance(appearanceNamed: NSAppearance.Name(rawValue: "WhiteSpinner"), bundle: Bundle(for: EVTSpinner.self))
         self.isIndeterminate = true
         self.controlSize = .regular
     }

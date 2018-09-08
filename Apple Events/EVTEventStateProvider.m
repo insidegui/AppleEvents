@@ -15,13 +15,11 @@
 @property (nonatomic, strong) EVTEnvironment *environment;
 @property (nonatomic, strong) NSURLSession *session;
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, assign) EVTEventState state;
 
 @end
 
 @implementation EVTEventStateProvider
-{
-    EVTEventState _state;
-}
 
 - (instancetype)initWithEnvironment:(EVTEnvironment *)environment
 {
@@ -70,22 +68,25 @@
 
 - (void)__stateCheck:(NSTimer *)sender
 {
+    __weak typeof(self) weakSelf = self;
+
     [self __fetchStateWithCompletionHandler:^(NSString *stateName) {
         #ifdef DEBUG
             NSLog(@"STATE = %@", stateName);
         #endif
         [self willChangeValueForKey:@"state"];
         if ([stateName isEqualToString:@"PRE"]) {
-            _state = EVTEventStatePre;
+            weakSelf.state = EVTEventStatePre;
         } else if ([stateName isEqualToString:@"LIVE"]) {
-            _state = EVTEventStateLive;
+            weakSelf.state = EVTEventStateLive;
         } else if ([stateName isEqualToString:@"INTERIM"]) {
-            _state = EVTEventStateInterim;
+            weakSelf.state = EVTEventStateInterim;
         } else if ([stateName isEqualToString:@"POST"]) {
-            _state = EVTEventStatePost;
+            weakSelf.state = EVTEventStatePost;
         } else {
             NSLog(@"Unknown event state: %@", stateName);
         }
+        
         [self didChangeValueForKey:@"state"];
     }];
 }

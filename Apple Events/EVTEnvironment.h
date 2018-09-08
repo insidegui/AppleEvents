@@ -6,7 +6,7 @@
 //  Copyright © 2016 Guilherme Rambo. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Cocoa;
 
 @interface EVTEnvironment : NSObject
 

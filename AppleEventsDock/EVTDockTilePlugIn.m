@@ -24,12 +24,11 @@
 
 @property (nonatomic, strong) NSTimer *updateTimer;
 
+@property (nonatomic, strong) NSDockTile *dockTile;
+
 @end
 
 @implementation EVTDockTilePlugIn
-{
-    NSDockTile *_dockTile;
-}
 
 - (instancetype)init
 {
@@ -64,9 +63,11 @@
 - (void)updateIconWithEventImageNamed:(NSString *)imageName
 {
     [[NSUserDefaults standardUserDefaults] setObject:imageName forKey:@"__EVT_currentIdentifier"];
+
+    __weak typeof(self) weakSelf = self;
     [self.imageFetcher fetchImageNamed:imageName completionHandler:^(NSImage *image) {
         self.iconView.eventImage = image;
-        [_dockTile display];
+        [weakSelf.dockTile display];
     }];
 }
 
@@ -81,7 +82,7 @@
 {
     if ([keyPath isEqualToString:@"state"]) {
         self.iconView.isLive = (self.stateProvider.state == EVTEventStateLive);
-        [_dockTile display];
+        [self.dockTile display];
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }

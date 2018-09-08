@@ -9,15 +9,15 @@
 import Cocoa
 import AVFoundation
 
-open class EVTWindow: NSWindow {
+@objcMembers open class EVTWindow: NSWindow {
     
     @IBInspectable @objc open var hidesTitlebar = true
     
     // MARK: - Initialization
     
-    override init(contentRect: NSRect, styleMask style: NSWindowStyleMask, backing bufferingType: NSBackingStoreType, defer flag: Bool) {
+    override init(contentRect: NSRect, styleMask style: NSWindow.StyleMask, backing bufferingType: NSWindow.BackingStoreType, defer flag: Bool) {
         var effectiveStyle = style
-        effectiveStyle.insert(.fullSizeContentView)
+        effectiveStyle.insert(NSWindow.StyleMask.fullSizeContentView)
         
         super.init(contentRect: contentRect, styleMask: effectiveStyle, backing: bufferingType, defer: flag)
         
@@ -33,16 +33,16 @@ open class EVTWindow: NSWindow {
     // MARK: - Custom appearance
     
     open override var effectiveAppearance: NSAppearance {
-        return NSAppearance(named: NSAppearanceNameVibrantDark)!
+        return NSAppearance(named: NSAppearance.Name.vibrantDark)!
     }
     
     fileprivate var titlebarWidgets = Set<NSButton>()
     
     fileprivate func appearanceForWidgets() -> NSAppearance? {
         if allowsPiPMode {
-            return NSAppearance(appearanceNamed: "PiPZoom", bundle: Bundle(for: EVTWindow.self))
+            return NSAppearance(appearanceNamed: NSAppearance.Name(rawValue: "PiPZoom"), bundle: Bundle(for: EVTWindow.self))
         } else {
-            return NSAppearance(named: NSAppearanceNameAqua)
+            return NSAppearance(named: NSAppearance.Name.aqua)
         }
     }
     
@@ -108,7 +108,7 @@ open class EVTWindow: NSWindow {
         titleTextField!.centerYAnchor.constraint(equalTo: titlebarView!.centerYAnchor).isActive = true
         titleTextField!.centerXAnchor.constraint(equalTo: titlebarView!.centerXAnchor).isActive = true
         titleTextField!.leadingAnchor.constraint(greaterThanOrEqualTo: titlebarView!.leadingAnchor, constant: 67.0).isActive = true
-        titleTextField!.setContentCompressionResistancePriority(0.1, for: .horizontal)
+        titleTextField!.setContentCompressionResistancePriority(NSLayoutConstraint.Priority(rawValue: 0.1), for: .horizontal)
         
         titleTextField!.layer?.compositingFilter = "lightenBlendMode"
     }
@@ -140,8 +140,8 @@ open class EVTWindow: NSWindow {
         let nc = NotificationCenter.default
         
         // the customizations (especially the title text field ones) have to be reapplied when entering and exiting fullscreen
-        nc.addObserver(forName: NSNotification.Name.NSWindowDidEnterFullScreen, object: self, queue: nil, using: applyCustomizations)
-        nc.addObserver(forName: NSNotification.Name.NSWindowDidExitFullScreen, object: self, queue: nil, using: applyCustomizations)
+        nc.addObserver(forName: NSWindow.didEnterFullScreenNotification, object: self, queue: nil, using: applyCustomizations)
+        nc.addObserver(forName: NSWindow.didExitFullScreenNotification, object: self, queue: nil, using: applyCustomizations)
     }
     
     open override func makeKeyAndOrderFront(_ sender: Any?) {
@@ -187,7 +187,7 @@ open class EVTWindow: NSWindow {
             }, completionHandler: nil)
     }
     
-    open override func standardWindowButton(_ b: NSWindowButton) -> NSButton? {
+    open override func standardWindowButton(_ b: NSWindow.ButtonType) -> NSButton? {
         guard let button = super.standardWindowButton(b) else { return nil }
         
         titlebarWidgets.insert(button)
@@ -207,7 +207,7 @@ open class EVTWindow: NSWindow {
         set {
             let darkContentView = EVTWindowContentView(frame: newValue?.frame ?? NSZeroRect)
             if let newContentView = newValue {
-                newContentView.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
+                newContentView.autoresizingMask = [NSView.AutoresizingMask.width, NSView.AutoresizingMask.height]
                 darkContentView.addSubview(newContentView)
             }
             super.contentView = darkContentView
@@ -243,11 +243,11 @@ open class EVTWindow: NSWindow {
     }
     
     fileprivate var canEnterPiPMode: Bool {
-        return allowsPiPMode && !isInPiPMode && !styleMask.contains(.fullScreen) && screen != nil
+        return allowsPiPMode && !isInPiPMode && !styleMask.contains(NSWindow.StyleMask.fullScreen) && screen != nil
     }
     
     fileprivate var levelBeforePiPMode: Int = 0
-    fileprivate var collectionBehaviorBeforePiPMode: NSWindowCollectionBehavior = []
+    fileprivate var collectionBehaviorBeforePiPMode: NSWindow.CollectionBehavior = []
     fileprivate var frameBeforePiPMode: NSRect = NSZeroRect
     
     @IBAction open func togglePiPMode(_ sender: AnyObject?) {
@@ -268,11 +268,11 @@ open class EVTWindow: NSWindow {
         isInPiPMode = true
         
         frameBeforePiPMode = frame
-        levelBeforePiPMode = level
+        levelBeforePiPMode = level.rawValue
         collectionBehaviorBeforePiPMode = collectionBehavior
         
-        collectionBehavior = [.canJoinAllSpaces, .stationary, .fullScreenPrimary]
-        level = Int(CGWindowLevelForKey(CGWindowLevelKey.maximumWindow))
+        collectionBehavior = [NSWindow.CollectionBehavior.canJoinAllSpaces, NSWindow.CollectionBehavior.stationary, NSWindow.CollectionBehavior.fullScreenPrimary]
+        level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(CGWindowLevelKey.maximumWindow)))
         setFrame(frameForPiPMode, display: true, animate: true)
         
         didChangeValue(forKey: "isInPiPMode")
@@ -290,7 +290,7 @@ open class EVTWindow: NSWindow {
         aspectRatio = aspectBeforePiP
         
         collectionBehavior = collectionBehaviorBeforePiPMode
-        level = levelBeforePiPMode
+        level = NSWindow.Level(rawValue: levelBeforePiPMode)
         didChangeValue(forKey: "isInPiPMode")
     }
     
@@ -330,7 +330,7 @@ private class EVTWindowContentView: NSView {
     
     fileprivate func installOverlayView() {
         overlayView = EVTWindowOverlayView(frame: bounds)
-        overlayView!.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
+        overlayView!.autoresizingMask = [NSView.AutoresizingMask.width, NSView.AutoresizingMask.height]
         addSubview(overlayView!, positioned: .above, relativeTo: subviews.last)
     }
     
@@ -345,7 +345,7 @@ private class EVTWindowContentView: NSView {
     
     fileprivate override func draw(_ dirtyRect: NSRect) {
         NSColor.black.setFill()
-        NSRectFill(dirtyRect)
+        dirtyRect.fill()
     }
     
     fileprivate override func addSubview(_ aView: NSView) {
@@ -373,7 +373,7 @@ private class EVTWindowOverlayView: NSView {
             removeTrackingArea(mouseTrackingArea)
         }
         
-        mouseTrackingArea = NSTrackingArea(rect: bounds, options: [.inVisibleRect, .mouseEnteredAndExited, .mouseMoved, .activeAlways], owner: self, userInfo: nil)
+        mouseTrackingArea = NSTrackingArea(rect: bounds, options: [NSTrackingArea.Options.inVisibleRect, NSTrackingArea.Options.mouseEnteredAndExited, NSTrackingArea.Options.mouseMoved, NSTrackingArea.Options.activeAlways], owner: self, userInfo: nil)
         addTrackingArea(mouseTrackingArea)
     }
     
@@ -395,7 +395,7 @@ private class EVTWindowOverlayView: NSView {
     fileprivate override func viewDidMoveToWindow() {
         super.viewDidMoveToWindow()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(windowWillExitFullscreen), name: NSNotification.Name.NSWindowWillExitFullScreen, object: window)
+        NotificationCenter.default.addObserver(self, selector: #selector(windowWillExitFullscreen), name: NSWindow.willExitFullScreenNotification, object: window)
         resetMouseIdleTimer()
     }
     

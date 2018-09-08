@@ -8,7 +8,7 @@
 
 import Cocoa
 
-open class EVTButton: NSControl {
+@objcMembers open class EVTButton: NSControl {
 
     fileprivate var widthConstraint: NSLayoutConstraint!
     
@@ -25,16 +25,16 @@ open class EVTButton: NSControl {
         let pStyle = NSMutableParagraphStyle()
         pStyle.alignment = .center
         
-        let attrs = [
-            NSFontAttributeName: textFont,
-            NSForegroundColorAttributeName: textColor,
-            NSParagraphStyleAttributeName: pStyle
-        ] as [String : Any]
+        let attrs: [NSAttributedStringKey: Any] = [
+            .font: textFont,
+            .foregroundColor: textColor,
+            .paragraphStyle: pStyle
+        ]
         
         return NSAttributedString(string: title, attributes: attrs)
     }
     
-    open var textFont: NSFont = NSFont.systemFont(ofSize: 18.0, weight: NSFontWeightMedium) {
+    open var textFont: NSFont = NSFont.systemFont(ofSize: 18.0, weight: NSFont.Weight.medium) {
         didSet {
             guard oldValue != textFont else { return }
             guard titleLayer != nil else { return }
@@ -105,7 +105,7 @@ open class EVTButton: NSControl {
         shouldDisplayHighlightedState = true
         
         while(isMouseDown) {
-            guard let event = NSApp.nextEvent(matching: [.leftMouseUp, .leftMouseDragged], until: Date.distantFuture, inMode: RunLoopMode.eventTrackingRunLoopMode, dequeue: true) else { continue }
+            guard let event = NSApp.nextEvent(matching: [NSEvent.EventTypeMask.leftMouseUp, NSEvent.EventTypeMask.leftMouseDragged], until: Date.distantFuture, inMode: RunLoopMode.eventTrackingRunLoopMode, dequeue: true) else { continue }
             
             let point = self.convert(event.locationInWindow, to: self)
             
@@ -115,7 +115,7 @@ open class EVTButton: NSControl {
                 self.shouldDisplayHighlightedState = false
                 
                 if hitTest(point) == self {
-                    NSApplication.shared().sendAction(action!, to: target, from: self)
+                    NSApplication.shared.sendAction(action!, to: target, from: self)
                 }
             case .leftMouseDragged:
                 shouldDisplayHighlightedState = (hitTest(point) == self)
@@ -131,7 +131,7 @@ open class EVTButton: NSControl {
         
         if titleLayer == nil {
             titleLayer = CATextLayer()
-            titleLayer.contentsScale = NSScreen.main()?.backingScaleFactor ?? 1.0
+            titleLayer.contentsScale = NSScreen.main?.backingScaleFactor ?? 1.0
             titleLayer.compositingFilter = "overlayBlendMode"
             titleLayer.alignmentMode = kCAAlignmentCenter
             layer?.addSublayer(titleLayer)

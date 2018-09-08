@@ -27,7 +27,7 @@ open class EVTTextFieldCell: NSTextFieldCell {
     }
     
     override open func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
-        guard let ctx = NSGraphicsContext.current()?.cgContext else { return }
+        guard let ctx = NSGraphicsContext.current?.cgContext else { return }
         
         ctx.setBlendMode(CGBlendMode.overlay)
         ctx.setAlpha(0.5)

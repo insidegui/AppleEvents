@@ -11,7 +11,7 @@
 #import "EVTEventsViewController.h"
 #import "EVTEvent.h"
 
-#import "EVTChromeCastViewController.h"
+#import "EVTChromecastViewController.h"
 
 @import AVFoundation;
 @import AVKit;

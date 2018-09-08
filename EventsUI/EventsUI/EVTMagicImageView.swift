@@ -9,7 +9,7 @@
 import Cocoa
 import QuartzCore
 
-open class EVTMagicImageView: NSView {
+@objcMembers open class EVTMagicImageView: NSView {
 
     open var blurAmountWhenHovered: CGFloat = 40.0
     
@@ -162,7 +162,7 @@ open class EVTMagicImageView: NSView {
             removeTrackingArea(hoverTrackingArea)
         }
         
-        hoverTrackingArea = NSTrackingArea(rect: bounds, options: [.activeInActiveApp, .mouseEnteredAndExited], owner: self, userInfo: nil)
+        hoverTrackingArea = NSTrackingArea(rect: bounds, options: [NSTrackingArea.Options.activeInActiveApp, NSTrackingArea.Options.mouseEnteredAndExited], owner: self, userInfo: nil)
         addTrackingArea(hoverTrackingArea)
     }
     

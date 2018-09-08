@@ -51,7 +51,12 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         prodEnv = [[EVTEnvironment alloc] init];
-        prodEnv.baseURL = [NSURL URLWithString:@"https://itunesevents.apple.com/2216a55d7a4ed438cb6642049ae23cfff369ae9b/data/"];
+
+        NSString *eventHash = [NSBundle mainBundle].infoDictionary[@"EVTCurrentEventHash"];
+        NSString *urlString = [NSString stringWithFormat:@"https://itunesevents.apple.com/%@/data/", eventHash];
+
+        prodEnv.baseURL = [NSURL URLWithString:urlString];
+
         prodEnv.stateCheckInterval = 60.0;
     });
     

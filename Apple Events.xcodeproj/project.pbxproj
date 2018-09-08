@@ -27,6 +27,14 @@
 		DD00F2BD1D7E6EF7001049E6 /* IconMask.png in Resources */ = {isa = PBXBuildFile; fileRef = DD00F2B71D7E6EF7001049E6 /* IconMask.png */; };
 		DD00F2BE1D7E6EF7001049E6 /* IconMask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD00F2B81D7E6EF7001049E6 /* IconMask@2x.png */; };
 		DD00F2BF1D7E6EF7001049E6 /* IconMask@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD00F2B91D7E6EF7001049E6 /* IconMask@3x.png */; };
+		DD27D2D421447A9200CD5F6C /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD27D2D321447A8D00CD5F6C /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DD27D2D521447A9900CD5F6C /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD27D2D321447A8D00CD5F6C /* Sparkle.framework */; };
+		DD27D2EE21447AAC00CD5F6C /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD27D2E121447AA300CD5F6C /* SwiftProtobuf.framework */; };
+		DD27D2F021447AC500CD5F6C /* SwiftProtobuf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD27D2E121447AA300CD5F6C /* SwiftProtobuf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DD27D2FD21447AE000CD5F6C /* ChromeCastCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD27D2FC21447AD700CD5F6C /* ChromeCastCore.framework */; };
+		DD27D2FE21447AE400CD5F6C /* ChromeCastCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD27D2FC21447AD700CD5F6C /* ChromeCastCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DD2ACCD7214474ED000E8D7A /* EventsUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD2ACCCE214472C0000E8D7A /* EventsUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DD2ACCD8214474FC000E8D7A /* EventsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD2ACCCE214472C0000E8D7A /* EventsUI.framework */; };
 		DD4514501DBD30C7001464B0 /* EVTChromecastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD45144F1DBD30C7001464B0 /* EVTChromecastViewController.m */; };
 		DD9CEB111D8069BD00DE15D5 /* EVTVerboseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9CEB101D8069BD00DE15D5 /* EVTVerboseLogger.m */; };
 		DD9CEB121D806B7200DE15D5 /* EVTVerboseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9CEB101D8069BD00DE15D5 /* EVTVerboseLogger.m */; };
@@ -35,8 +43,6 @@
 		DDF00EE11D7D9F9D00418830 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF00EE01D7D9F9D00418830 /* Assets.xcassets */; };
 		DDF00EE41D7D9F9E00418830 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF00EE21D7D9F9E00418830 /* Main.storyboard */; };
 		DDF00EF01D7D9FF400418830 /* EVTEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF00EEF1D7D9FF400418830 /* EVTEventsViewController.m */; };
-		DDF00F0F1D7DA23200418830 /* EventsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF00F0B1D7DA0BF00418830 /* EventsUI.framework */; };
-		DDF00F101D7DA23200418830 /* EventsUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DDF00F0B1D7DA0BF00418830 /* EventsUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DDF00F171D7DA84100418830 /* EVTEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF00F161D7DA84100418830 /* EVTEvent.m */; };
 		DDF00F1A1D7DA9C200418830 /* EVTEventsFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF00F191D7DA9C200418830 /* EVTEventsFetcher.m */; };
 		DDF00F1D1D7DAA2000418830 /* EVTEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF00F1C1D7DAA2000418830 /* EVTEnvironment.m */; };
@@ -54,18 +60,67 @@
 			remoteGlobalIDString = DD00F29B1D7E6C99001049E6;
 			remoteInfo = AppleEventsDock;
 		};
-		DDF00F0A1D7DA0BF00418830 /* PBXContainerItemProxy */ = {
+		DD27D2E021447AA300CD5F6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD27D2D621447AA300CD5F6C /* SwiftProtobuf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_Protobuf_macOS";
+			remoteInfo = SwiftProtobuf_macOS;
+		};
+		DD27D2E221447AA300CD5F6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD27D2D621447AA300CD5F6C /* SwiftProtobuf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_ProtobufTestSuite_macOS";
+			remoteInfo = SwiftProtobufTestSuite_macOS;
+		};
+		DD27D2E421447AA300CD5F6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD27D2D621447AA300CD5F6C /* SwiftProtobuf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_Protobuf_iOS";
+			remoteInfo = SwiftProtobuf_iOS;
+		};
+		DD27D2E621447AA300CD5F6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD27D2D621447AA300CD5F6C /* SwiftProtobuf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_ProtobufTestSuite_iOS";
+			remoteInfo = SwiftProtobufTestSuite_iOS;
+		};
+		DD27D2E821447AA300CD5F6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD27D2D621447AA300CD5F6C /* SwiftProtobuf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F44F936F1DAEA53900BC5B85;
+			remoteInfo = SwiftProtobuf_tvOS;
+		};
+		DD27D2EA21447AA300CD5F6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD27D2D621447AA300CD5F6C /* SwiftProtobuf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F44F939F1DAEA7C500BC5B85;
+			remoteInfo = SwiftProtobufTestSuite_tvOS;
+		};
+		DD27D2EC21447AA300CD5F6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD27D2D621447AA300CD5F6C /* SwiftProtobuf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F44F93FE1DAEB13F00BC5B85;
+			remoteInfo = SwiftProtobuf_watchOS;
+		};
+		DD27D2FB21447AD700CD5F6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD27D2F721447AD700CD5F6C /* ChromeCastCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DD674A381DB7E83500E1FC24;
+			remoteInfo = ChromeCastCore;
+		};
+		DD2ACCCD214472C0000E8D7A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DDF00F061D7DA0BE00418830 /* EventsUI.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = DDF00EFB1D7DA0BE00418830;
-			remoteInfo = EventsUI;
-		};
-		DDF00F111D7DA23200418830 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DDF00F061D7DA0BE00418830 /* EventsUI.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = DDF00EFA1D7DA0BE00418830;
 			remoteInfo = EventsUI;
 		};
 /* End PBXContainerItemProxy section */
@@ -87,7 +142,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				DDF00F101D7DA23200418830 /* EventsUI.framework in Embed Frameworks */,
+				DD27D2FE21447AE400CD5F6C /* ChromeCastCore.framework in Embed Frameworks */,
+				DD27D2F021447AC500CD5F6C /* SwiftProtobuf.framework in Embed Frameworks */,
+				DD27D2D421447A9200CD5F6C /* Sparkle.framework in Embed Frameworks */,
+				DD2ACCD7214474ED000E8D7A /* EventsUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -117,6 +175,9 @@
 		DD00F2B71D7E6EF7001049E6 /* IconMask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconMask.png; path = Resources/IconMask.png; sourceTree = SOURCE_ROOT; };
 		DD00F2B81D7E6EF7001049E6 /* IconMask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconMask@2x.png"; path = "Resources/IconMask@2x.png"; sourceTree = SOURCE_ROOT; };
 		DD00F2B91D7E6EF7001049E6 /* IconMask@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconMask@3x.png"; path = "Resources/IconMask@3x.png"; sourceTree = SOURCE_ROOT; };
+		DD27D2D321447A8D00CD5F6C /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		DD27D2D621447AA300CD5F6C /* SwiftProtobuf.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftProtobuf.xcodeproj; path = "swift-protobuf/SwiftProtobuf.xcodeproj"; sourceTree = "<group>"; };
+		DD27D2F721447AD700CD5F6C /* ChromeCastCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ChromeCastCore.xcodeproj; path = "swift-protobuf/../ChromeCastCore/ChromeCastCore.xcodeproj"; sourceTree = "<group>"; };
 		DD45144E1DBD30C7001464B0 /* EVTChromecastViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTChromecastViewController.h; sourceTree = "<group>"; };
 		DD45144F1DBD30C7001464B0 /* EVTChromecastViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVTChromecastViewController.m; sourceTree = "<group>"; };
 		DD9CEB0F1D8069BD00DE15D5 /* EVTVerboseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTVerboseLogger.h; sourceTree = "<group>"; };
@@ -130,7 +191,7 @@
 		DDF00EE51D7D9F9E00418830 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDF00EEE1D7D9FF400418830 /* EVTEventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTEventsViewController.h; sourceTree = "<group>"; };
 		DDF00EEF1D7D9FF400418830 /* EVTEventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVTEventsViewController.m; sourceTree = "<group>"; };
-		DDF00F061D7DA0BE00418830 /* EventsUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EventsUI.xcodeproj; path = EventsUI/EventsUI.xcodeproj; sourceTree = "<group>"; };
+		DDF00F061D7DA0BE00418830 /* EventsUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EventsUI.xcodeproj; path = ../EventsUI/EventsUI.xcodeproj; sourceTree = "<group>"; };
 		DDF00F151D7DA84100418830 /* EVTEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTEvent.h; sourceTree = "<group>"; };
 		DDF00F161D7DA84100418830 /* EVTEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVTEvent.m; sourceTree = "<group>"; };
 		DDF00F181D7DA9C200418830 /* EVTEventsFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVTEventsFetcher.h; sourceTree = "<group>"; };
@@ -159,7 +220,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDF00F0F1D7DA23200418830 /* EventsUI.framework in Frameworks */,
+				DD27D2FD21447AE000CD5F6C /* ChromeCastCore.framework in Frameworks */,
+				DD27D2EE21447AAC00CD5F6C /* SwiftProtobuf.framework in Frameworks */,
+				DD2ACCD8214474FC000E8D7A /* EventsUI.framework in Frameworks */,
+				DD27D2D521447A9900CD5F6C /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,13 +275,62 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		DD27D2D721447AA300CD5F6C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DD27D2E121447AA300CD5F6C /* SwiftProtobuf.framework */,
+				DD27D2E321447AA300CD5F6C /* SwiftProtobufTests.xctest */,
+				DD27D2E521447AA300CD5F6C /* SwiftProtobuf.framework */,
+				DD27D2E721447AA300CD5F6C /* SwiftProtobufTests.xctest */,
+				DD27D2E921447AA300CD5F6C /* SwiftProtobuf.framework */,
+				DD27D2EB21447AA300CD5F6C /* SwiftProtobufTests.xctest */,
+				DD27D2ED21447AA300CD5F6C /* SwiftProtobuf.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DD27D2F821447AD700CD5F6C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DD27D2FC21447AD700CD5F6C /* ChromeCastCore.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DD2ACCC9214472B5000E8D7A /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				DD27D2F721447AD700CD5F6C /* ChromeCastCore.xcodeproj */,
+				DD27D2D621447AA300CD5F6C /* SwiftProtobuf.xcodeproj */,
+				DD27D2D321447A8D00CD5F6C /* Sparkle.framework */,
+				DDF00F061D7DA0BE00418830 /* EventsUI.xcodeproj */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		DD2ACCCA214472C0000E8D7A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DD2ACCCE214472C0000E8D7A /* EventsUI.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DD2ACCD1214472E2000E8D7A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DDF00ECB1D7D9F9D00418830 = {
 			isa = PBXGroup;
 			children = (
-				DDF00F061D7DA0BE00418830 /* EventsUI.xcodeproj */,
+				DD2ACCC9214472B5000E8D7A /* Dependencies */,
 				DDF00ED61D7D9F9D00418830 /* Apple Events */,
 				DD00F29D1D7E6C99001049E6 /* AppleEventsDock */,
 				DDF00ED51D7D9F9D00418830 /* Products */,
+				DD2ACCD1214472E2000E8D7A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -277,14 +390,6 @@
 				DDF00EE01D7D9F9D00418830 /* Assets.xcassets */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		DDF00F071D7DA0BE00418830 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				DDF00F0B1D7DA0BF00418830 /* EventsUI.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		DDF00F141D7DA82B00418830 /* Core */ = {
@@ -353,7 +458,6 @@
 			);
 			dependencies = (
 				DD00F2AA1D7E6CB5001049E6 /* PBXTargetDependency */,
-				DDF00F121D7DA23200418830 /* PBXTargetDependency */,
 			);
 			name = "Apple Events";
 			productName = "Apple Events";
@@ -366,7 +470,7 @@
 		DDF00ECC1D7D9F9D00418830 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Guilherme Rambo";
 				TargetAttributes = {
 					DD00F29B1D7E6C99001049E6 = {
@@ -394,8 +498,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = DDF00F071D7DA0BE00418830 /* Products */;
+					ProductGroup = DD27D2F821447AD700CD5F6C /* Products */;
+					ProjectRef = DD27D2F721447AD700CD5F6C /* ChromeCastCore.xcodeproj */;
+				},
+				{
+					ProductGroup = DD2ACCCA214472C0000E8D7A /* Products */;
 					ProjectRef = DDF00F061D7DA0BE00418830 /* EventsUI.xcodeproj */;
+				},
+				{
+					ProductGroup = DD27D2D721447AA300CD5F6C /* Products */;
+					ProjectRef = DD27D2D621447AA300CD5F6C /* SwiftProtobuf.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -407,11 +519,67 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		DDF00F0B1D7DA0BF00418830 /* EventsUI.framework */ = {
+		DD27D2E121447AA300CD5F6C /* SwiftProtobuf.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftProtobuf.framework;
+			remoteRef = DD27D2E021447AA300CD5F6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD27D2E321447AA300CD5F6C /* SwiftProtobufTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftProtobufTests.xctest;
+			remoteRef = DD27D2E221447AA300CD5F6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD27D2E521447AA300CD5F6C /* SwiftProtobuf.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftProtobuf.framework;
+			remoteRef = DD27D2E421447AA300CD5F6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD27D2E721447AA300CD5F6C /* SwiftProtobufTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftProtobufTests.xctest;
+			remoteRef = DD27D2E621447AA300CD5F6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD27D2E921447AA300CD5F6C /* SwiftProtobuf.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftProtobuf.framework;
+			remoteRef = DD27D2E821447AA300CD5F6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD27D2EB21447AA300CD5F6C /* SwiftProtobufTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftProtobufTests.xctest;
+			remoteRef = DD27D2EA21447AA300CD5F6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD27D2ED21447AA300CD5F6C /* SwiftProtobuf.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftProtobuf.framework;
+			remoteRef = DD27D2EC21447AA300CD5F6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD27D2FC21447AD700CD5F6C /* ChromeCastCore.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ChromeCastCore.framework;
+			remoteRef = DD27D2FB21447AD700CD5F6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD2ACCCE214472C0000E8D7A /* EventsUI.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = EventsUI.framework;
-			remoteRef = DDF00F0A1D7DA0BF00418830 /* PBXContainerItemProxy */;
+			remoteRef = DD2ACCCD214472C0000E8D7A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -506,11 +674,6 @@
 			target = DD00F29B1D7E6C99001049E6 /* AppleEventsDock */;
 			targetProxy = DD00F2A91D7E6CB5001049E6 /* PBXContainerItemProxy */;
 		};
-		DDF00F121D7DA23200418830 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = EventsUI;
-			targetProxy = DDF00F111D7DA23200418830 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -541,6 +704,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.guilhermerambo.AppleEventsDock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.1;
 				WRAPPER_EXTENSION = docktileplugin;
 			};
 			name = Debug;
@@ -557,6 +721,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.guilhermerambo.AppleEventsDock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.1;
 				WRAPPER_EXTENSION = docktileplugin;
 			};
 			name = Release;
@@ -570,15 +735,24 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -617,15 +791,24 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -660,6 +843,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Dependencies",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -671,6 +856,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "br.com.guilhermerambo.Apple-Events";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.1;
 			};
 			name = Debug;
 		};
@@ -685,6 +871,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Dependencies",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				INFOPLIST_FILE = "Apple Events/Info.plist";
@@ -693,6 +881,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "br.com.guilhermerambo.Apple-Events";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.1;
 			};
 			name = Release;
 		};
