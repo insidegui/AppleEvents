@@ -1,5 +1,3 @@
-If you want to support my open source projects financially, you can [support me on Patreon](https://patreon.com/_inside).
-
 # The unofficial Apple Events app for macOS
 
 This is the unofficial Apple Events app for macOS, inspired by the official Apple TV Events app.
@@ -17,6 +15,10 @@ You can use this app to stream Apple events (both live and on-demand) to your Ch
 ![chromecastmenu](chromecast-2.png)
 
 *Chromecast streaming is in beta and has only been tested with Chromecast 2 on macOS 10.12*
+
+## Contributing
+
+This app is provided for free and as-is, I will not answer to support questions. If there's something you'd like to change or fix, feel free to open a pull request.
 
 ## Screenshots
 
