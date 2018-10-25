@@ -14,7 +14,7 @@
 						<img src="https://www.apple.com/v/apple-events/home/a/images/overview/hero_image_01__pj9kqyeokxu2_large_2x.jpg" />
 						]]></description>
             <pubDate>Sat, 8 Sep 2018 19:45:00 -0300</pubDate>
-            <enclosure url="https://github.com/insidegui/AppleEvents/releases/download/1.2/AppleEvents_v1.3.zip" sparkle:version="40" sparkle:shortVersionString="1.3" length="8984792" type="application/octet-stream" />
+            <enclosure url="https://github.com/insidegui/AppleEvents/releases/download/1.3/AppleEvents_v1.3.zip" sparkle:version="40" sparkle:shortVersionString="1.3" length="8984792" type="application/octet-stream" />
             <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
         </item>
 		
