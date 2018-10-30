@@ -152,6 +152,7 @@
     if (self.event.live) {
         switch (self.stateProvider.state) {
             case EVTEventStateLive:
+                self.event.liveURL = self.stateProvider.url;
                 [self.mainController playLiveEvent:self.event];
                 break;
             case EVTEventStatePost:

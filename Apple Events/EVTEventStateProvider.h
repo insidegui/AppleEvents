@@ -23,5 +23,6 @@ typedef NS_ENUM(NSInteger, EVTEventState) {
 - (instancetype)initWithEnvironment:(EVTEnvironment *)environment;
 
 @property (readonly) EVTEventState state;
+@property (readonly) NSURL *url;
 
 @end

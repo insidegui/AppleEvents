@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSURLSession *session;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) EVTEventState state;
+@property (nonatomic, copy) NSURL *url;
 
 @end
 
@@ -34,7 +35,7 @@
     return self;
 }
 
-- (void)__fetchStateWithCompletionHandler:(void (^)(NSString *))completionHandler
+- (void)__fetchStateWithCompletionHandler:(void (^)(NSString *, NSString *))completionHandler
 {
     NSURLSessionDataTask *task = [self.session dataTaskWithURL:self.environment.stateURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error) {
@@ -54,7 +55,7 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            completionHandler(stateDict[@"state"]);
+            completionHandler(stateDict[@"state"], stateDict[@"url"]);
         });
     }];
     [task resume];
@@ -70,7 +71,7 @@
 {
     __weak typeof(self) weakSelf = self;
 
-    [self __fetchStateWithCompletionHandler:^(NSString *stateName) {
+    [self __fetchStateWithCompletionHandler:^(NSString *stateName, NSString *url) {
         #ifdef DEBUG
             NSLog(@"STATE = %@", stateName);
         #endif
@@ -78,6 +79,7 @@
         if ([stateName isEqualToString:@"PRE"]) {
             weakSelf.state = EVTEventStatePre;
         } else if ([stateName isEqualToString:@"LIVE"]) {
+            weakSelf.url = [NSURL URLWithString:url];
             weakSelf.state = EVTEventStateLive;
         } else if ([stateName isEqualToString:@"INTERIM"]) {
             weakSelf.state = EVTEventStateInterim;
