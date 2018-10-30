@@ -7,6 +7,16 @@
         <language>en</language>
 		
         <item>
+            <title>Bug fix update</title>
+			<description><![CDATA[
+				<p>Fixes a bug with live streaming.</p>
+						]]></description>
+            <pubDate>Sat, 8 Sep 2018 19:45:00 -0300</pubDate>
+            <enclosure url="https://github.com/insidegui/AppleEvents/releases/download/1.3.1/AppleEvents_v1.3.1.zip" sparkle:version="40" sparkle:shortVersionString="1.3.1" length="8984792" type="application/octet-stream" />
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+        </item>
+		
+        <item>
             <title>There's more in the making</title>
 			<description><![CDATA[
 						<h3>Ready for the October 2018 event</h3>
