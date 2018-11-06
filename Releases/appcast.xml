@@ -11,8 +11,8 @@
 			<description><![CDATA[
 				<p>Fixes a bug with live streaming.</p>
 						]]></description>
-            <pubDate>Sat, 8 Sep 2018 19:45:00 -0300</pubDate>
-            <enclosure url="https://github.com/insidegui/AppleEvents/releases/download/1.3.1/AppleEvents_v1.3.1.zip" sparkle:version="40" sparkle:shortVersionString="1.3.1" length="8984792" type="application/octet-stream" />
+            <pubDate>Tue, 6 Nov 2018 16:00:00 -0200</pubDate>
+            <enclosure url="https://github.com/insidegui/AppleEvents/releases/download/1.3.1/AppleEvents_v1.3.1.zip" sparkle:version="42" sparkle:shortVersionString="1.3.1" length="8988065" type="application/octet-stream" />
             <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
         </item>
 		
