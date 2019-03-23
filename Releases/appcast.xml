@@ -7,6 +7,18 @@
         <language>en</language>
 		
         <item>
+            <title>It's Show Time</title>
+			<description><![CDATA[
+						<h3>Ready for the March 2019 event</h3>
+
+						<img src="https://p-events-delivery.akamaized.net/1902kqjxryyrbajopflcgykapfuzwetatbxq/js_files/event/poster__bf7h8lkl9wya_xlarge.jpg" />
+						]]></description>
+            <pubDate>Sat, 23 Mar 2019 13:00:00 -0300</pubDate>
+            <enclosure url="https://github.com/insidegui/AppleEvents/releases/download/1.4/AppleEvents_v1.4.zip" sparkle:version="50" sparkle:shortVersionString="1.4" length="8989398" type="application/octet-stream" />
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+        </item>
+		
+        <item>
             <title>Bug fix update</title>
 			<description><![CDATA[
 				<p>Fixes a bug with live streaming.</p>
