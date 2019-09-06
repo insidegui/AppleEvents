@@ -7,6 +7,18 @@
         <language>en</language>
 		
         <item>
+            <title>By Innovation Only.</title>
+			<description><![CDATA[
+						<h3>Ready for the September 2019 event.</h3>
+
+						<img src="https://itunesevents.apple.com/uHn93dUNz1P-6KSKhWELdw/data/events/SEP2019.jpg" />
+						]]></description>
+            <pubDate>Fri, 31 May 2019 16:15:00 -0300</pubDate>
+            <enclosure url="https://github.com/insidegui/AppleEvents/releases/download/1.6/AppleEvents_v1.6.zip" sparkle:version="60" sparkle:shortVersionString="1.6" length="8989398" type="application/octet-stream" />
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+        </item>
+		
+        <item>
             <title>Write code. Blow minds.</title>
 			<description><![CDATA[
 						<h3>Ready for WWDC 2019</h3>
