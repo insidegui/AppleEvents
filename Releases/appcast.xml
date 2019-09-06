@@ -26,7 +26,7 @@
 						<img src="https://developer.apple.com/wwdc19/images/hero/wwdc19-robot-large_2x.jpg" />
 						]]></description>
             <pubDate>Fri, 31 May 2019 16:15:00 -0300</pubDate>
-            <enclosure url="https://github.com/insidegui/AppleEvents/releases/download/1.4/AppleEvents_v1.5.zip" sparkle:version="60" sparkle:shortVersionString="1.5" length="8989398" type="application/octet-stream" />
+            <enclosure url="https://github.com/insidegui/AppleEvents/releases/download/1.5/AppleEvents_v1.5.zip" sparkle:version="60" sparkle:shortVersionString="1.5" length="8989398" type="application/octet-stream" />
             <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
         </item>
 		
